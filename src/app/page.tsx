@@ -1,103 +1,202 @@
-import Image from "next/image";
+import Link from "next/link";
+import type { ReactElement } from "react";
+import { caseStudies, centralThesis, resumeItems, speakingEvents } from "@/lib/site-data";
+import { getAllWritingMeta } from "@/lib/writing";
 
-export default function Home() {
+export default async function Home(): Promise<ReactElement> {
+  const posts = await getAllWritingMeta();
+  const featuredPosts = posts.slice(0, 4);
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main id="main">
+      <section aria-labelledby="hero-head" className="hero">
+        <div className="hero-scroll">
+          <span>DESIGN TECHNOLOGIST</span>
+          <span className="accent">|</span>
+          <span>ACCESSIBILITY SPECIALIST</span>
+          <span className="accent">|</span>
+          <span>REAL-TIME UI ENGINEER</span>
+          <span className="accent">|</span>
+          <span>DESIGN TECHNOLOGIST</span>
+          <span className="accent">|</span>
+          <span>ACCESSIBILITY SPECIALIST</span>
+          <span className="accent">|</span>
+          <span>REAL-TIME UI ENGINEER</span>
+        </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+        <div className="hero-body">
+          <p className="hero-kicker">01 | Hello</p>
+          <h1 className="hero-head" id="hero-head">
+            <span className="line">
+              <span className="w">I</span> <span className="w">build</span> <span className="w italic">interfaces</span>
+            </span>
+            <span className="line">
+              <span className="w">that</span> <span className="w">behave</span> <span className="w">like</span>
+            </span>
+            <span className="line">
+              <span className="w italic accent">everyone</span> <span className="w">is</span> <span className="w">the</span>{" "}
+              <span className="w">default</span>.
+            </span>
+          </h1>
+          <p className="hero-sub">
+            Senior frontend engineer with 10+ years in UI engineering and 6+ years specializing in accessibility. I
+            design systems where shipping fast and shipping inclusively are the same path.
+          </p>
+          <p className="hero-sub thesis-line">{centralThesis}</p>
+
+          <div className="hero-ctas">
+            <Link className="cta-primary" href="/writing/which-model-of-disability-is-your-ai-product-operating-from">
+              Read the essay <span aria-hidden="true">-&gt;</span>
+            </Link>
+            <a className="cta-secondary" href="/resume.pdf">
+              Download resume PDF
+            </a>
+            <a className="cta-secondary" href="#contact">
+              Contact <span aria-hidden="true">-&gt;</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="hero-scroll reverse">
+          <span>
+            VUE | REACT | NEXT | TYPESCRIPT | WEBSOCKETS | DESIGN SYSTEMS | WCAG | PERFORMANCE | VUE | REACT | NEXT |
+            TYPESCRIPT | WEBSOCKETS
+          </span>
+        </div>
+      </section>
+
+      <section aria-labelledby="manifesto-head" className="manifesto">
+        <p className="section-tag">02 | Thesis</p>
+        <h2 className="manifesto-head" id="manifesto-head">
+          Accessibility is not a feature. It is an architectural decision.
+        </h2>
+        <div className="manifesto-grid">
+          <p>
+            I build products from the assumption that disabled users are not edge cases. If the architecture treats
+            inclusion as optional, the interface will eventually expose that decision.
+          </p>
+          <p>
+            AI-assisted development is the first meaningful chance to invert accessibility economics. My work focuses on
+            making the inclusive implementation the easiest implementation for product teams.
+          </p>
+        </div>
+      </section>
+
+      <section aria-labelledby="writing-head" className="writing" id="writing">
+        <div className="section-header">
+          <p className="section-tag">03 | Writing</p>
+          <h2 className="section-head" id="writing-head">
+            Recent essays
+          </h2>
+          <Link className="section-link" href="/writing">
+            Full index -&gt;
+          </Link>
+        </div>
+        <ol className="articles">
+          {featuredPosts.map((post, index) => (
+            <li className="art" key={post.slug}>
+              <Link className="art-link" href={`/writing/${post.slug}`}>
+                <span aria-hidden="true" className="art-num">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="art-body">
+                  <h3 className="art-title">{post.title}</h3>
+                  <p className="art-dek">{post.description}</p>
+                  <div className="art-meta">
+                    <span>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
+                    <span aria-hidden="true">|</span>
+                    <span>{post.readingTime}</span>
+                    <span aria-hidden="true">|</span>
+                    <span>{post.tags.join(" / ")}</span>
+                  </div>
+                </div>
+                <span aria-hidden="true" className="art-arrow">
+                  -&gt;
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section aria-labelledby="work-head" className="work" id="work">
+        <p className="section-tag">04 | Selected work</p>
+        <h2 className="section-head" id="work-head">
+          Case studies in prose
+        </h2>
+        <div className="work-grid">
+          {caseStudies.map((study) => (
+            <article className="work-card" key={study.title}>
+              <h3>{study.title}</h3>
+              <p>{study.summary}</p>
+              <p className="work-impact">{study.impact}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section aria-labelledby="speaking-head" className="speaking" id="speaking">
+        <p className="section-tag">05 | Speaking</p>
+        <h2 className="section-head" id="speaking-head">
+          Talks and workshops
+        </h2>
+        <ul className="speaking-list">
+          {speakingEvents.map((event) => (
+            <li className="speaking-item" key={`${event.event}-${event.year}`}>
+              <span className="speaking-year">{event.year}</span>
+              <div>
+                <h3>{event.event}</h3>
+                <p>{event.talk}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="resume-head" className="resume" id="resume">
+        <div className="section-header">
+          <p className="section-tag">06 | Resume</p>
+          <h2 className="section-head" id="resume-head">
+            Inline resume
+          </h2>
+          <a className="section-link" href="/resume.pdf">
+            PDF download -&gt;
           </a>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <ul className="resume-list">
+          {resumeItems.map((item) => (
+            <li className="resume-item" key={`${item.company}-${item.role}`}>
+              <h3>{item.role}</h3>
+              <p className="resume-meta">
+                {item.company} | {item.period}
+              </p>
+              <p>{item.details}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="contact-head" className="contact" id="contact">
+        <p className="section-tag">07 | Contact</p>
+        <h2 className="contact-head" id="contact-head">
+          Say hello.
+        </h2>
+        <p className="contact-note">Job inquiries and professional conversations only.</p>
+        <div className="contact-grid">
+          <a className="contact-item" href="mailto:calley.nye@gmail.com">
+            <span className="ci-label">Email</span>
+            <span className="ci-value">calley.nye@gmail.com</span>
+          </a>
+          <a className="contact-item" href="https://linkedin.com/in/calleynye" rel="noreferrer" target="_blank">
+            <span className="ci-label">LinkedIn</span>
+            <span className="ci-value">/in/calleynye</span>
+          </a>
+          <a className="contact-item" href="https://github.com/syren" rel="noreferrer" target="_blank">
+            <span className="ci-label">GitHub</span>
+            <span className="ci-value">/syren</span>
+          </a>
+        </div>
+      </section>
+    </main>
   );
 }
