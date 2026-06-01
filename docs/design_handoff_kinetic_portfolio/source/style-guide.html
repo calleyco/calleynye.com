@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Calley Nye — Style guide</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="style.css?v=4" />
+<link rel="stylesheet" href="style-guide.css?v=1" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="stage">
+    <header class="topbar" role="banner">
+      <a href="index.html" class="brand" aria-label="Calley Nye, home">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="bm-dot"></span><span class="bm-dot"></span><span class="bm-dot"></span>
+        </span>
+        <span class="brand-name">CALLEY<span>·</span>NYE</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#writing">Writing</a>
+        <a href="style-guide.html" aria-current="page">Components</a>
+        <a href="articles.html">Index</a>
+      </nav>
+    </header>
+
+    <main id="main" class="sg-main">
+      <header class="sg-header">
+        <p class="section-tag">Style guide</p>
+        <h1 class="sg-h1">Components <span class="italic">&amp;</span> tokens</h1>
+        <p class="sg-lede">Every primitive in the Kinetic system, in its native habitat. Use this page as a reference for what the language looks like — and as a sandbox when adding new pages.</p>
+        <nav class="sg-toc" aria-label="On this page">
+          <a href="#tokens">Tokens</a>
+          <a href="#type">Type</a>
+          <a href="#buttons">Buttons</a>
+          <a href="#links">Links</a>
+          <a href="#forms">Forms</a>
+          <a href="#selects">Selects</a>
+          <a href="#cards">Cards</a>
+          <a href="#badges">Badges &amp; tags</a>
+          <a href="#alerts">Alerts</a>
+          <a href="#tables">Tables</a>
+          <a href="#nav">Nav &amp; pagination</a>
+          <a href="#a11y">Focus &amp; a11y</a>
+        </nav>
+      </header>
+
+      <!-- ============ TOKENS ============ -->
+      <section id="tokens" class="sg-section" aria-labelledby="tokens-h">
+        <h2 id="tokens-h" class="sg-h2">Tokens</h2>
+
+        <h3 class="sg-h3">Color</h3>
+        <ul class="sg-swatches" role="list">
+          <li><span class="sw" style="background:var(--bg)"></span><code>--bg</code><span>#0c0810</span></li>
+          <li><span class="sw" style="background:var(--bg-2)"></span><code>--bg-2</code><span>#18101e</span></li>
+          <li><span class="sw" style="background:var(--rule)"></span><code>--rule</code><span>#2a1e30</span></li>
+          <li><span class="sw" style="background:var(--fg-dim)"></span><code>--fg-dim</code><span>#54475a</span></li>
+          <li><span class="sw" style="background:var(--fg-mute)"></span><code>--fg-mute</code><span>#8a7a90</span></li>
+          <li><span class="sw" style="background:var(--fg)"></span><code>--fg</code><span>#f4ebf5</span></li>
+          <li><span class="sw" style="background:var(--accent)"></span><code>--accent</code><span>#ff3ea5</span></li>
+        </ul>
+
+        <h3 class="sg-h3">Spacing scale</h3>
+        <ul class="sg-spaces" role="list">
+          <li><span class="sg-space" style="width:4px"></span><code>4</code></li>
+          <li><span class="sg-space" style="width:8px"></span><code>8</code></li>
+          <li><span class="sg-space" style="width:12px"></span><code>12</code></li>
+          <li><span class="sg-space" style="width:16px"></span><code>16</code></li>
+          <li><span class="sg-space" style="width:24px"></span><code>24</code></li>
+          <li><span class="sg-space" style="width:32px"></span><code>32</code></li>
+          <li><span class="sg-space" style="width:48px"></span><code>48</code></li>
+          <li><span class="sg-space" style="width:64px"></span><code>64</code></li>
+          <li><span class="sg-space" style="width:96px"></span><code>96</code></li>
+        </ul>
+
+        <h3 class="sg-h3">Radius</h3>
+        <ul class="sg-radii" role="list">
+          <li><span class="sg-radius" style="border-radius:4px"></span><code>4</code></li>
+          <li><span class="sg-radius" style="border-radius:8px"></span><code>8</code></li>
+          <li><span class="sg-radius" style="border-radius:12px"></span><code>12</code></li>
+          <li><span class="sg-radius" style="border-radius:999px"></span><code>pill</code></li>
+        </ul>
+      </section>
+
+      <!-- ============ TYPE ============ -->
+      <section id="type" class="sg-section" aria-labelledby="type-h">
+        <h2 id="type-h" class="sg-h2">Type</h2>
+        <p class="sg-note">Display: <strong>Instrument Serif</strong>. Body: <strong>Geist</strong>. Code/labels: <strong>Geist Mono</strong>.</p>
+        <div class="sg-typeset">
+          <div class="sg-row"><span class="sg-meta">Display / Italic</span><span class="t-display italic">Everyone is the default.</span></div>
+          <div class="sg-row"><span class="sg-meta">H1</span><h1 class="t-h1">Live regions are a real-time UI problem</h1></div>
+          <div class="sg-row"><span class="sg-meta">H2</span><h2 class="t-h2">Five models, five products</h2></div>
+          <div class="sg-row"><span class="sg-meta">H3</span><h3 class="t-h3">A note on the seam between design and engineering</h3></div>
+          <div class="sg-row"><span class="sg-meta">Lede</span><p class="t-lede">Every AI product makes an implicit choice about who disability belongs to.</p></div>
+          <div class="sg-row"><span class="sg-meta">Body</span><p class="t-body">For twenty years accessibility has been the harder road. AI-assisted development is the first thing that genuinely changes that equation — if we let it. The architecture of products where inclusion is the path of least resistance.</p></div>
+          <div class="sg-row"><span class="sg-meta">Small</span><p class="t-small">Captions, footnotes, fine print. Used sparingly.</p></div>
+          <div class="sg-row"><span class="sg-meta">Mono</span><p class="t-mono">// label · timestamp · keyboard hint · file path</p></div>
+        </div>
+      </section>
+
+      <!-- ============ BUTTONS ============ -->
+      <section id="buttons" class="sg-section" aria-labelledby="btn-h">
+        <h2 id="btn-h" class="sg-h2">Buttons</h2>
+
+        <div class="sg-grid">
+          <div class="sg-demo"><span class="sg-meta">Primary</span><button type="button" class="btn btn-primary">Send a message</button></div>
+          <div class="sg-demo"><span class="sg-meta">Primary · arrow</span><button type="button" class="btn btn-primary">Read the essay <span class="arrow" aria-hidden="true">→</span></button></div>
+          <div class="sg-demo"><span class="sg-meta">Secondary</span><button type="button" class="btn btn-secondary">Download résumé</button></div>
+          <div class="sg-demo"><span class="sg-meta">Ghost</span><button type="button" class="btn btn-ghost">Cancel</button></div>
+          <div class="sg-demo"><span class="sg-meta">Danger</span><button type="button" class="btn btn-danger">Delete</button></div>
+          <div class="sg-demo"><span class="sg-meta">Disabled</span><button type="button" class="btn btn-primary" disabled>Unavailable</button></div>
+          <div class="sg-demo"><span class="sg-meta">Small</span><button type="button" class="btn btn-primary btn-sm">Small</button></div>
+          <div class="sg-demo"><span class="sg-meta">Large</span><button type="button" class="btn btn-primary btn-lg">Large</button></div>
+          <div class="sg-demo"><span class="sg-meta">Icon-only</span><button type="button" class="btn btn-icon" aria-label="Search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button></div>
+          <div class="sg-demo"><span class="sg-meta">Toggle (pressed)</span><button type="button" class="btn btn-toggle" aria-pressed="true">On</button></div>
+          <div class="sg-demo"><span class="sg-meta">Toggle (unpressed)</span><button type="button" class="btn btn-toggle" aria-pressed="false">Off</button></div>
+          <div class="sg-demo"><span class="sg-meta">Loading</span><button type="button" class="btn btn-primary" aria-busy="true"><span class="spinner" aria-hidden="true"></span> Sending</button></div>
+        </div>
+      </section>
+
+      <!-- ============ LINKS ============ -->
+      <section id="links" class="sg-section" aria-labelledby="link-h">
+        <h2 id="link-h" class="sg-h2">Links</h2>
+        <div class="sg-grid">
+          <div class="sg-demo"><span class="sg-meta">Inline</span><p class="t-body">Inspired by <a href="#" class="link">an essay on disability models</a> and a year of consulting.</p></div>
+          <div class="sg-demo"><span class="sg-meta">Standalone</span><a href="#" class="link link-arrow">Read the full archive <span aria-hidden="true">→</span></a></div>
+          <div class="sg-demo"><span class="sg-meta">External</span><a href="#" class="link link-external">github.com/syren <span aria-hidden="true">↗</span></a></div>
+          <div class="sg-demo"><span class="sg-meta">Mono / utility</span><a href="#" class="link-mono">/in/calleynye</a></div>
+        </div>
+      </section>
+
+      <!-- ============ FORMS ============ -->
+      <section id="forms" class="sg-section" aria-labelledby="form-h">
+        <h2 id="form-h" class="sg-h2">Forms</h2>
+        <form class="sg-form" onsubmit="event.preventDefault()">
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" type="text" placeholder="Ada Lovelace" />
+          </div>
+
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" type="email" value="ada@example.com" aria-describedby="f-email-hint" />
+            <p id="f-email-hint" class="hint">We'll only use this to reply.</p>
+          </div>
+
+          <div class="field has-error">
+            <label for="f-bad">Field with error</label>
+            <input id="f-bad" type="text" value="not a url" aria-invalid="true" aria-describedby="f-bad-err" />
+            <p id="f-bad-err" class="error">This must be a valid URL.</p>
+          </div>
+
+          <div class="field">
+            <label for="f-msg">Message</label>
+            <textarea id="f-msg" rows="4" placeholder="Tell me about the role…"></textarea>
+          </div>
+
+          <fieldset class="field">
+            <legend>How should we connect?</legend>
+            <label class="radio"><input type="radio" name="r" checked /> <span>Email</span></label>
+            <label class="radio"><input type="radio" name="r" /> <span>LinkedIn</span></label>
+            <label class="radio"><input type="radio" name="r" /> <span>Carrier pigeon</span></label>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend>Topics I write about</legend>
+            <label class="check"><input type="checkbox" checked /> <span>Accessibility</span></label>
+            <label class="check"><input type="checkbox" checked /> <span>AI &amp; design</span></label>
+            <label class="check"><input type="checkbox" /> <span>Real-time UI</span></label>
+            <label class="check"><input type="checkbox" /> <span>Career notes</span></label>
+          </fieldset>
+
+          <div class="field">
+            <label class="switch">
+              <input type="checkbox" role="switch" checked />
+              <span class="switch-track" aria-hidden="true"></span>
+              <span>Reduce motion</span>
+            </label>
+          </div>
+
+          <div class="field">
+            <label for="f-range">Reading speed <span class="hint" id="f-range-val">280 wpm</span></label>
+            <input id="f-range" type="range" min="120" max="500" value="280" oninput="document.getElementById('f-range-val').textContent = this.value + ' wpm'" />
+          </div>
+
+          <div class="field-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-ghost">Reset</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ============ SELECTS ============ -->
+      <section id="selects" class="sg-section" aria-labelledby="sel-h">
+        <h2 id="sel-h" class="sg-h2">Selects</h2>
+        <div class="sg-grid">
+          <div class="sg-demo">
+            <span class="sg-meta">Native &lt;select&gt;</span>
+            <label for="s-1" class="sr-only">Sort articles</label>
+            <select id="s-1" class="select">
+              <option>Sort: most recent</option>
+              <option>Sort: oldest</option>
+              <option>Sort: longest read</option>
+            </select>
+          </div>
+          <div class="sg-demo">
+            <span class="sg-meta">Filter chips</span>
+            <div class="chips" role="group" aria-label="Filter">
+              <button type="button" class="chip" aria-pressed="true">All</button>
+              <button type="button" class="chip" aria-pressed="false">Accessibility</button>
+              <button type="button" class="chip" aria-pressed="false">AI</button>
+              <button type="button" class="chip" aria-pressed="false">Engineering</button>
+              <button type="button" class="chip" aria-pressed="false">Career</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CARDS ============ -->
+      <section id="cards" class="sg-section" aria-labelledby="card-h">
+        <h2 id="card-h" class="sg-h2">Cards</h2>
+        <div class="sg-cards">
+          <article class="card">
+            <span class="section-tag">Article</span>
+            <h3 class="card-title">Live regions are a real-time UI problem</h3>
+            <p class="card-dek">Screen reader output is a streaming interface. It deserves the same architectural care as any other real-time system.</p>
+            <div class="card-foot"><span>Dec 8, 2025</span><span aria-hidden="true">·</span><span>9 min</span></div>
+          </article>
+
+          <article class="card card-feature">
+            <span class="section-tag">Featured</span>
+            <h3 class="card-title">Which model of disability is your AI product operating from?</h3>
+            <p class="card-dek">Every AI product makes an implicit choice about who disability belongs to.</p>
+            <a class="link link-arrow" href="#">Read the essay <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="card card-quiet">
+            <span class="section-tag">Note</span>
+            <h3 class="card-title">Shipping in the open with a team of one</h3>
+            <p class="card-dek">Notes from a year of independent consulting.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ BADGES ============ -->
+      <section id="badges" class="sg-section" aria-labelledby="bg-h">
+        <h2 id="bg-h" class="sg-h2">Badges &amp; tags</h2>
+        <div class="sg-grid">
+          <div class="sg-demo"><span class="sg-meta">Default</span><span class="badge">New</span></div>
+          <div class="sg-demo"><span class="sg-meta">Accent</span><span class="badge badge-accent">Featured</span></div>
+          <div class="sg-demo"><span class="sg-meta">Outline</span><span class="badge badge-outline">Draft</span></div>
+          <div class="sg-demo"><span class="sg-meta">Tag</span><span class="tag">Accessibility</span> <span class="tag">AI</span> <span class="tag">Real-time</span></div>
+          <div class="sg-demo"><span class="sg-meta">Status · live</span><span class="status status-on"><span class="status-dot" aria-hidden="true"></span> Available</span></div>
+          <div class="sg-demo"><span class="sg-meta">Status · off</span><span class="status status-off"><span class="status-dot" aria-hidden="true"></span> Heads down</span></div>
+        </div>
+      </section>
+
+      <!-- ============ ALERTS ============ -->
+      <section id="alerts" class="sg-section" aria-labelledby="al-h">
+        <h2 id="al-h" class="sg-h2">Alerts</h2>
+        <div class="sg-stack">
+          <div role="status" class="alert alert-info"><strong>Heads up.</strong> The motion toggle in the topbar persists across pages.</div>
+          <div role="status" class="alert alert-success"><strong>Sent.</strong> I'll reply within two business days.</div>
+          <div role="alert" class="alert alert-warn"><strong>Almost.</strong> Your message is missing a subject line.</div>
+          <div role="alert" class="alert alert-error"><strong>Couldn't send.</strong> Check the email field and try again.</div>
+        </div>
+      </section>
+
+      <!-- ============ TABLES ============ -->
+      <section id="tables" class="sg-section" aria-labelledby="t-h">
+        <h2 id="t-h" class="sg-h2">Tables</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <caption>Selected work, 2024–2026.</caption>
+            <thead>
+              <tr><th scope="col">Year</th><th scope="col">Project</th><th scope="col">Role</th><th scope="col">Stack</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2026</td><td>Independent consulting</td><td>Design technologist</td><td>Next, TS, WCAG 2.2</td></tr>
+              <tr><td>2024</td><td>Real-time captioning UI</td><td>Senior frontend</td><td>React, WebSockets</td></tr>
+              <tr><td>2023</td><td>Design system, accessible-by-default</td><td>Lead engineer</td><td>Vue, TS, Storybook</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ NAV ============ -->
+      <section id="nav" class="sg-section" aria-labelledby="n-h">
+        <h2 id="n-h" class="sg-h2">Nav &amp; pagination</h2>
+
+        <div class="sg-stack">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="#">Home</a></li>
+              <li aria-hidden="true">/</li>
+              <li><a href="#">Writing</a></li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page">Live regions are a real-time UI problem</li>
+            </ol>
+          </nav>
+
+          <nav class="pagination" aria-label="Pagination">
+            <a href="#" class="page-prev">← Previous</a>
+            <ol>
+              <li><a href="#" aria-current="page">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li aria-hidden="true">…</li>
+              <li><a href="#">12</a></li>
+            </ol>
+            <a href="#" class="page-next">Next →</a>
+          </nav>
+
+          <div class="tabs" role="tablist" aria-label="Topics">
+            <button role="tab" aria-selected="true" class="tab">Writing</button>
+            <button role="tab" aria-selected="false" class="tab">Talks</button>
+            <button role="tab" aria-selected="false" class="tab">Open source</button>
+            <button role="tab" aria-selected="false" class="tab">Notes</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ A11Y ============ -->
+      <section id="a11y" class="sg-section" aria-labelledby="a11y-h">
+        <h2 id="a11y-h" class="sg-h2">Focus &amp; a11y</h2>
+        <p class="sg-note">All interactive primitives in this guide use a single magenta focus ring (<code>2px solid var(--accent)</code>, 4px offset). Tab through the page to see it. The skip link at the very top is the first focusable element.</p>
+        <div class="sg-grid">
+          <div class="sg-demo"><span class="sg-meta">Focused button</span><button type="button" class="btn btn-primary sg-force-focus">Focused</button></div>
+          <div class="sg-demo"><span class="sg-meta">Focused input</span><input type="text" value="Focused" class="sg-force-focus" /></div>
+          <div class="sg-demo"><span class="sg-meta">sr-only text</span><span>Has a hidden label →<span class="sr-only"> visually hidden but read by screen readers</span></span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-row">
+        <span>© 2026 Calley Nye — built by hand in Los Angeles</span>
+        <span>Motion respects your preferences. Keyboard-first. Screen-reader tested.</span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

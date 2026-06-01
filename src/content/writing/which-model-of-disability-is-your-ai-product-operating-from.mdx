@@ -1,6 +1,6 @@
 ---
 title: "Which model of disability is your AI product operating from?"
-description: "Every AI product makes an implicit choice about who disability belongs to. Here is how to tell which one you are building, and why it matters now more than ever."
+description: "Society's understanding of disability has evolved through five distinct models over the past century. AI interfaces are making the same journey right now — most of them are stuck in 1950."
 date: "2026-03-14"
 tags:
   - Accessibility
@@ -9,42 +9,78 @@ tags:
 readingTime: "18 min"
 ---
 
-There is a question I have been circling for the last four years. First as a talk inside McKinsey, then as a personal essay, now as the thing I quietly look for in every product I touch. It is not "is this accessible." That question is too easy, and the answer is almost always no.
+In December 2022, I gave a presentation to my team at McKinsey called "What is a Disability?" It was not a technical talk. It was about language — about how the words we use to describe disability reveal which mental model we are operating from, often without realizing it.
 
-The real question is this: _whose problem does this product think disability is?_
+A year and a half later, I find myself thinking about that presentation constantly as I watch the AI industry build products that will become essential infrastructure for millions of people. The patterns I see — the assumptions baked into interfaces, the afterthought nature of accessibility, the framing of inclusion as a feature rather than an architecture — map almost perfectly onto models of disability that society developed (and in some cases, abandoned) decades ago.
 
-The answer tells you everything. It tells you where engineering effort goes, which users are treated as default and which are treated as exception, and which users an AI feature will quietly fail for.
+## The five models, briefly
 
-## The five models in brief
+There is a rich history behind how we have understood disability as a society. I think of these as lenses — each one focuses on a different part of the picture, and the lens you are looking through determines what you build.
 
-**Medical.** Disability is a problem inside the person.
+<ModelExplorer />
 
-**Social.** Disability is produced by an environment that assumes too narrow a user.
+## The AI industry is mostly stuck in the medical model
 
-**Cultural.** Disability is identity and community, not only limitation.
+Here is a thought experiment. Open any major AI chat interface in a screen reader. Try to navigate a streaming response. Try to find where new content is appearing. Try to use keyboard navigation to interact with a code block, copy a response, or switch between conversations.
 
-**Economic.** Disability is defined by access to labor and institutions.
+What you will find, in most cases, is an interface designed for sighted mouse users that has been partially retrofitted with ARIA attributes — some correct, some incorrect, many missing entirely. This is the medical model in code: the product was designed for "normal" users, and accessibility is a treatment applied to the symptoms.
 
-**Human-variation.** People vary across many dimensions. Disability appears when systems are too rigid for that variation.
+<aside className="essay-callout">
 
-> The model you pick determines the product you build. It determines defaults, telemetry, and roadmaps.
+When a streaming AI response has no `aria-live` region, a screen reader user does not know new content has appeared. They are sitting in silence while everyone else watches words flow across the screen. The interface has not just failed to accommodate them — it has *excluded* them from the core experience of the product.
 
-## How to identify the model in a product
+</aside>
 
-Look at settings. If accessibility is hidden as a special case, the product usually operates from a medical model.
+## From accommodations to inclusivity
 
-Look at onboarding. Asking about preferred interaction patterns usually reflects a human-variation model. Asking only whether someone "has a disability" tends to preserve exception thinking.
+My presentation at McKinsey ended with an illustration that I think about constantly: three panels showing the difference between equality, accommodations, and inclusivity. In the equality frame, everyone gets the same box to stand on. In accommodations, different people get different-sized boxes. In inclusivity, the ground itself is redesigned so no one needs a box at all.
 
-Look at AI responses. If disability is always described as someone else's problem, your model assumptions are leaking through the system.
+<DisabilityModelsIllustration />
 
-## Why this matters more in AI products
+For AI interfaces, "equality" looks like shipping the same chat UI to everyone and calling it done. "Accommodations" looks like adding a high-contrast mode or a screen reader toggle. But "inclusivity" looks like something fundamentally different: an architecture where semantic HTML, keyboard navigation, focus management, and live regions are not features — they are the foundation.
 
-In deterministic interfaces, accessibility can be audited page by page. In AI products, output is variable and constantly shifting. Accessibility has to live in architecture, not remediation.
+## Designing for the edges benefits everyone
 
-That means prompts, evaluations, defaults, and component scaffolds must encode inclusive behavior.
+The most compelling argument for inclusive design is not moral — it is mathematical. This is the insight that changed how I think about my work:
 
-## The leverage point
+<ScalingDiagram />
 
-For years, organizations framed accessibility as a slower path. AI-assisted development can invert that constraint. When assistants generate robust semantics, focus behavior, and clear labels by default, the cost argument collapses.
+Only about 25,000 people in the US have lost an arm permanently. But roughly 2 million have a temporary arm injury at any given time, and 7–10 million are situationally one-handed — holding a baby, carrying groceries, gripping a subway rail. When Nike designed the FlyEase shoe for people who could not tie laces, they discovered it was also the shoe that parents, elderly people, and busy commuters preferred.
 
-That is the work now: making inclusive engineering the default path under real delivery pressure.
+The same scaling effect applies to AI interfaces. A streaming response built with proper `aria-live` regions does not just help screen reader users — it creates the semantic structure that makes the response parseable, searchable, and navigable for everyone. Keyboard navigation patterns do not just help users with motor impairments — they make power users faster. Reduced-motion preferences do not just prevent seizures — they save battery on mobile.
+
+> Good architecture is inclusive architecture. The question is not whether you can afford to build accessibly. It is whether you can afford not to.
+
+## AI is the tool that finally makes this possible
+
+If you have worked in software long enough, you have heard some version of this conversation a hundred times: "We know accessibility matters, but we need to ship by Friday." Or: "We will come back and add keyboard navigation in the next sprint." That next sprint never comes. The backlog grows. The inaccessible patterns calcify into inaccessible systems, and eventually the cost of retrofitting exceeds anyone's appetite to approve it.
+
+This is not because engineers are bad people. It is because the economics of building software have always created a false choice between shipping fast and shipping right. Accessibility, performance optimization, semantic HTML, proper focus management — these are the things that get deprioritized when the sprint is tight and the deadline is real. They are treated as the vegetables on the plate: everyone agrees they are good for you, but they get eaten last, if at all.
+
+Here is what I find genuinely exciting: **AI coding assistants dissolve that false choice.**
+
+<aside className="essay-callout essay-callout--social">
+
+When a coding assistant can scaffold an accessible modal with focus trapping as fast as it scaffolds an inaccessible one — when it generates semantic HTML by default, catches a missing `aria-label` before you commit, writes keyboard event handlers alongside click handlers without being asked — the "we do not have time" excuse evaporates. The floor rises for everyone.
+
+</aside>
+
+Think about what this means in practice. An engineer using an AI coding assistant does not have to choose between building the feature and building it accessibly. They can do both in the same amount of time it used to take to do one. The productivity gain does not just mean shipping faster — it means shipping *more completely*. It means the things that always got cut for time — the `aria-live` regions, the reduced-motion media queries, the skip navigation links, the focus-visible states — finally get built. Not because the priority changed, but because the constraint that kept them out of the build disappeared.
+
+For the first time in the history of software engineering, we have a tool that can make inclusive development the path of least resistance rather than the path of most resistance. Companies have been doing the bare minimum for years — not out of malice, but because the "lower priority" work never got enough time, enough people, enough attention. AI changes that equation fundamentally.
+
+But — and this is the part that keeps me up at night — this only works if the AI tools themselves are built with the justice model in mind. If a coding assistant generates inaccessible components by default, it does not just fail to help — it scales inaccessibility at the speed of autocomplete. The patterns it reinforces become the patterns the industry adopts. The tool shapes the craft.
+
+> The companies building AI have a choice: they can build tools that perpetuate the medical model at machine speed, or they can build tools that make the justice model the default. The stakes have never been higher, and neither has the opportunity.
+
+## What the justice model looks like in code
+
+If we take the justice model seriously — disability as a natural part of human diversity, not a problem to be solved — it changes how we architect AI interfaces at every level.
+
+Streaming responses are built with semantic containers and live regions from the first commit, not added after a compliance audit. Component libraries include focus management, keyboard interaction, and screen reader announcements as required props, not optional ones. Performance budgets are set based on the slowest common device and connection, because that is someone's actual experience of your product. And design reviews include screen reader walkthroughs alongside visual review — not as a separate accessibility pass, but as part of what "done" means.
+
+This is not idealism. It is engineering discipline. And it is the approach I believe AI products — especially those that aspire to be beneficial infrastructure for all of humanity — must adopt. The irony is almost too perfect: the AI tools we build today will determine whether the next generation of software is more inclusive or less. We get to decide which direction the flywheel spins.
+
+---
+
+*This essay is adapted from a presentation I gave at McKinsey in December 2022. The original talk covered the five models of disability and their implications for how we build products. I have extended the argument here to explore what these models mean for AI interfaces specifically.*

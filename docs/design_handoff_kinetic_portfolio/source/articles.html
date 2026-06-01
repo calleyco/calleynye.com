@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Index — Kinetic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="stage">
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true"><span class="bm-dot"></span><span class="bm-dot"></span><span class="bm-dot"></span></span>
+      <span class="brand-name">CALLEY<span>·</span>NYE</span>
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="articles.html">Index</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="index-hero">
+      <h1>The <span class="italic">index</span>.</h1>
+      <p>Everything I've written, most recent first. Filter by topic.</p>
+    </section>
+    <div class="index-filters" id="filters" role="toolbar" aria-label="Filter by tag"></div>
+    <ol class="articles" id="articles"></ol>
+  </main>
+  <footer class="footer"><div class="footer-row"><span>© 2026 Calley Nye</span><span><a href="index.html">← Home</a></span></div></footer>
+</div>
+<script src="../shared/data.js"></script>
+<script>
+(function(){
+  const data = window.PORTFOLIO_DATA;
+  const all = [...data.articles].sort((a,b)=>b.date.localeCompare(a.date));
+  const tags = ['All', ...Array.from(new Set(all.flatMap(a=>a.tags)))];
+  const filters = document.getElementById('filters');
+  const list = document.getElementById('articles');
+  let active = 'All';
+
+  function render() {
+    list.innerHTML = '';
+    const items = active === 'All' ? all : all.filter(a=>a.tags.includes(active));
+    items.forEach((a, i)=>{
+      const li = document.createElement('li');
+      li.className = 'art';
+      li.innerHTML = `
+        <a href="article.html" class="art-link">
+          <span class="art-num" aria-hidden="true">${String(i+1).padStart(2,'0')}</span>
+          <div class="art-body">
+            <h3 class="art-title">${a.title}</h3>
+            <p class="art-dek">${a.dek}</p>
+            <div class="art-meta">
+              <span>${new Date(a.date).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'})}</span>
+              <span aria-hidden="true">·</span>
+              <span>${a.readingTime}</span>
+              <span aria-hidden="true">·</span>
+              <span>${a.tags.join(' / ')}</span>
+            </div>
+          </div>
+          <span class="art-arrow" aria-hidden="true">→</span>
+        </a>`;
+      list.appendChild(li);
+    });
+  }
+  tags.forEach(t=>{
+    const b=document.createElement('button');
+    b.type='button'; b.textContent=t;
+    b.setAttribute('aria-pressed', t===active?'true':'false');
+    b.addEventListener('click',()=>{ active=t; filters.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x.textContent===active?'true':'false')); render(); });
+    filters.appendChild(b);
+  });
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+// Shared content data. Each direction reads from this so swapping articles / playlists is trivial.
+window.PORTFOLIO_DATA = {
+  person: {
+    name: "Calley Nye",
+    role: "Design Technologist & Software Engineer",
+    location: "Los Angeles, CA",
+    email: "calley.nye@gmail.com",
+    linkedin: "https://linkedin.com/in/calleynye",
+    github: "https://github.com/syren",
+    site: "calleynye.com",
+  },
+  articles: [
+    {
+      slug: "which-model-of-disability",
+      title: "Which model of disability is your AI product operating from?",
+      dek: "Every AI product makes an implicit choice about who disability belongs to. Here's how to tell which one you're building — and why it matters more now than ever.",
+      date: "2026-03-14",
+      readingTime: "18 min",
+      tags: ["Accessibility", "AI", "Philosophy"],
+      featured: true,
+    },
+    {
+      slug: "path-of-least-resistance",
+      title: "Accessibility as the path of least resistance",
+      dek: "For twenty years accessibility has been the harder road. AI-assisted development is the first thing that genuinely changes that equation — if we let it.",
+      date: "2026-02-02",
+      readingTime: "11 min",
+      tags: ["Accessibility", "AI", "Craft"],
+    },
+    {
+      slug: "live-regions-are-a-real-time-ui",
+      title: "Live regions are a real-time UI problem",
+      dek: "Screen reader output is a streaming interface. It deserves the same architectural care as any other real-time system — not a sprinkle of aria-live and a prayer.",
+      date: "2025-12-08",
+      readingTime: "9 min",
+      tags: ["Accessibility", "Real-time", "Engineering"],
+    },
+    {
+      slug: "the-design-engineer-is-a-translator",
+      title: "The design engineer is a translator, not a compromise",
+      dek: "A note on sitting in the seam between design and engineering, and why the job isn't splitting the difference — it's refusing to.",
+      date: "2025-10-21",
+      readingTime: "6 min",
+      tags: ["Craft", "Career"],
+    },
+    {
+      slug: "what-is-a-disability",
+      title: "What is a disability? Five models, five products.",
+      dek: "From the medical model to the human-variation model: a tour through how we've answered this question, and what each answer produces when it's encoded into software.",
+      date: "2025-08-15",
+      readingTime: "14 min",
+      tags: ["Accessibility", "Philosophy"],
+    },
+    {
+      slug: "shipping-in-the-open",
+      title: "Shipping in the open with a team of one",
+      dek: "Notes from a year of independent consulting: how I pick clients, how I price, and the tiny operational tricks that let me build like a team.",
+      date: "2025-06-03",
+      readingTime: "8 min",
+      tags: ["Career", "Independent"],
+    },
+  ],
+  playlists: [
+    {
+      id: "3mR10TZXx1gquVXu9p0qaK",
+      title: "for long work",
+      vibe: "low-stim, textural, mostly instrumental. 4+ hours.",
+      url: "https://open.spotify.com/playlist/3mR10TZXx1gquVXu9p0qaK",
+    },
+    {
+      id: "3RuAKfx0xmL4ZXsXm6ZOd1",
+      title: "certain kind of sunday",
+      vibe: "slow, a little wistful, coffee's gone cold.",
+      url: "https://open.spotify.com/playlist/3RuAKfx0xmL4ZXsXm6ZOd1",
+    },
+    {
+      id: "0iXsT47Tq3TkwB6JDpiwT9",
+      title: "driving, nothing profound",
+      vibe: "windows-down songs with no lesson attached.",
+      url: "https://open.spotify.com/playlist/0iXsT47Tq3TkwB6JDpiwT9",
+    },
+  ],
+};

@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Calley Nye — Kinetic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="stage">
+    <header class="topbar" role="banner">
+      <a href="#main" class="brand" aria-label="Calley Nye, home">
+        <span class="brand-mark" aria-hidden="true">
+          <span class="bm-dot"></span><span class="bm-dot"></span><span class="bm-dot"></span>
+        </span>
+        <span class="brand-name">CALLEY<span>·</span>NYE</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#writing">Writing</a>
+        <a href="style-guide.html">Components</a>
+        <a href="articles.html">Index</a>
+      </nav>
+      <button class="motion-toggle" id="motionToggle" type="button" aria-pressed="false" title="Toggle motion">
+        <span class="mt-icon" aria-hidden="true">◐</span> Motion
+      </button>
+    </header>
+
+    <main id="main">
+      <!-- HERO: kinetic type wall -->
+      <section class="hero" aria-labelledby="hero-head">
+        <div class="hero-scroll" data-speed="1">
+          <span>DESIGN&nbsp;TECHNOLOGIST</span>
+          <span class="accent">·</span>
+          <span>ACCESSIBILITY&nbsp;SPECIALIST</span>
+          <span class="accent">·</span>
+          <span>REAL-TIME&nbsp;UI&nbsp;ENGINEER</span>
+          <span class="accent">·</span>
+          <span>DESIGN&nbsp;TECHNOLOGIST</span>
+          <span class="accent">·</span>
+          <span>ACCESSIBILITY&nbsp;SPECIALIST</span>
+          <span class="accent">·</span>
+          <span>REAL-TIME&nbsp;UI&nbsp;ENGINEER</span>
+          <span class="accent">·</span>
+        </div>
+
+        <div class="hero-body">
+          <p class="hero-kicker">01 · Hello</p>
+          <h1 id="hero-head" class="hero-head" data-kinetic>
+            <span class="line"><span class="w">I</span> <span class="w">build</span> <span class="w italic">interfaces</span></span>
+            <span class="line"><span class="w">that</span> <span class="w">behave</span> <span class="w">like</span></span>
+            <span class="line"><span class="w italic accent">everyone</span> <span class="w">is</span> <span class="w">the</span> <span class="w">default</span>.</span>
+          </h1>
+          <p class="hero-sub">Senior frontend engineer, ten years in. Accessibility, real-time systems, design systems. Currently independent. Interested in one role.</p>
+
+          <div class="hero-ctas">
+            <a href="article.html" class="cta-primary">Read the essay<span class="arrow" aria-hidden="true">→</span></a>
+            <a href="#contact" class="cta-secondary">Get in touch<span class="arrow" aria-hidden="true">↓</span></a>
+          </div>
+        </div>
+
+        <div class="hero-scroll reverse" data-speed="-1">
+          <span>VUE&nbsp;·&nbsp;REACT&nbsp;·&nbsp;NEXT&nbsp;·&nbsp;TYPESCRIPT&nbsp;·&nbsp;WEBSOCKETS&nbsp;·&nbsp;DESIGN&nbsp;SYSTEMS&nbsp;·&nbsp;WCAG&nbsp;2.2&nbsp;·&nbsp;SHOPIFY&nbsp;·&nbsp;NODE&nbsp;·&nbsp;VUE&nbsp;·&nbsp;REACT&nbsp;·&nbsp;NEXT&nbsp;·&nbsp;TYPESCRIPT&nbsp;·&nbsp;WEBSOCKETS&nbsp;·&nbsp;DESIGN&nbsp;SYSTEMS&nbsp;·&nbsp;WCAG&nbsp;2.2&nbsp;·&nbsp;SHOPIFY&nbsp;·&nbsp;NODE&nbsp;·&nbsp;</span>
+        </div>
+      </section>
+
+      <!-- MANIFESTO -->
+      <section class="manifesto" aria-labelledby="manifesto-head">
+        <p class="section-tag">02 · The thesis</p>
+        <h2 id="manifesto-head" class="manifesto-head" data-kinetic-hover>
+          <span>Accessibility</span>
+          <span>isn't</span>
+          <span>a</span>
+          <span>feature.</span>
+          <span>It's</span>
+          <span>an</span>
+          <span class="italic accent">architectural</span>
+          <span class="italic accent">decision.</span>
+        </h2>
+        <div class="manifesto-grid">
+          <p>It determines whether a product serves everyone or only some. That has always been true. What's new is that AI-assisted development is the first thing to make the accessible version also the <em>cheapest</em> one.</p>
+          <p>That inversion is where my work lives now. Not remediation. Not compliance. The architecture of products where inclusion is the path of least resistance.</p>
+        </div>
+      </section>
+
+      <!-- WRITING -->
+      <section id="writing" class="writing" aria-labelledby="writing-head">
+        <div class="section-header">
+          <p class="section-tag">03 · Writing</p>
+          <h2 id="writing-head" class="section-head">Recent essays</h2>
+          <a href="articles.html" class="section-link">Full index →</a>
+        </div>
+        <ol class="articles" id="articles"></ol>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="contact" aria-labelledby="contact-head">
+        <p class="section-tag">04 · Contact</p>
+        <h2 id="contact-head" class="contact-head">
+          <span class="italic">Say</span> hello.
+        </h2>
+        <div class="contact-grid">
+          <a class="contact-item" href="mailto:calley.nye@gmail.com">
+            <span class="ci-label">Email</span>
+            <span class="ci-value">calley.nye@gmail.com</span>
+          </a>
+          <a class="contact-item" href="https://linkedin.com/in/calleynye">
+            <span class="ci-label">LinkedIn</span>
+            <span class="ci-value">/in/calleynye</span>
+          </a>
+          <a class="contact-item" href="https://github.com/syren">
+            <span class="ci-label">GitHub</span>
+            <span class="ci-value">/syren</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-row">
+        <span>© 2026 Calley Nye — built by hand in Los Angeles</span>
+        <span>Motion respects your preferences. Keyboard-first. Screen-reader tested.</span>
+      </div>
+    </footer>
+  </div>
+
+<script src="../shared/data.js"></script>
+<script>
+(function(){
+  const p = new URLSearchParams(location.search);
+  const t = p.get('theme'); if (t) document.documentElement.dataset.theme = t;
+  const f = p.get('fonts'); if (f) document.documentElement.dataset.fonts = f;
+})();
+</script>
+<script>
+(function(){
+  const data = window.PORTFOLIO_DATA;
+
+  // Articles
+  const artList = document.getElementById('articles');
+  data.articles.slice(0, 5).forEach((a, i)=>{
+    const li = document.createElement('li');
+    li.className = 'art';
+    li.innerHTML = `
+      <a href="article.html" class="art-link">
+        <span class="art-num" aria-hidden="true">${String(i+1).padStart(2,'0')}</span>
+        <div class="art-body">
+          <h3 class="art-title">${a.title}</h3>
+          <p class="art-dek">${a.dek}</p>
+          <div class="art-meta">
+            <span>${new Date(a.date).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'})}</span>
+            <span aria-hidden="true">·</span>
+            <span>${a.readingTime}</span>
+            <span aria-hidden="true">·</span>
+            <span>${a.tags.join(' / ')}</span>
+          </div>
+        </div>
+        <span class="art-arrow" aria-hidden="true">→</span>
+      </a>`;
+    artList.appendChild(li);
+  });
+
+  // Kinetic marquee (respects prefers-reduced-motion and toggle)
+  const root = document.documentElement;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) root.classList.add('rm');
+
+  const mt = document.getElementById('motionToggle');
+  const saved = localStorage.getItem('kinetic.motion'); // 'on' | 'off'
+  const initial = saved ? saved : (prefersReduced ? 'off' : 'on');
+  if (initial === 'off') root.classList.add('rm');
+  mt.setAttribute('aria-pressed', initial === 'off' ? 'true' : 'false');
+  mt.querySelector('.mt-icon').textContent = initial === 'off' ? '○' : '◐';
+  mt.addEventListener('click', ()=>{
+    const off = root.classList.toggle('rm');
+    localStorage.setItem('kinetic.motion', off ? 'off' : 'on');
+    mt.setAttribute('aria-pressed', off ? 'true' : 'false');
+    mt.querySelector('.mt-icon').textContent = off ? '○' : '◐';
+  });
+
+  // Hero hover kinetic: wrap letters for weight-on-hover
+  document.querySelectorAll('[data-kinetic-hover]').forEach(el => {
+    el.querySelectorAll('span').forEach(word => {
+      const txt = word.textContent;
+      word.textContent = '';
+      [...txt].forEach(ch => {
+        const s = document.createElement('span');
+        s.className = 'k';
+        s.textContent = ch;
+        word.appendChild(s);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

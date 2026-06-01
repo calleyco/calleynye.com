@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Which model of disability is your AI product operating from? — Kinetic</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="style.css?v=3" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" />
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="stage">
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <span class="brand-mark" aria-hidden="true"><span class="bm-dot"></span><span class="bm-dot"></span><span class="bm-dot"></span></span>
+      <span class="brand-name">CALLEY<span>·</span>NYE</span>
+    </a>
+    <nav class="topnav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="articles.html">Index</a>
+    </nav>
+  </header>
+  <main id="main">
+    <a class="art-back" href="articles.html">← Back to index</a>
+    <header class="article-header">
+      <div class="article-kicker">Essay · March 14, 2026</div>
+      <h1 class="article-title">Which model of disability is your AI product operating from?</h1>
+      <p class="article-dek">Every AI product makes an implicit choice about who disability belongs to. Here's how to tell which one you're building — and why it matters more now than ever.</p>
+      <div class="article-meta">
+        <span>18 min read</span><span aria-hidden="true">·</span>
+        <span>Accessibility</span><span aria-hidden="true">·</span>
+        <span>AI</span><span aria-hidden="true">·</span>
+        <span>Philosophy</span>
+      </div>
+    </header>
+    <article class="article-body">
+      <p>There is a question I have been circling for the last four years. First as a talk inside McKinsey, then as a personal essay, now as the thing I quietly look for in every product I touch. It is not "is this accessible." That question is too easy, and the answer is almost always no. It is a question one layer beneath.</p>
+
+      <p>The question is: <em>whose problem does this product think disability is?</em></p>
+
+      <p>The answer tells you everything. It tells you where the engineering effort will go, which users will be default and which exception, what the roadmap looks like in two years, and — increasingly — which users an AI feature will quietly fail for.</p>
+
+      <h2>The five models, briefly</h2>
+
+      <p>Disability studies has been arguing about this for fifty years and has converged, more or less, on five working models. One paragraph each.</p>
+
+      <p><strong>Medical.</strong> Disability is a problem inside the person. A condition to be fixed.</p>
+      <p><strong>Social.</strong> Disability is produced by the environment. Stairs disable a wheelchair user; a ramp does not.</p>
+      <p><strong>Cultural.</strong> Disability is an identity, a lineage. Not a lack — a way of being in the world.</p>
+      <p><strong>Economic.</strong> Disability is defined by capacity to participate in labor markets. Cold, but consequential.</p>
+      <p><strong>Human-variation.</strong> No binary. Humans vary along hundreds of axes, and disability is where that variation meets a hostile environment.</p>
+
+      <blockquote>The model you pick determines the product you build. Not rhetorically — literally. It determines your schema, your telemetry, your default state.</blockquote>
+
+      <h2>How to tell which one a product has picked</h2>
+
+      <p>You rarely have to read the PRD. You can tell from the surface.</p>
+
+      <p><strong>The settings menu.</strong> If accessibility lives under a sub-menu called "Accessibility" and nowhere else, you are looking at the medical model — a special case, in a special place, handled by special features.</p>
+
+      <p><strong>The onboarding.</strong> Does the product ask how you prefer to work — by keyboard, by voice, at a larger size — or does it ask whether you have a disability? The first is human-variation. The second is medical, politely.</p>
+
+      <p><strong>The AI voice.</strong> Listen to how a chatbot answers a question about disability. Does it answer as if disability is always elsewhere — as if the asker is necessarily asking on behalf of someone else? That's the medical model leaking through training data.</p>
+
+      <p class="pullquote">The medical model doesn't disappear in the AI era. It gets laundered through a friendly voice and a confidence score.</p>
+
+      <h2>Why the stakes got higher</h2>
+
+      <p>In a deterministic product, accessibility is a matter of inventory. You audit pages, find missing alt text, fix focus order, ship.</p>
+
+      <p>In an AI product, you are auditing a distribution of outputs, a distribution that changes every model update, depends on prompts you did not write, in contexts you did not design for. The old tools don't work. "Accessibility is a QA checklist item" falls apart in a week.</p>
+
+      <p>What replaces it has to be architectural. It has to live in the system prompt, the evals, the defaults — not in a remediation sprint at the end. That is genuinely new work, and almost nobody is doing it yet.</p>
+
+      <h2>The leverage point</h2>
+
+      <p>Here's the hopeful part. For twenty years, accessibility has been the harder path. More time, more money, more scope fights. Organizations picked it up out of conviction, regulation, or lawsuit — almost never because it was cheaper.</p>
+
+      <p>AI-assisted development is the first thing that changes that equation. When a code assistant can write the accessible component as fast as the inaccessible one — reach for the right ARIA pattern, remember focus management, notice a contrast violation — the economic argument against accessibility collapses. It becomes the path of least resistance.</p>
+
+      <p>But only if the tools are built by people who hold the human-variation model in their heads.</p>
+
+      <h2>So, which one are you operating from?</h2>
+
+      <p>Read your own product. Read your onboarding, your defaults, your settings, your telemetry, your evals. You'll find an answer. It might not be the one you'd have said out loud.</p>
+
+      <p>The good news is the model is a choice. You can change it. You can change it in the next pull request. In the AI era the cost of that change has never been lower — and the cost of not changing has never, ever been higher.</p>
+
+      <hr />
+
+      <p><em>Calley Nye is a senior frontend engineer and accessibility specialist in Los Angeles, currently available for staff and principal roles building AI-assisted development tools where the human-variation model is a premise, not a feature request.</em></p>
+    </article>
+  </main>
+  <footer class="footer"><div class="footer-row"><span>© 2026 Calley Nye</span><span><a href="index.html">← Home</a></span></div></footer>
+</div>
+</body>
+</html>

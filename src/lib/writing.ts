@@ -3,6 +3,17 @@ import path from "node:path";
 import matter from "gray-matter";
 import { compileMDX } from "next-mdx-remote/rsc";
 import type { ReactElement } from "react";
+import { ArticleImage } from "@/components/writing/article-image";
+import { DisabilityModelsIllustration } from "@/components/writing/disability-models-illustration";
+import { ModelExplorer } from "@/components/writing/model-explorer";
+import { ScalingDiagram } from "@/components/writing/scaling-diagram";
+
+const mdxComponents = {
+  ArticleImage,
+  DisabilityModelsIllustration,
+  ModelExplorer,
+  ScalingDiagram,
+};
 
 const writingDirectory = path.join(process.cwd(), "src/content/writing");
 
@@ -80,7 +91,10 @@ export async function getWritingBySlug(slug: string): Promise<WritingPost | null
     const source = await fs.readFile(filePath, "utf8");
     const parsed = matter(source);
     const frontmatter = assertFrontmatter(slug, parsed.data);
-    const compiled = await compileMDX({ source: parsed.content });
+    const compiled = await compileMDX({
+      source: parsed.content,
+      components: mdxComponents,
+    });
 
     return {
       slug,
