@@ -7,12 +7,26 @@ import { ArticleImage } from "@/components/writing/article-image";
 import { DisabilityModelsIllustration } from "@/components/writing/disability-models-illustration";
 import { ModelExplorer } from "@/components/writing/model-explorer";
 import { ScalingDiagram } from "@/components/writing/scaling-diagram";
+import { CanYouTellDemo } from "@/components/writing/compressive/can-you-tell-demo";
+import { CompressiveSource } from "@/components/writing/compressive/source-provider";
+import { CompressiveUploader } from "@/components/writing/compressive/uploader";
+import { DensityShift } from "@/components/writing/compressive/density-shift";
+import { FormatBars } from "@/components/writing/compressive/format-bars-demo";
+import { NextImagePipelineDemo } from "@/components/writing/compressive/next-image-demo";
+import { QualitySliderDemo } from "@/components/writing/compressive/quality-slider-demo";
 
 const mdxComponents = {
   ArticleImage,
   DisabilityModelsIllustration,
   ModelExplorer,
   ScalingDiagram,
+  CanYouTellDemo,
+  CompressiveSource,
+  CompressiveUploader,
+  DensityShift,
+  FormatBars,
+  NextImagePipelineDemo,
+  QualitySliderDemo,
 };
 
 const writingDirectory = path.join(process.cwd(), "src/content/writing");
