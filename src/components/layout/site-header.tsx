@@ -16,6 +16,7 @@ export function SiteHeader(): ReactElement {
       <nav aria-label="Primary" className="topnav">
         <Link href="/#work">Work</Link>
         <Link href="/writing">Writing</Link>
+        <Link href="/lab">Lab</Link>
         <Link href="/#speaking">Speaking</Link>
         <Link href="/accessibility">Accessibility</Link>
         <a href="/resume.pdf">Resume PDF</a>
