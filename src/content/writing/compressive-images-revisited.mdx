@@ -21,11 +21,11 @@ The cheat: save the image at **twice** the display dimensions — an @2x source 
 
 </div>
 
-<h2><span className="section-marker">01</span> The assumption hiding inside the best practice</h2>
+## 01 The assumption hiding inside the best practice
 
 The accepted Retina workflow wasn't wrong — it was built on an assumption nobody stated out loud: that per-pixel quality has to stay high. Compressive images show that assumption is conditional. At Retina density the display packs so many pixels into so little physical space that the eye **can't resolve** the lost fidelity. You were spending bytes on a quality no one could actually see.
 
-<h2><span className="section-marker">02</span> See it work — live, in your browser</h2>
+## 02 See it work — live, in your browser
 
 Numbers in a blog post are easy to fudge, so I'm not going to ask you to trust mine. The demos below encode a real image in your browser and report the actual bytes the encoder produced. They run on a built-in test scene by default — or upload your own photograph and every figure on this page recomputes on it.
 
@@ -41,7 +41,7 @@ The discomfort is the point: it feels wrong to ship a 20% JPEG. So here's the si
 
 <CanYouTellDemo />
 
-<h2><span className="section-marker">03</span> Why the bet is safer now than in 2015</h2>
+## 03 Why the bet is safer now than in 2015
 
 The technique makes a wager: that the screen has spare device pixels to hide artifacts behind. In 2015 that wager only paid off for a minority — mostly premium phones and a few high-end laptops. Ship a compressive image to someone on a standard display back then and you were just sending a needlessly large file. What changed isn't the technique. It's who's on the other end of it.
 
@@ -49,7 +49,7 @@ The technique makes a wager: that the screen has spare device pixels to hide art
 
 High-density rendering went from novelty to default. Today almost no smartphone reports a device pixel ratio of 1, ratios of 2× and 3× are routine, some Android flagships hit 4×, and phones are the majority of traffic on the web. The conditions that make compressive images work quietly became the common case — the opposite trajectory from most decade-old front-end tricks.
 
-<h2><span className="section-marker">04</span> Does a 2015 trick survive the 2026 stack?</h2>
+## 04 Does a 2015 trick survive the 2026 stack?
 
 This is where most "clever trick" posts quietly date themselves. The real modern baseline isn't a full-quality @2x JPEG anymore — it's `srcset` plus AVIF or WebP, formats that are dramatically more efficient than JPEG ever was. So the technique deserves a re-test against them, not a victory lap on decade-old numbers.
 
@@ -59,7 +59,7 @@ The result is split. The headline survives everywhere: at @2x, compressive encod
 
 Toggle the demo to **@4x** and the more striking story appears. The naive answer to ultra-dense screens — ship a full-quality @4x asset — is punishing: a quarter-megabyte in JPEG, triple the accepted @2x. But a compressive @4x file, pushed to a lower quality, lands competitive with the accepted @2x and beats it outright in AVIF. This is the technique's own logic taken to its limit: the denser the display, the more aggressively you can compress, because each artifact occupies a smaller slice of physical space. @4x is where the idea is arguably most valuable, precisely because the conventional alternative is so heavy.
 
-<h2><span className="section-marker">05</span> So when should you actually reach for it?</h2>
+## 05 So when should you actually reach for it?
 
 An optimization is only worth as much as your sense of where it stops paying off. Compressive images have a clear boundary, and it falls right along the line between the pipeline you control and the one you don't.
 
@@ -75,7 +75,7 @@ So in a modern Next pipeline you don't rebuild the trick by hand — you express
 
 > The trick was never the valuable part. The valuable part is re-checking an inherited assumption against current conditions instead of carrying it forward on faith.
 
-<h2><span className="section-marker">06</span> Why this still matters</h2>
+## 06 Why this still matters
 
 It would be easy to file compressive images under "obsolete — we have AVIF now." That's the mistake. An enormous amount of the web still runs on JPEG pipelines, locked-down CMSs, and email clients where you cannot serve a modern format or reliably control `srcset` even if you wanted to. Optimizing for the greenfield demo is easy. Optimizing for the messy systems people are actually stuck maintaining is the harder, more common job — and there, one oversized low-quality asset with no switching logic still reaches where modern tooling can't.
 
