@@ -5,24 +5,41 @@
 }
 
 .hero-scroll {
+  overflow: hidden;
+  border-bottom: 1px solid var(--rule);
+  margin: 0 calc(-1 * clamp(20px, 3vw, 36px));
+}
+
+.hero-scroll.reverse {
+  border-bottom: 0;
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(60px, 8vw, 120px);
+}
+
+// The track holds exactly two identical tiles and is sized to its content, so
+// translateX(-50%) advances by precisely one tile — a seamless loop.
+.hero-scroll-track {
   display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.hero-scroll.reverse .hero-scroll-track {
+  animation-direction: reverse;
+}
+
+.hero-scroll-set {
+  display: flex;
+  align-items: center;
   gap: 32px;
+  // Right padding matches the inter-item gap so the seam between the two tiles
+  // keeps the same rhythm.
+  padding: 14px 32px 14px 0;
   white-space: nowrap;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
   font-size: 12px;
   letter-spacing: 0.16em;
   color: var(--fg-dim);
-  padding: 14px 0;
-  border-bottom: 1px solid var(--rule);
-  animation: marquee 40s linear infinite;
-  margin: 0 calc(-1 * clamp(20px, 3vw, 36px));
-}
-
-.hero-scroll.reverse {
-  animation-direction: reverse;
-  border-bottom: 0;
-  border-top: 1px solid var(--rule);
-  margin-top: clamp(60px, 8vw, 120px);
 }
 
 .hero-scroll .accent {
