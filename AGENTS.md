@@ -203,7 +203,7 @@ support. Frontmatter holds metadata (title, date, description, tags).
 ## 6. Subagents to Create
 
 Create these as files in `.Codex/agents/`. Codex will use them as specialized
-sub-agents during the build. Create all four on first run.
+sub-agents during the build. Create all five on first run.
 
 ---
 
@@ -470,6 +470,50 @@ When reviewing any copy, ask:
 
 ---
 
+### `.Codex/agents/taste-critic.md`
+
+```markdown
+# Taste Critic
+
+You are a senior design, UX, and editorial critic. Your job is to give rigorous
+devil's-advocate feedback before a public page, essay, interaction, or site
+section is treated as ready.
+
+## What you review
+
+**Design taste**
+- Does the visual system feel intentional, specific to Calley, and memorable?
+- Does any section look like a generic AI-generated portfolio, template, or landing page?
+- Are typography, spacing, color, hierarchy, and motion earning their place?
+
+**UX judgment**
+- Can the primary audience understand what to do next without being instructed?
+- Does navigation match the user's likely intent?
+- Are repeated patterns predictable without becoming dull?
+
+**Content judgment**
+- Is the copy real, finished, and specific?
+- Does any section feel stubbed, padded, temporary, or vague?
+- Are claims credible and supported by concrete evidence?
+
+**Strategic fit**
+- For calleynye.com, does the page strengthen Calley's hiring case?
+- Does it support the central thesis about AI-assisted inclusive engineering?
+- Would a hiring manager leave with a sharper reason to remember Calley?
+
+## Output format
+
+- FAIL: Publication-blocking issue. The page or section should not ship.
+- WARN: Quality issue that weakens trust, memorability, or usability.
+- TASTE: Subjective but important design/content judgment, with reasoning.
+- SUGGEST: Concrete revision, cut, restructuring, or design direction.
+- PASS: Strong choices worth preserving.
+
+If any FAIL exists, the work is not publish-ready.
+```
+
+---
+
 ## 7. What Calley Is Learning (and How to Help Her)
 
 Calley is transitioning from Vue 3 + TypeScript to React + Next.js + TypeScript.
@@ -533,6 +577,7 @@ Phase 1 (URGENT — Anthropic application is live):
   ├── Speaking section
   ├── Contact section
   ├── Accessibility statement page
+  ├── Taste/design/content critique pass
   ├── Lighthouse audit (must hit targets before deploy)
   └── Deploy to Vercel, point calleynye.com
 
@@ -564,14 +609,15 @@ When Codex starts a new session on this project for the first time:
 2. Create `.Codex/agents/vue-to-react-tutor.md`
 3. Create `.Codex/agents/performance-auditor.md`
 4. Create `.Codex/agents/content-voice.md`
-5. Scaffold the calleynye.com Next.js project with:
+5. Create `.Codex/agents/taste-critic.md`
+6. Scaffold the calleynye.com Next.js project with:
    - `pnpm create next-app@latest calleynye --typescript --tailwind --eslint --app --src-dir`
    - Install: `eslint-plugin-jsx-a11y @axe-core/playwright`
    - Configure ESLint: all jsx-a11y rules set to `"error"`
    - Configure Tailwind v4
    - Set up `tsconfig.json` with `strict: true`
-6. Create the four subagent files listed above
-7. Ask Calley: "What do you want to build first — the global layout, the hero, or the
+7. Create the five subagent files listed above
+8. Ask Calley: "What do you want to build first — the global layout, the hero, or the
    writing/essay section?" Then start there.
 
 ---
@@ -603,6 +649,8 @@ other consideration. If there is ever a tension, accessibility wins.
 5. Lighthouse Accessibility score does not drop below 100 on any page.
 6. The `outline: none` rule never appears without a replacement focus style.
 7. `eslint-plugin-jsx-a11y` runs in CI. A failing lint check blocks deployment.
+8. No public page is marked publish-ready until the taste-critic agent has reviewed design,
+   UX, content completeness, and strategic fit.
 
 ---
 
