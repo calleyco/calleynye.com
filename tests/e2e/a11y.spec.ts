@@ -27,10 +27,17 @@ test("disability models essay: pressing a model tab updates the panel @a11y", as
   await expect(page.locator("#model-explorer-panel")).toContainText("natural and necessary part of human diversity");
 });
 
-test("review essays are not publicly routable", async ({ page }) => {
-  const response = await page.goto("/writing/compressive-images-revisited");
+test("draft essays are not publicly routable", async ({ page }) => {
+  const response = await page.goto("/writing/live-regions-are-a-real-time-ui-problem");
 
   expect(response?.status()).toBe(404);
+});
+
+test("the published compressive essay is publicly routable", async ({ page }) => {
+  const response = await page.goto("/writing/compressive-images-revisited");
+
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole("heading", { name: /The Retina image trick everyone forgot/i })).toBeVisible();
 });
 
 test("writing index renders published posts without server errors", async ({ page }) => {
@@ -40,5 +47,6 @@ test("writing index renders published posts without server errors", async ({ pag
   await expect(page.getByRole("heading", { name: /The index/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /Which model of disability/i })).toBeVisible();
   await expect(page.getByText("Application error")).toHaveCount(0);
-  await expect(page.getByText("The Retina image trick everyone forgot")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /The Retina image trick everyone forgot/i })).toBeVisible();
+  await expect(page.getByText("Live regions are a real-time UI problem")).toHaveCount(0);
 });

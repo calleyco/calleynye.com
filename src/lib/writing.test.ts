@@ -18,25 +18,37 @@ describe("writing metadata", () => {
 
     expect(posts.every((post) => post.status === "published")).toBe(true);
     expect(posts.map((post) => post.slug)).not.toContain("accessibility-as-the-path-of-least-resistance");
-    expect(posts.map((post) => post.slug)).not.toContain("compressive-images-revisited");
+    expect(posts.map((post) => post.slug)).not.toContain("live-regions-are-a-real-time-ui-problem");
+  });
+
+  it("includes the published compressive essay in public indexes", async () => {
+    const posts = await getAllWritingMeta();
+
+    expect(posts.map((post) => post.slug)).toContain("compressive-images-revisited");
   });
 
   it("does not return draft or review posts by slug", async () => {
     await expect(getWritingBySlug("accessibility-as-the-path-of-least-resistance")).resolves.toBeNull();
-    await expect(getWritingBySlug("compressive-images-revisited")).resolves.toBeNull();
+    await expect(getWritingBySlug("live-regions-are-a-real-time-ui-problem")).resolves.toBeNull();
   });
 
-  it("can load draft or review posts for local preview", async () => {
+  it("returns the published compressive essay by slug without the preview flag", async () => {
+    const post = await getWritingBySlug("compressive-images-revisited");
+
+    expect(post?.frontmatter.status).toBe("published");
+  });
+
+  it("can load draft posts for local preview", async () => {
     const post = await getWritingBySlug("accessibility-as-the-path-of-least-resistance", { includeUnpublished: true });
 
     expect(post?.frontmatter.status).toBe("draft");
   });
 
-  it("can load Keystatic-formatted review posts for local preview", async () => {
+  it("parses Keystatic-formatted quoted-string frontmatter without timezone drift", async () => {
     const post = await getWritingBySlug("compressive-images-revisited", { includeUnpublished: true });
 
     expect(post?.frontmatter.date).toBe("2026-05-30");
-    expect(post?.frontmatter.status).toBe("review");
+    expect(post?.frontmatter.status).toBe("published");
   });
 
   it("formats frontmatter dates without timezone drift", () => {

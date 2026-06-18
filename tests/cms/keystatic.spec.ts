@@ -39,17 +39,17 @@ test.describe("Keystatic writing CMS", () => {
     const popup = await popupPromise;
 
     await expect(popup).toHaveURL(/\/cms-preview\/writing\/compressive-images-revisited$/);
-    await expect(popup.getByText("Preview | review")).toBeVisible();
+    await expect(popup.getByText("Preview | published")).toBeVisible();
     await expect(popup.getByText("Calley Nye Content")).toHaveCount(0);
   });
 });
 
 test.describe("CMS writing previews", () => {
-  test("renders review essays through the dev-only preview route", async ({ page }) => {
+  test("renders essays through the dev-only preview route", async ({ page }) => {
     const response = await page.goto("/cms-preview/writing/compressive-images-revisited");
 
     expect(response?.status()).toBe(200);
-    await expect(page.getByText("Preview | review")).toBeVisible();
+    await expect(page.getByText("Preview | published")).toBeVisible();
     await expect(page.getByRole("heading", { name: /The Retina image trick everyone forgot/i })).toBeVisible();
     await expect(page.getByText("In 2015 I built a CodePen")).toBeVisible();
     await expect(page.getByText(/Simon Berger/i).first()).toBeVisible();
