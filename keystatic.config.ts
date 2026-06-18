@@ -94,7 +94,7 @@ export default config({
         contentField: "content",
       },
       columns: ["title", "status", "date"],
-      previewUrl: "/keystatic/preview/writing/{slug}",
+      previewUrl: "/cms-preview/writing/{slug}",
       schema: {
         title: fields.text({
           label: "Title",

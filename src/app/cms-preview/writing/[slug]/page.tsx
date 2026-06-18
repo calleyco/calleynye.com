@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import type { ReactElement } from "react";
 import { formatWritingDate } from "@/lib/dates";
 import { getWritingBySlug } from "@/lib/writing";
-import styles from "../../../../writing/writing.module.scss";
+import styles from "../../../writing/writing.module.scss";
 
 interface WritingPreviewPageProps {
   params: Promise<{ slug: string }>;

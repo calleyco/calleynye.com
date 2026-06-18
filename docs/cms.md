@@ -47,8 +47,7 @@ locally in Keystatic without appearing in public writing indexes or production
 article routes.
 
 Keystatic preview links point to development-only preview URLs under
-`/keystatic/preview/writing/[slug]`. Those routes return 404 outside local
-development.
+`/cms-preview/writing/[slug]`. Those routes return 404 outside local development.
 
 ## Publish Gate
 
