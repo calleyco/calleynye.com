@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactElement } from "react";
 import { LabShell } from "@/components/lab/live-regions/lab-shell";
+import styles from "../lab.module.scss";
 
 export const metadata: Metadata = {
   title: "Live Region Lab | Calley Nye",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function LiveRegionLabPage(): ReactElement {
   return (
-    <main className="lab-page" id="main">
+    <main className={`lab-page ${styles.labScope}`} id="main">
       <section className="lab-page-hero" aria-labelledby="lab-page-head">
         <p className="lab-page-kicker">Lab · Live Regions</p>
         <h1 className="lab-page-head" id="lab-page-head">

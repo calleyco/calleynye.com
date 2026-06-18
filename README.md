@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# calleynye.com
 
-## Getting Started
+Personal portfolio and writing site for Calley Nye.
 
-First, use the project Node version:
+## Stack
+
+- Next.js 15 App Router
+- React 19
+- TypeScript strict mode
+- Tailwind CSS v4
+- Vitest unit tests
+- Playwright plus axe-core accessibility tests
+
+## Local Development
 
 ```bash
 nvm use
-```
-
-Then run the development server:
-
-```bash
+pnpm install
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Launch Checks
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run these before deploy:
 
-## Learn More
+```bash
+pnpm lint
+pnpm test
+pnpm build
+pnpm test:e2e
+pnpm audit
+```
 
-To learn more about Next.js, take a look at the following resources:
+The Playwright suite starts a production build and fails on any axe-core violation across the primary launch routes.
+If a stale local server is already running on port 3000, stop it before trusting local e2e results.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Deploy with Vercel after the launch checks pass and Lighthouse targets have been verified:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Performance: 95+
+- Accessibility: 100
+- Best Practices: 95+
+- SEO: 95+

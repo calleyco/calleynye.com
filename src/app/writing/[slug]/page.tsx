@@ -3,6 +3,7 @@ import type { ReactElement } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getAllWritingMeta, getWritingBySlug } from "@/lib/writing";
+import styles from "../writing.module.scss";
 
 interface WritingPageProps {
   params: Promise<{ slug: string }>;
@@ -38,7 +39,7 @@ export default async function WritingPostPage({ params }: WritingPageProps): Pro
   }
 
   return (
-    <main className="article-page" id="main">
+    <main className={`article-page ${styles.writingScope}`} id="main">
       <Link className="article-back" href="/writing">
         &lt;- Back to index
       </Link>

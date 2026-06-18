@@ -13,11 +13,11 @@ In 2015 I built a CodePen to settle an argument with my team. We needed Retina i
 
 The cheat: save the image at **twice** the display dimensions — an @2x source — then drop the JPEG quality to something that looks frankly broken at full size — 20%. When the browser scales that oversized, low-quality image down into its actual display box, the compression artifacts shrink below the threshold your eye can resolve. What's left looks crisp. And the file is smaller than a conventional full-quality @2x — in my original test, smaller than the non-Retina @1x too.
 
-<aside className="article-credit">
+<div className="article-credit" role="note">
 
 **Where this comes from.** The technique has a name — *compressive images* — coined by Daan Jobsis in his "Retina Revolution" experiments and popularized by Filament Group around 2012. I picked it up early and have reached for it ever since; the work here is re-testing it against the formats and tooling that have appeared in the decade since.
 
-</aside>
+</div>
 
 <h2><span className="section-marker">01</span> The assumption hiding inside the best practice</h2>
 

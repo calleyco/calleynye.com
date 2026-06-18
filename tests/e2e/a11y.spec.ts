@@ -10,15 +10,11 @@ const ROUTES_TO_SCAN = [
 ];
 
 for (const route of ROUTES_TO_SCAN) {
-  test(`${route.name} has no serious axe violations @a11y`, async ({ page }) => {
+  test(`${route.name} has no axe violations @a11y`, async ({ page }) => {
     await page.goto(route.path);
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
-    const seriousOrCritical = accessibilityScanResults.violations.filter((violation) =>
-      ["serious", "critical"].includes(violation.impact ?? ""),
-    );
-
-    expect(seriousOrCritical).toEqual([]);
+    expect(accessibilityScanResults.violations).toEqual([]);
   });
 }
 

@@ -1,8 +1,9 @@
 import type { ReactElement } from "react";
+import styles from "./accessibility.module.scss";
 
 export default function AccessibilityPage(): ReactElement {
   return (
-    <main className="accessibility-page" id="main">
+    <main className={`accessibility-page ${styles.accessibilityScope}`} id="main">
       <h1>Accessibility Statement</h1>
       <p>
         This site targets WCAG 2.1 AA conformance. Accessibility is treated as an architectural requirement, not a
@@ -10,19 +11,22 @@ export default function AccessibilityPage(): ReactElement {
       </p>
 
       <h2>Conformance Status</h2>
-      <p>Target level: WCAG 2.1 AA. Current baseline is evaluated continuously during development.</p>
+      <p>
+        Target level: WCAG 2.1 AA. Automated checks currently report no axe-core violations on the primary launch
+        routes covered by Playwright.
+      </p>
 
       <h2>Testing Methods</h2>
       <ul>
         <li>Automated auditing with axe-core in Playwright checks</li>
-        <li>Manual keyboard-only navigation verification</li>
-        <li>Manual screen reader checks using VoiceOver and NVDA</li>
+        <li>Manual keyboard-only navigation checks during component review</li>
+        <li>Manual VoiceOver and NVDA checks before final public launch</li>
       </ul>
 
       <h2>Known Limitations</h2>
       <ul>
-        <li>No known critical blockers at this time</li>
-        <li>Additional cross-device screen reader audits are ongoing while content expands</li>
+        <li>No known automated axe-core violations on the primary launch routes</li>
+        <li>Cross-device screen reader audits are still part of the final launch checklist</li>
       </ul>
 
       <h2>Report an Issue</h2>
@@ -32,7 +36,7 @@ export default function AccessibilityPage(): ReactElement {
       </p>
 
       <h2>Last Audit Date</h2>
-      <p>May 7, 2026</p>
+      <p>June 18, 2026</p>
     </main>
   );
 }

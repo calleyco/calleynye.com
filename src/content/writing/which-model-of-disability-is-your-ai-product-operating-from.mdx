@@ -25,11 +25,11 @@ Here is a thought experiment. Open any major AI chat interface in a screen reade
 
 What you will find, in most cases, is an interface designed for sighted mouse users that has been partially retrofitted with ARIA attributes — some correct, some incorrect, many missing entirely. This is the medical model in code: the product was designed for "normal" users, and accessibility is a treatment applied to the symptoms.
 
-<aside className="essay-callout">
+<div className="essay-callout" role="note">
 
 When a streaming AI response has no `aria-live` region, a screen reader user does not know new content has appeared. They are sitting in silence while everyone else watches words flow across the screen. The interface has not just failed to accommodate them — it has *excluded* them from the core experience of the product.
 
-</aside>
+</div>
 
 ## From accommodations to inclusivity
 
@@ -59,11 +59,11 @@ This is not because engineers are bad people. It is because the economics of bui
 
 Here is what I find genuinely exciting: **AI coding assistants dissolve that false choice.**
 
-<aside className="essay-callout essay-callout--social">
+<div className="essay-callout essay-callout--social" role="note">
 
 When a coding assistant can scaffold an accessible modal with focus trapping as fast as it scaffolds an inaccessible one — when it generates semantic HTML by default, catches a missing `aria-label` before you commit, writes keyboard event handlers alongside click handlers without being asked — the "we do not have time" excuse evaporates. The floor rises for everyone.
 
-</aside>
+</div>
 
 Think about what this means in practice. An engineer using an AI coding assistant does not have to choose between building the feature and building it accessibly. They can do both in the same amount of time it used to take to do one. The productivity gain does not just mean shipping faster — it means shipping *more completely*. It means the things that always got cut for time — the `aria-live` regions, the reduced-motion media queries, the skip navigation links, the focus-visible states — finally get built. Not because the priority changed, but because the constraint that kept them out of the build disappeared.
 
