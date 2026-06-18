@@ -25,9 +25,10 @@ export default function LiveRegionLabPage(): ReactElement {
           dilemma, not a place where the &ldquo;right&rdquo; answer is shipped.
         </p>
         <p className="lab-page-meta">
-          Phase 1 ships two villain strategies and one deliberately-mediocre
-          reference. Real strategies are authored at the bench. Notebook:{" "}
-          <code>docs/lab/live-regions/lab-notebook.md</code>.
+          The strategies below are starting points — two that fail in
+          instructive ways and one deliberately middling baseline — so you can
+          see and hear how each handles the dilemma. This is an instrument for
+          comparison, not a recommendation.
         </p>
       </section>
 
