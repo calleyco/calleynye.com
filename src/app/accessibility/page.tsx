@@ -41,7 +41,7 @@ export default function AccessibilityPage(): ReactElement {
 
       <h2>Report an Issue</h2>
       <p>
-        If you find an accessibility issue, email <a href="mailto:calley.nye@gmail.com">calley.nye@gmail.com</a> with
+        If you find an accessibility issue, email <a href="mailto:hi@calley.io">hi@calley.io</a> with
         the page URL, assistive technology used, and a short reproduction path.
       </p>
 
