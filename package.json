@@ -5,6 +5,7 @@
   "packageManager": "pnpm@10.33.4",
   "scripts": {
     "dev": "next dev",
+    "dev:cms-test": "next dev --hostname 127.0.0.1 --port 3100",
     "content:audit": "node scripts/content-audit.mjs",
     "prebuild": "pnpm content:audit",
     "build": "next build",
@@ -12,7 +13,9 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test && playwright test --config playwright.cms.config.ts",
+    "test:e2e:public": "playwright test",
+    "test:e2e:cms": "playwright test --config playwright.cms.config.ts"
   },
   "dependencies": {
     "@keystatic/core": "^0.5.50",
