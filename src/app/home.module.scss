@@ -302,10 +302,21 @@
 
 .resume-skills {
   list-style: none;
-  margin: 0;
+  margin: 0 0 40px;
   padding: 0;
   display: grid;
   gap: 12px;
+}
+
+.resume-education {
+  margin: 0;
+  color: var(--fg);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.resume-education-school {
+  font-weight: 600;
 }
 
 .resume-skill-group {

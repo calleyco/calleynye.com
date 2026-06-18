@@ -1,7 +1,14 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
 import { formatWritingDate } from "@/lib/dates";
-import { centralThesis, resumeItems, resumeSkills, resumeSummary, speakingEvents } from "@/lib/site-data";
+import {
+  centralThesis,
+  resumeEducation,
+  resumeItems,
+  resumeSkills,
+  resumeSummary,
+  speakingEvents,
+} from "@/lib/site-data";
 import { getAllWritingMeta } from "@/lib/writing";
 import styles from "./home.module.scss";
 
@@ -185,6 +192,14 @@ export default async function Home(): Promise<ReactElement> {
             </li>
           ))}
         </ul>
+
+        <h3 className="resume-subhead" id="resume-education-head">
+          Education
+        </h3>
+        <p aria-labelledby="resume-education-head" className="resume-education">
+          <span className="resume-education-school">{resumeEducation.school}</span> — {resumeEducation.program}
+          <span className="resume-meta"> · {resumeEducation.period}</span>
+        </p>
       </section>
 
       <section aria-labelledby="contact-head" className="contact" id="contact">
@@ -194,9 +209,9 @@ export default async function Home(): Promise<ReactElement> {
         </h2>
         <p className="contact-note">Job inquiries and professional conversations only.</p>
         <div className="contact-grid">
-          <a className="contact-item" href="mailto:calley.nye@gmail.com">
+          <a className="contact-item" href="mailto:hi@calley.io">
             <span className="ci-label">Email</span>
-            <span className="ci-value">calley.nye@gmail.com</span>
+            <span className="ci-value">hi@calley.io</span>
           </a>
           <a className="contact-item" href="https://linkedin.com/in/calleynye" rel="noreferrer" target="_blank">
             <span className="ci-label">LinkedIn</span>
