@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { formatWritingDate, getAllWritingMeta, getWritingBySlug } from "@/lib/writing";
+import { formatWritingDate } from "@/lib/dates";
+import { getAllWritingMeta, getWritingBySlug } from "@/lib/writing";
 
 describe("writing metadata", () => {
   it("returns posts sorted by date descending", async () => {

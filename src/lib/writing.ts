@@ -108,13 +108,6 @@ function assertFrontmatter(slug: string, data: Record<string, unknown>): Writing
   };
 }
 
-export function formatWritingDate(date: string, options?: Intl.DateTimeFormatOptions): string {
-  return new Date(`${date}T00:00:00.000Z`).toLocaleDateString("en-US", {
-    timeZone: "UTC",
-    ...options,
-  });
-}
-
 export async function getAllWritingMeta(): Promise<WritingMeta[]> {
   const entries = await fs.readdir(writingDirectory, { withFileTypes: true });
   const files = entries.filter((entry) => entry.isFile() && entry.name.endsWith(".mdx"));

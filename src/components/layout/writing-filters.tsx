@@ -3,7 +3,8 @@
 import { useMemo, useState } from "react";
 import type { ReactElement } from "react";
 import Link from "next/link";
-import { formatWritingDate, type WritingMeta } from "@/lib/writing";
+import { formatWritingDate } from "@/lib/dates";
+import type { WritingMeta } from "@/lib/writing";
 
 interface WritingFiltersProps {
   posts: WritingMeta[];

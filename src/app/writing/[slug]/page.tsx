@@ -2,7 +2,8 @@ import Link from "next/link";
 import type { ReactElement } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { formatWritingDate, getAllWritingMeta, getWritingBySlug } from "@/lib/writing";
+import { formatWritingDate } from "@/lib/dates";
+import { getAllWritingMeta, getWritingBySlug } from "@/lib/writing";
 import styles from "../writing.module.scss";
 
 interface WritingPageProps {

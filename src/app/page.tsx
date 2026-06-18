@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
+import { formatWritingDate } from "@/lib/dates";
 import { caseStudies, centralThesis, resumeItems, speakingEvents } from "@/lib/site-data";
-import { formatWritingDate, getAllWritingMeta } from "@/lib/writing";
+import { getAllWritingMeta } from "@/lib/writing";
 import styles from "./home.module.scss";
 
 export default async function Home(): Promise<ReactElement> {
