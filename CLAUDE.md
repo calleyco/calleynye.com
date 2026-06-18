@@ -606,4 +606,15 @@ other consideration. If there is ever a tension, accessibility wins.
 
 ---
 
+Lab standards (applies to everything under /lab/*)
+The /lab route is a growing collection of research explorations. The first is the Live Region Lab at /lab/live-regions. The full mission spec lives at docs/lab/live-regions/phase-1-brief.md — read it before working on that exploration. These rules are durable and apply on every task touching a lab, present or future:
+
+Never fake assistive-technology output. There is no web API that exposes what a screen reader speaks, and the page cannot read the OS accessibility tree's spoken queue. Any panel, label, or comment must represent only what the page actually controls — the live-region mutations and announcement events it emits — honestly described as a model of what the page hands the AT, never as "what the screen reader says." Audio via the Web Speech API is an illustration, not a screen reader, and must be labeled as such. This is non-negotiable; faking it is both false and a tell that the author doesn't understand the domain.
+The lab is accessible or it doesn't ship. Every lab route meets the site standard: WCAG AA, 95+ Lighthouse. A streaming-accessibility research tool that isn't itself accessible is self-refuting.
+Announcement strategies are pluggable and immutable-by-version. A strategy is one implementation of the documented strategy interface. Add a new named strategy when iterating — never edit an existing one in place. WIP versions must stay replayable.
+Single source of truth. Visual/timeline output and audio output consume the same strategy event stream. Never build parallel paths that can drift.
+Lab notebook protocol. Maintain docs/lab/<lab-name>/lab-notebook.md and docs/lab/<lab-name>/findings-summary.md. Append a dated, structured entry to the notebook every session and on every strategy add/tune/abandon. Dead ends are required content. Record AI collaboration honestly — including suggestions the owner rejected and why. Keep the findings summary current as the living map.
+Don't ship "the answer" in a research lab. When the brief frames an exploration as research, build the instrument and document the process — do not converge on or recommend a "best" solution. The discovery belongs to the owner.
+Accessibility claims are not yours to assert authoritatively. Accessibility is the owner's domain. Scaffold structure and mechanics, but flag substantive accessibility content with TODO(owner) for the owner's authorship/review rather than asserting it as fact.
+
 *Last updated: May 2026. Maintained by Calley Nye + Claude Code.*
