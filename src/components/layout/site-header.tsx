@@ -14,7 +14,6 @@ export function SiteHeader(): ReactElement {
         <span className="brand-name">CALLEY.NYE</span>
       </Link>
       <nav aria-label="Primary" className="topnav">
-        <Link href="/#work">Work</Link>
         <Link href="/writing">Writing</Link>
         <Link href="/lab">Lab</Link>
         <Link href="/#speaking">Speaking</Link>

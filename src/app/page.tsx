@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
-import { caseStudies, centralThesis, resumeItems, speakingEvents } from "@/lib/site-data";
+import { formatWritingDate } from "@/lib/dates";
+import { centralThesis, resumeItems, resumeSkills, resumeSummary, speakingEvents } from "@/lib/site-data";
 import { getAllWritingMeta } from "@/lib/writing";
 import styles from "./home.module.scss";
 
@@ -104,7 +105,7 @@ export default async function Home(): Promise<ReactElement> {
                   <h3 className="art-title">{post.title}</h3>
                   <p className="art-dek">{post.description}</p>
                   <div className="art-meta">
-                    <span>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
+                    <span>{formatWritingDate(post.date, { year: "numeric", month: "short", day: "numeric" })}</span>
                     <span aria-hidden="true">|</span>
                     <span>{post.readingTime}</span>
                     <span aria-hidden="true">|</span>
@@ -120,24 +121,8 @@ export default async function Home(): Promise<ReactElement> {
         </ol>
       </section>
 
-      <section aria-labelledby="work-head" className="work" id="work">
-        <p className="section-tag">04 | Selected work</p>
-        <h2 className="section-head" id="work-head">
-          Case studies in prose
-        </h2>
-        <div className="work-grid">
-          {caseStudies.map((study) => (
-            <article className="work-card" key={study.title}>
-              <h3>{study.title}</h3>
-              <p>{study.summary}</p>
-              <p className="work-impact">{study.impact}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section aria-labelledby="speaking-head" className="speaking" id="speaking">
-        <p className="section-tag">05 | Speaking</p>
+        <p className="section-tag">04 | Speaking</p>
         <h2 className="section-head" id="speaking-head">
           Talks and workshops
         </h2>
@@ -156,29 +141,54 @@ export default async function Home(): Promise<ReactElement> {
 
       <section aria-labelledby="resume-head" className="resume" id="resume">
         <div className="section-header">
-          <p className="section-tag">06 | Resume</p>
+          <p className="section-tag">05 | Resume</p>
           <h2 className="section-head" id="resume-head">
-            Inline resume
+            Resume
           </h2>
           <a className="section-link" href="/resume.pdf">
             PDF download -&gt;
           </a>
         </div>
-        <ul className="resume-list">
+
+        <p className="resume-summary">{resumeSummary}</p>
+
+        <h3 className="resume-subhead" id="resume-experience-head">
+          Experience
+        </h3>
+        <ol aria-labelledby="resume-experience-head" className="resume-list">
           {resumeItems.map((item) => (
             <li className="resume-item" key={`${item.company}-${item.role}`}>
-              <h3>{item.role}</h3>
-              <p className="resume-meta">
-                {item.company} | {item.period}
-              </p>
-              <p>{item.details}</p>
+              <div className="resume-item-head">
+                <h4 className="resume-role">{item.role}</h4>
+                <p className="resume-meta">
+                  {item.company} | {item.period}
+                </p>
+              </div>
+              <p className="resume-item-summary">{item.summary}</p>
+              <ul className="resume-highlights">
+                {item.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+
+        <h3 className="resume-subhead" id="resume-skills-head">
+          Core skills
+        </h3>
+        <ul aria-labelledby="resume-skills-head" className="resume-skills">
+          {resumeSkills.map((group) => (
+            <li className="resume-skill-group" key={group.group}>
+              <span className="resume-skill-label">{group.group}</span>
+              <span className="resume-skill-items">{group.items.join(" · ")}</span>
             </li>
           ))}
         </ul>
       </section>
 
       <section aria-labelledby="contact-head" className="contact" id="contact">
-        <p className="section-tag">07 | Contact</p>
+        <p className="section-tag">06 | Contact</p>
         <h2 className="contact-head" id="contact-head">
           Say hello.
         </h2>

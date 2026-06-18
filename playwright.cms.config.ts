@@ -1,15 +1,15 @@
 import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./tests/e2e",
+  testDir: "./tests/cms",
   fullyParallel: true,
   use: {
-    baseURL: "http://127.0.0.1:3200",
+    baseURL: "http://127.0.0.1:3100",
     trace: "on-first-retry",
   },
   webServer: {
-    command: "NEXT_DIST_DIR=.next-e2e-public pnpm build && NEXT_DIST_DIR=.next-e2e-public pnpm start --hostname 127.0.0.1 --port 3200",
-    url: "http://127.0.0.1:3200",
+    command: "pnpm dev:cms-test",
+    url: "http://127.0.0.1:3100",
     reuseExistingServer: false,
     timeout: 180_000,
   },

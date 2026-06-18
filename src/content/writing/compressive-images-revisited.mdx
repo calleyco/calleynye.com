@@ -1,86 +1,84 @@
 ---
-title: "The Retina image trick everyone forgot — and whether it still holds up in 2026"
-description: "A decade ago I started serving sharp Retina images from a single oversized, low-quality file. The trick still works in 2026. The more interesting question is why, and where it stops working."
-date: "2026-05-30"
+title: The Retina image trick everyone forgot — and whether it still holds up in 2026
+slug: compressive-images-revisited
+description: >-
+  A decade ago I started serving sharp Retina images from a single oversized,
+  low-quality file. The trick still works in 2026. The more interesting question
+  is why, and where it stops working.
+date: 2026-05-30
 tags:
   - Performance
   - Images
   - Engineering judgment
-readingTime: "12 min"
+readingTime: 7 min
+status: published
 ---
-
 In 2015 I built a CodePen to settle an argument with my team. We needed Retina images at Crowdrise, and everyone "knew" how to do it: keep two copies of every asset, an @1x and a full-quality @2x, and hand the browser the heavy one on high-density screens. It worked, but it meant maintaining a doubled asset pipeline for every image on the site — and I was convinced there was a better way. I'd read you could cheat. Before arguing to roll it out sitewide, I wanted proof, so I built the demo. It convinced me — and I shipped the technique across Crowdrise.
 
 The cheat: save the image at **twice** the display dimensions — an @2x source — then drop the JPEG quality to something that looks frankly broken at full size — 20%. When the browser scales that oversized, low-quality image down into its actual display box, the compression artifacts shrink below the threshold your eye can resolve. What's left looks crisp. And the file is smaller than a conventional full-quality @2x — in my original test, smaller than the non-Retina @1x too.
 
 <div className="article-credit" role="note">
-
-**Where this comes from.** The technique has a name — *compressive images* — coined by Daan Jobsis in his "Retina Revolution" experiments and popularized by Filament Group around 2012. I picked it up early and have reached for it ever since; the work here is re-testing it against the formats and tooling that have appeared in the decade since.
-
+  **Where this comes from.** The technique has a name — *compressive images* — coined by Daan Jobsis in his "Retina Revolution" experiments and popularized by Filament Group around 2012. I picked it up early and have reached for it ever since; the work here is re-testing it against the formats and tooling that have appeared in the decade since.
 </div>
 
-<h2><span className="section-marker">01</span> The assumption hiding inside the best practice</h2>
+## 01 | The assumption hiding inside the best practice
 
 The accepted Retina workflow wasn't wrong — it was built on an assumption nobody stated out loud: that per-pixel quality has to stay high. Compressive images show that assumption is conditional. At Retina density the display packs so many pixels into so little physical space that the eye **can't resolve** the lost fidelity. You were spending bytes on a quality no one could actually see.
 
-<h2><span className="section-marker">02</span> See it work — live, in your browser</h2>
+## 02 | See it work — live, in your browser
 
-Numbers in a blog post are easy to fudge, so I'm not going to ask you to trust mine. The demos below encode a real image in your browser and report the actual bytes the encoder produced. They run on a built-in test scene by default — or upload your own photograph and every figure on this page recomputes on it.
+Numbers in a blog post are easy to fudge, so I'm not going to ask you to trust mine. The demos below encode a real photograph in your browser and report the actual bytes the encoder produced. They use Simon Berger's mountain photograph from Unsplash by default — or upload your own photograph and every figure on this page recomputes on it.
 
 <CompressiveSource>
+  <CompressiveUploader />
 
-<CompressiveUploader />
+  Push the quality down and watch what happens to the file size — and to the picture.
 
-Push the quality down and watch what happens to the file size — and to the picture.
+  <QualitySliderDemo />
 
-<QualitySliderDemo />
+  The discomfort is the point: it feels wrong to ship a 20% JPEG. So here's the side-by-side that resolves it. Two versions of the same image — the accepted full-quality @2x, and the compressive @2x — both scaled into their display box. Then reveal them at full size.
 
-The discomfort is the point: it feels wrong to ship a 20% JPEG. So here's the side-by-side that resolves it. Two versions of the same image — the accepted full-quality @2x, and the compressive @2x — both scaled into their display box. Then reveal them at full size.
+  <CanYouTellDemo />
 
-<CanYouTellDemo />
+  ## 03 | Why the bet is safer now than in 2015
 
-<h2><span className="section-marker">03</span> Why the bet is safer now than in 2015</h2>
+  The technique makes a wager: that the screen has spare device pixels to hide artifacts behind. In 2015 that wager only paid off for a minority — mostly premium phones and a few high-end laptops. Ship a compressive image to someone on a standard display back then and you were just sending a needlessly large file. What changed isn't the technique. It's who's on the other end of it.
 
-The technique makes a wager: that the screen has spare device pixels to hide artifacts behind. In 2015 that wager only paid off for a minority — mostly premium phones and a few high-end laptops. Ship a compressive image to someone on a standard display back then and you were just sending a needlessly large file. What changed isn't the technique. It's who's on the other end of it.
+  <DensityShift />
 
-<DensityShift />
+  High-density rendering went from novelty to default. Today almost no smartphone reports a device pixel ratio of 1, ratios of 2× and 3× are routine, some Android flagships hit 4×, and phones are the majority of traffic on the web. The conditions that make compressive images work quietly became the common case — the opposite trajectory from most decade-old front-end tricks.
 
-High-density rendering went from novelty to default. Today almost no smartphone reports a device pixel ratio of 1, ratios of 2× and 3× are routine, some Android flagships hit 4×, and phones are the majority of traffic on the web. The conditions that make compressive images work quietly became the common case — the opposite trajectory from most decade-old front-end tricks.
+  ## 04 | Does a 2015 trick survive the 2026 stack?
 
-<h2><span className="section-marker">04</span> Does a 2015 trick survive the 2026 stack?</h2>
+  This is where most "clever trick" posts quietly date themselves. The real modern baseline isn't a full-quality @2x JPEG anymore — it's `srcset` plus AVIF or WebP, formats that are dramatically more efficient than JPEG ever was. So the technique deserves a re-test against them, not a victory lap on decade-old numbers.
 
-This is where most "clever trick" posts quietly date themselves. The real modern baseline isn't a full-quality @2x JPEG anymore — it's `srcset` plus AVIF or WebP, formats that are dramatically more efficient than JPEG ever was. So the technique deserves a re-test against them, not a victory lap on decade-old numbers.
+  <FormatBars />
 
-<FormatBars />
+  The result is split. The headline survives: at @2x, compressive encoding cuts the accepted Retina method by a meaningful margin in the live JPEG and WebP tests, with AVIF included as an offline reference because canvas cannot encode it. But the bolder claim from the original 2015 pen — "smaller than even the @1x image" — is *image-dependent*. On the default mountain photograph it can still lose to a plain @1x in some formats. Anyone claiming the trick always beats a plain @1x is overselling it; careful testers found the same wobble back in 2013.
 
-The result is split. The headline survives everywhere: at @2x, compressive encoding cuts the accepted Retina method by a meaningful margin across JPEG, WebP, and AVIF *(synthetic-image figure pending replacement with real-photo measurements — upload your own above to see live numbers)*. But the bolder claim from the original 2015 pen — "smaller than even the @1x image" — is *image-dependent*. On this synthetic photographic test scene it cleared @1x in AVIF and fell short in JPEG and WebP. Anyone claiming the trick always beats a plain @1x is overselling it; careful testers found the same wobble back in 2013.
+  Toggle the demo to **@4x** and the more striking story appears. The naive answer to ultra-dense screens — ship a full-quality @4x asset — is punishing: a quarter-megabyte in JPEG, triple the accepted @2x. But a compressive @4x file, pushed to a lower quality, lands competitive with the accepted @2x and beats it outright in AVIF. This is the technique's own logic taken to its limit: the denser the display, the more aggressively you can compress, because each artifact occupies a smaller slice of physical space. @4x is where the idea is arguably most valuable, precisely because the conventional alternative is so heavy.
 
-Toggle the demo to **@4x** and the more striking story appears. The naive answer to ultra-dense screens — ship a full-quality @4x asset — is punishing: a quarter-megabyte in JPEG, triple the accepted @2x. But a compressive @4x file, pushed to a lower quality, lands competitive with the accepted @2x and beats it outright in AVIF. This is the technique's own logic taken to its limit: the denser the display, the more aggressively you can compress, because each artifact occupies a smaller slice of physical space. @4x is where the idea is arguably most valuable, precisely because the conventional alternative is so heavy.
+  ## 05 | So when should you actually reach for it?
 
-<h2><span className="section-marker">05</span> So when should you actually reach for it?</h2>
+  An optimization is only worth as much as your sense of where it stops paying off. Compressive images have a clear boundary, and it falls right along the line between the pipeline you control and the one you don't.
 
-An optimization is only worth as much as your sense of where it stops paying off. Compressive images have a clear boundary, and it falls right along the line between the pipeline you control and the one you don't.
+  <NextImagePipelineDemo />
 
-<NextImagePipelineDemo />
+  For anyone not deep in the framework: `next/image` is the image component built into Next.js, and it automates most of what you used to hand-build. You give it one high-quality source; at request time it reads what the browser can display and serves AVIF, WebP, or JPEG accordingly, generates a per-device `srcset` so each screen downloads roughly the size it needs, lazy-loads below-the-fold images, and reserves their layout space so the page doesn't lurch as they arrive. The thing I hated at Crowdrise — hand-maintaining a doubled asset pipeline — it simply does for you.
 
-For anyone not deep in the framework: `next/image` is the image component built into Next.js, and it automates most of what you used to hand-build. You give it one high-quality source; at request time it reads what the browser can display and serves AVIF, WebP, or JPEG accordingly, generates a per-device `srcset` so each screen downloads roughly the size it needs, lazy-loads below-the-fold images, and reserves their layout space so the page doesn't lurch as they arrive. The thing I hated at Crowdrise — hand-maintaining a doubled asset pipeline — it simply does for you.
+  Which leads to the genuinely current point. `next/image` already implements half of the compressive idea (smaller, format-negotiated, right-sized images) and actively *fights* the other half. Hand it a pre-baked compressive asset — already oversized and crushed — and it treats your degraded file as a pristine source and re-encodes it *again*: compression on top of compression, artifacts on top of artifacts, fed through a resizer that doesn't expect the dimension-to-quality relationship you engineered. You'd be fighting the framework instead of using it.
 
-Which leads to the genuinely current point. `next/image` already implements half of the compressive idea (smaller, format-negotiated, right-sized images) and actively *fights* the other half. Hand it a pre-baked compressive asset — already oversized and crushed — and it treats your degraded file as a pristine source and re-encodes it *again*: compression on top of compression, artifacts on top of artifacts, fed through a resizer that doesn't expect the dimension-to-quality relationship you engineered. You'd be fighting the framework instead of using it.
-
-So in a modern Next pipeline you don't rebuild the trick by hand — you express its *insight* through the framework's own controls. Feed `next/image` a clean high-quality source and turn the `quality` prop down (something like `quality={45}`), because the same perceptual logic still holds: on the high-density variants it generates, aggressive quality is invisible. Same idea I shipped at Crowdrise in 2015 — now applied through the tool rather than around it. The hand-built version stays in your pocket for the places `next/image` can't reach: email, a CMS that rewrites your markup, a Shopify Liquid theme you don't fully own.
-
+  So in a modern Next pipeline you don't rebuild the trick by hand — you express its *insight* through the framework's own controls. Feed `next/image` a clean high-quality source and turn the `quality` prop down (something like `quality={45}`), because the same perceptual logic still holds: on the high-density variants it generates, aggressive quality is invisible. Same idea I shipped at Crowdrise in 2015 — now applied through the tool rather than around it. The hand-built version stays in your pocket for the places `next/image` can't reach: email, a CMS that rewrites your markup, a Shopify Liquid theme you don't fully own.
 </CompressiveSource>
 
 > The trick was never the valuable part. The valuable part is re-checking an inherited assumption against current conditions instead of carrying it forward on faith.
 
-<h2><span className="section-marker">06</span> Why this still matters</h2>
+## 06 | Why this still matters
 
 It would be easy to file compressive images under "obsolete — we have AVIF now." That's the mistake. An enormous amount of the web still runs on JPEG pipelines, locked-down CMSs, and email clients where you cannot serve a modern format or reliably control `srcset` even if you wanted to. Optimizing for the greenfield demo is easy. Optimizing for the messy systems people are actually stuck maintaining is the harder, more common job — and there, one oversized low-quality asset with no switching logic still reaches where modern tooling can't.
 
 And the ground has shifted in the technique's favor. In 2015, the device density it depends on was a premium-phone novelty. In 2026 it's the default for most of the traffic on the web. The bet compressive images quietly makes — that there are spare device pixels to hide artifacts behind — is now a safe bet far more often than it was when the idea was new.
 
 <div className="article-methodology">
-
-Benchmark figures were measured offline with Pillow on a synthetic photographic test image at @1x, @2x, and @4x (JPEG, WebP, AVIF). Real-photograph measurements will replace these once collected. The live demos encode in-browser via `canvas.toBlob()`; AVIF can't be encoded in-canvas, so its row stays at the offline-measured figures, labeled as such. Prior art: Daan Jobsis, "Retina Revolution"; Filament Group, "Compressive Images" (2012).
-
+  Default image: Simon Berger's mountain photograph on Unsplash. The live demos encode JPEG and WebP in-browser via `canvas.toBlob()`. AVIF can't be encoded in-canvas, so its row is kept as an offline reference and labeled separately. Prior art: Daan Jobsis, "Retina Revolution"; Filament Group, "Compressive Images" (2012).
 </div>

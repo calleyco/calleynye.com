@@ -4,15 +4,22 @@
   "private": true,
   "packageManager": "pnpm@10.33.4",
   "scripts": {
-    "dev": "next dev",
+    "dev": "NEXT_DIST_DIR=.next-dev next dev",
+    "dev:cms-test": "NEXT_DIST_DIR=.next-e2e-cms next dev --hostname 127.0.0.1 --port 3100",
+    "content:audit": "node scripts/content-audit.mjs",
+    "prebuild": "pnpm content:audit",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test && playwright test --config playwright.cms.config.ts",
+    "test:e2e:public": "playwright test",
+    "test:e2e:cms": "playwright test --config playwright.cms.config.ts"
   },
   "dependencies": {
+    "@keystatic/core": "^0.5.50",
+    "@keystatic/next": "^5.0.4",
     "js-yaml": "4.2.0",
     "next": "15.5.19",
     "next-mdx-remote": "^6.0.0",

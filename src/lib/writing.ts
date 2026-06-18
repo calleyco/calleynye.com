@@ -14,6 +14,8 @@ import { DensityShift } from "@/components/writing/compressive/density-shift";
 import { FormatBars } from "@/components/writing/compressive/format-bars-demo";
 import { NextImagePipelineDemo } from "@/components/writing/compressive/next-image-demo";
 import { QualitySliderDemo } from "@/components/writing/compressive/quality-slider-demo";
+import { TitleScatter } from "@/components/writing/ui-engineer/title-scatter";
+import { TwoLadders } from "@/components/writing/ui-engineer/two-ladders";
 
 const mdxComponents = {
   ArticleImage,
@@ -27,16 +29,20 @@ const mdxComponents = {
   FormatBars,
   NextImagePipelineDemo,
   QualitySliderDemo,
+  TitleScatter,
+  TwoLadders,
 };
 
 const writingDirectory = path.join(process.cwd(), "src/content/writing");
 
 export interface WritingFrontmatter {
   title: string;
+  slug: string;
   description: string;
   date: string;
   tags: string[];
   readingTime: string;
+  status: "draft" | "review" | "published";
 }
 
 export interface WritingMeta extends WritingFrontmatter {
@@ -49,6 +55,10 @@ export interface WritingPost {
   content: ReactElement;
 }
 
+interface GetWritingBySlugOptions {
+  includeUnpublished?: boolean;
+}
+
 interface ParsedMdxSource {
   data: Record<string, unknown>;
   content: string;
@@ -56,6 +66,18 @@ interface ParsedMdxSource {
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+function normalizeFrontmatterDate(value: unknown): string | null {
+  if (typeof value === "string") {
+    return /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : null;
+  }
+
+  if (value instanceof Date && !Number.isNaN(value.valueOf())) {
+    return value.toISOString().slice(0, 10);
+  }
+
+  return null;
 }
 
 function parseMdxSource(slug: string, source: string): ParsedMdxSource {
@@ -79,28 +101,35 @@ function parseMdxSource(slug: string, source: string): ParsedMdxSource {
 
 function assertFrontmatter(slug: string, data: Record<string, unknown>): WritingFrontmatter {
   const title = data.title;
+  const frontmatterSlug = data.slug;
   const description = data.description;
-  const date = data.date;
+  const date = normalizeFrontmatterDate(data.date);
   const tags = data.tags;
   const readingTime = data.readingTime;
+  const status = data.status;
 
   if (
     typeof title !== "string" ||
+    typeof frontmatterSlug !== "string" ||
+    frontmatterSlug !== slug ||
     typeof description !== "string" ||
-    typeof date !== "string" ||
+    date === null ||
     !Array.isArray(tags) ||
     tags.some((tag) => typeof tag !== "string") ||
-    typeof readingTime !== "string"
+    typeof readingTime !== "string" ||
+    (status !== "draft" && status !== "review" && status !== "published")
   ) {
     throw new Error(`Invalid frontmatter in ${slug}.mdx`);
   }
 
   return {
     title,
+    slug: frontmatterSlug,
     description,
     date,
     tags,
     readingTime,
+    status,
   };
 }
 
@@ -116,23 +145,25 @@ export async function getAllWritingMeta(): Promise<WritingMeta[]> {
       const parsed = parseMdxSource(slug, source);
       const frontmatter = assertFrontmatter(slug, parsed.data);
 
-      return {
-        slug,
-        ...frontmatter,
-      };
+      return frontmatter;
     }),
   );
 
-  return meta.sort((left, right) => right.date.localeCompare(left.date));
+  return meta.filter((post) => post.status === "published").sort((left, right) => right.date.localeCompare(left.date));
 }
 
-export async function getWritingBySlug(slug: string): Promise<WritingPost | null> {
+export async function getWritingBySlug(slug: string, options: GetWritingBySlugOptions = {}): Promise<WritingPost | null> {
   const filePath = path.join(writingDirectory, `${slug}.mdx`);
 
   try {
     const source = await fs.readFile(filePath, "utf8");
     const parsed = parseMdxSource(slug, source);
     const frontmatter = assertFrontmatter(slug, parsed.data);
+
+    if (frontmatter.status !== "published" && options.includeUnpublished !== true) {
+      return null;
+    }
+
     const compiled = await compileMDX({
       source: parsed.content,
       components: mdxComponents,
