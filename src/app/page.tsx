@@ -60,8 +60,8 @@ export default async function Home(): Promise<ReactElement> {
             </span>
           </h1>
           <p className="hero-sub">
-            Senior frontend engineer with 10+ years in UI engineering and 6+ years specializing in accessibility. I
-            design systems where shipping fast and shipping inclusively are the same path.
+            Senior frontend engineer with 10+ years in UI engineering, with accessibility as the focus the entire
+            time. I design systems where shipping fast and shipping inclusively are the same path.
           </p>
           <p className="hero-sub thesis-line">{centralThesis}</p>
 
