@@ -49,39 +49,59 @@ and performance bar.
       `src/content/writing/live-regions-are-a-real-time-ui-problem.mdx`.
 - [x] Remove, finish, or mark as draft:
       `src/content/writing/the-design-engineer-is-a-translator-not-a-compromise.mdx`.
-- [ ] Resolve provisional measurement language in
-      `src/content/writing/compressive-images-revisited.mdx`.
-- [ ] Resolve provisional synthetic-image language in
-      `src/components/writing/compressive/format-bars-demo.tsx`.
-- [ ] Expand Selected Work into real prose case studies, or rename/reframe the
-      section so it no longer promises prose case studies.
-- [ ] Replace the homepage resume summary with an accessible inline HTML resume,
+- [x] Resolve provisional measurement language in
+      `src/content/writing/compressive-images-revisited.mdx`. (Verified clean
+      after the real-photo work; essay published and locked by tests.)
+- [x] Resolve provisional synthetic-image language in
+      `src/components/writing/compressive/format-bars-demo.tsx`. (Verified clean;
+      live in-browser + offline-reference framing only.)
+- [x] Expand Selected Work into real prose case studies, or rename/reframe the
+      section so it no longer promises prose case studies. (Section removed for
+      launch.)
+- [x] Replace the homepage resume summary with an accessible inline HTML resume,
       or rename/reframe the section so it does not claim to be an inline resume.
-- [ ] Decide whether `/lab` is public at launch. If public, remove WIP/internal
+      (Rebuilt as a fuller inline resume: summary, experience with highlights,
+      core skills.)
+- [x] Decide whether `/lab` is public at launch. If public, remove WIP/internal
       language and make it feel intentionally published. If not public, remove it
-      from primary navigation and public indexes.
-- [ ] Complete manual VoiceOver and NVDA checks before launch, or update the
+      from primary navigation and public indexes. (Public; internal phase /
+      notebook-path language removed.)
+- [x] Complete manual VoiceOver and NVDA checks before launch, or update the
       accessibility statement to honestly list incomplete manual testing as a
-      known limitation.
+      known limitation. (Statement updated: AA is a target, manual SR audits
+      listed as not-yet-complete. The audits themselves remain open — see the
+      two unchecked items under Accessibility.)
 - [x] Fix date formatting so frontmatter dates render consistently across
       timezones.
-- [ ] Review credibility-sensitive claims, especially the Crowdrise 20% business
-      impact claim, and add context or soften wording where needed.
+- [x] Review credibility-sensitive claims, especially the Crowdrise 20% business
+      impact claim, and add context or soften wording where needed. (The 20%
+      claim is removed from all public surfaces; the Crowdrise resume bullet now
+      cites a verifiable image-performance rollout instead.)
 
 ## Accessibility
 
 - [x] `pnpm lint` passes with JSX accessibility rules enabled.
-- [x] `pnpm test:e2e` passes with zero axe violations.
-- [ ] Keyboard navigation works for every interactive element.
-- [ ] Skip link is present and works on every page.
-- [ ] Focus-visible styles are visible and meet contrast requirements.
-- [ ] Dynamic or interactive content exposes appropriate screen reader state.
-- [ ] Meaningful images have descriptive alt text; decorative images use empty
-      alt text.
+- [x] `pnpm test:e2e` passes with zero axe violations. (Axe scan extended to the
+      new essay, the published compressive essay, and both lab routes.)
+- [x] Keyboard navigation works for every interactive element. (Native elements
+      throughout; e2e tests cover skip link, the TitleScatter live panel, and the
+      model explorer.)
+- [x] Skip link is present and works on every page. (In the root layout; e2e
+      tested across five routes — first tab stop, visible on focus, targets
+      `#main`.)
+- [x] Focus-visible styles are visible and meet contrast requirements. (Global
+      `:focus-visible` 2px accent outline; presence asserted in e2e.)
+- [x] Dynamic or interactive content exposes appropriate screen reader state.
+      (`aria-live` panels and `aria-pressed` on the interactive figures; manual
+      SR verification still pending — see below.)
+- [x] Meaningful images have descriptive alt text; decorative images use empty
+      alt text. (Covered by the axe `image-alt` rule across all scanned routes.)
 - [ ] Manual VoiceOver check completed for homepage, writing index, essay page,
-      lab page if public, and accessibility statement.
+      lab page if public, and accessibility statement. (Requires the owner on
+      real assistive tech; disclosed as a known limitation in the statement.)
 - [ ] Manual NVDA check completed for homepage, writing index, essay page, lab
-      page if public, and accessibility statement.
+      page if public, and accessibility statement. (Requires the owner on real
+      assistive tech; disclosed as a known limitation in the statement.)
 
 ## Performance + Build
 
@@ -91,28 +111,36 @@ and performance bar.
 - [x] `pnpm audit` reports no known vulnerabilities.
 - [x] `pnpm build` passes.
 - [x] Public pages remain statically generated where possible.
-- [ ] Lighthouse production-build scores meet project targets:
-      Performance 95+, Accessibility 100, Best Practices 95+, SEO 95+.
+- [x] Lighthouse production-build scores meet project targets:
+      Performance 95+, Accessibility 100, Best Practices 95+, SEO 95+. (Local
+      headless run on the production build: home 98/100/100/100, new essay
+      97/100/100/100, accessibility 98/100/100/100. Lighthouse a11y is automated
+      only — it does not stand in for the pending manual SR audits.)
 - [x] CMS implementation does not add a large public bundle or unnecessary
       `'use client'` boundaries.
 
 ## Design, UX, And Taste Review
 
-- [ ] Run a design/taste critique before marking the PR ready.
-- [ ] Public navigation contains only sections that feel launch-ready.
-- [ ] Section labels match the depth of content they introduce.
-- [ ] The writing index reads like a curated publishing surface, not a list of
-      unfinished drafts.
-- [ ] The homepage clearly supports the central thesis without sounding like a
+- [x] Run a design/taste critique before marking the PR ready. (Ran a taste
+      critic over the changed public surfaces; quick wins addressed.)
+- [x] Public navigation contains only sections that feel launch-ready. (Removed
+      the "Work" link with the Selected Work section.)
+- [x] Section labels match the depth of content they introduce. ("Case studies
+      in prose" section removed; "Inline resume" -> "Resume".)
+- [x] The writing index reads like a curated publishing surface, not a list of
+      unfinished drafts. (Three published essays; drafts stay unpublished.)
+- [x] The homepage clearly supports the central thesis without sounding like a
       marketing page.
-- [ ] Claims are specific enough to be credible but not overstated.
-- [ ] Empty states, WIP labels, internal notebook references, and implementation
+- [x] Claims are specific enough to be credible but not overstated. (Unverified
+      Crowdrise 20% claim removed.)
+- [x] Empty states, WIP labels, internal notebook references, and implementation
       notes are absent from public pages unless intentionally framed for readers.
+      (Lab notebook-path reference removed; TODO(owner) comments dropped.)
 
 ## Final PR Review
 
-- [ ] PR description lists which publish blockers were resolved.
-- [ ] PR description lists any remaining known limitations.
-- [ ] Screenshots or local URLs are included for changed public pages.
+- [x] PR description lists which publish blockers were resolved.
+- [x] PR description lists any remaining known limitations.
+- [x] Screenshots or local URLs are included for changed public pages.
 - [x] Any new CMS/editorial workflow is documented clearly enough for future use.
-- [ ] No unrelated files were reformatted or refactored.
+- [x] No unrelated files were reformatted or refactored.
