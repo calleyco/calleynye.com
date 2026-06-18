@@ -71,6 +71,15 @@ function readingMinutes(readingTime) {
   return match ? Number(match[1]) : null;
 }
 
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function includesBlockedTerm(content, term) {
+  const pattern = new RegExp(`(^|[^a-z0-9])${escapeRegExp(term)}($|[^a-z0-9])`, "i");
+  return pattern.test(content);
+}
+
 function auditFrontmatter(filename, frontmatter) {
   const errors = [];
   const expectedSlug = filename.replace(/\.mdx$/, "");
@@ -127,9 +136,8 @@ function auditBody(filename, frontmatter, body) {
   }
 
   if (frontmatter.status === "published") {
-    const lowerBody = body.toLowerCase();
-    const lowerDescription = frontmatter.description.toLowerCase();
-    const blockedTerm = publicBlocklist.find((term) => lowerBody.includes(term) || lowerDescription.includes(term));
+    const content = `${frontmatter.description}\n${body}`;
+    const blockedTerm = publicBlocklist.find((term) => includesBlockedTerm(content, term));
 
     if (blockedTerm) {
       errors.push(`${filename}: published content contains launch-blocking term \"${blockedTerm}\"`);
