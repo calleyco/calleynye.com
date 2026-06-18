@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
 import { caseStudies, centralThesis, resumeItems, speakingEvents } from "@/lib/site-data";
-import { getAllWritingMeta } from "@/lib/writing";
+import { formatWritingDate, getAllWritingMeta } from "@/lib/writing";
 import styles from "./home.module.scss";
 
 export default async function Home(): Promise<ReactElement> {
@@ -104,7 +104,7 @@ export default async function Home(): Promise<ReactElement> {
                   <h3 className="art-title">{post.title}</h3>
                   <p className="art-dek">{post.description}</p>
                   <div className="art-meta">
-                    <span>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
+                    <span>{formatWritingDate(post.date, { year: "numeric", month: "short", day: "numeric" })}</span>
                     <span aria-hidden="true">|</span>
                     <span>{post.readingTime}</span>
                     <span aria-hidden="true">|</span>

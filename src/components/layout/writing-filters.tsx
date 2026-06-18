@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import type { ReactElement } from "react";
 import Link from "next/link";
-import type { WritingMeta } from "@/lib/writing";
+import { formatWritingDate, type WritingMeta } from "@/lib/writing";
 
 interface WritingFiltersProps {
   posts: WritingMeta[];
@@ -54,7 +54,7 @@ export function WritingFilters({ posts }: WritingFiltersProps): ReactElement {
                 <h2 className="art-title">{post.title}</h2>
                 <p className="art-dek">{post.description}</p>
                 <div className="art-meta">
-                  <span>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</span>
+                  <span>{formatWritingDate(post.date, { year: "numeric", month: "short", day: "numeric" })}</span>
                   <span aria-hidden="true">|</span>
                   <span>{post.readingTime}</span>
                   <span aria-hidden="true">|</span>

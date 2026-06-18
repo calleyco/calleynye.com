@@ -9,9 +9,9 @@ and performance bar.
 
 - [ ] CMS choice is documented, including why it fits this repo's Next.js App
       Router, MDX, TypeScript, and static-generation setup.
-- [ ] Writing content has structured frontmatter with explicit publication state:
+- [x] Writing content has structured frontmatter with explicit publication state:
       `draft`, `review`, or `published`.
-- [ ] Public pages and indexes render only `published` content.
+- [x] Public pages and indexes render only `published` content.
 - [ ] Draft/review content can be previewed locally without appearing in the
       production build.
 - [ ] Required fields are enforced for every writing entry:
@@ -43,11 +43,11 @@ and performance bar.
 
 ## Known Publish Blockers To Resolve
 
-- [ ] Remove, finish, or mark as draft:
+- [x] Remove, finish, or mark as draft:
       `src/content/writing/accessibility-as-the-path-of-least-resistance.mdx`.
-- [ ] Remove, finish, or mark as draft:
+- [x] Remove, finish, or mark as draft:
       `src/content/writing/live-regions-are-a-real-time-ui-problem.mdx`.
-- [ ] Remove, finish, or mark as draft:
+- [x] Remove, finish, or mark as draft:
       `src/content/writing/the-design-engineer-is-a-translator-not-a-compromise.mdx`.
 - [ ] Resolve provisional measurement language in
       `src/content/writing/compressive-images-revisited.mdx`.
@@ -63,7 +63,7 @@ and performance bar.
 - [ ] Complete manual VoiceOver and NVDA checks before launch, or update the
       accessibility statement to honestly list incomplete manual testing as a
       known limitation.
-- [ ] Fix date formatting so frontmatter dates render consistently across
+- [x] Fix date formatting so frontmatter dates render consistently across
       timezones.
 - [ ] Review credibility-sensitive claims, especially the Crowdrise 20% business
       impact claim, and add context or soften wording where needed.

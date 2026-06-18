@@ -37,6 +37,7 @@ export interface WritingFrontmatter {
   date: string;
   tags: string[];
   readingTime: string;
+  status: "draft" | "review" | "published";
 }
 
 export interface WritingMeta extends WritingFrontmatter {
@@ -83,6 +84,7 @@ function assertFrontmatter(slug: string, data: Record<string, unknown>): Writing
   const date = data.date;
   const tags = data.tags;
   const readingTime = data.readingTime;
+  const status = data.status;
 
   if (
     typeof title !== "string" ||
@@ -90,7 +92,8 @@ function assertFrontmatter(slug: string, data: Record<string, unknown>): Writing
     typeof date !== "string" ||
     !Array.isArray(tags) ||
     tags.some((tag) => typeof tag !== "string") ||
-    typeof readingTime !== "string"
+    typeof readingTime !== "string" ||
+    (status !== "draft" && status !== "review" && status !== "published")
   ) {
     throw new Error(`Invalid frontmatter in ${slug}.mdx`);
   }
@@ -101,7 +104,15 @@ function assertFrontmatter(slug: string, data: Record<string, unknown>): Writing
     date,
     tags,
     readingTime,
+    status,
   };
+}
+
+export function formatWritingDate(date: string, options?: Intl.DateTimeFormatOptions): string {
+  return new Date(`${date}T00:00:00.000Z`).toLocaleDateString("en-US", {
+    timeZone: "UTC",
+    ...options,
+  });
 }
 
 export async function getAllWritingMeta(): Promise<WritingMeta[]> {
@@ -123,7 +134,7 @@ export async function getAllWritingMeta(): Promise<WritingMeta[]> {
     }),
   );
 
-  return meta.sort((left, right) => right.date.localeCompare(left.date));
+  return meta.filter((post) => post.status === "published").sort((left, right) => right.date.localeCompare(left.date));
 }
 
 export async function getWritingBySlug(slug: string): Promise<WritingPost | null> {
@@ -133,6 +144,11 @@ export async function getWritingBySlug(slug: string): Promise<WritingPost | null
     const source = await fs.readFile(filePath, "utf8");
     const parsed = parseMdxSource(slug, source);
     const frontmatter = assertFrontmatter(slug, parsed.data);
+
+    if (frontmatter.status !== "published") {
+      return null;
+    }
+
     const compiled = await compileMDX({
       source: parsed.content,
       components: mdxComponents,

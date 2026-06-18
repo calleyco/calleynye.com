@@ -2,7 +2,7 @@ import Link from "next/link";
 import type { ReactElement } from "react";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { getAllWritingMeta, getWritingBySlug } from "@/lib/writing";
+import { formatWritingDate, getAllWritingMeta, getWritingBySlug } from "@/lib/writing";
 import styles from "../writing.module.scss";
 
 interface WritingPageProps {
@@ -46,7 +46,7 @@ export default async function WritingPostPage({ params }: WritingPageProps): Pro
 
       <header className="article-header">
         <div className="article-kicker">
-          Essay | {new Date(post.frontmatter.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+          Essay | {formatWritingDate(post.frontmatter.date, { year: "numeric", month: "long", day: "numeric" })}
         </div>
         <h1 className="article-title">{post.frontmatter.title}</h1>
         <p className="article-dek">{post.frontmatter.description}</p>
