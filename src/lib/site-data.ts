@@ -17,6 +17,12 @@ export interface SkillGroup {
   items: string[];
 }
 
+export interface ResumeEducation {
+  school: string;
+  program: string;
+  period: string;
+}
+
 export const centralThesis =
   "AI-assisted development is the leverage point that finally makes inclusive engineering the path of least resistance rather than the path of most resistance.";
 
@@ -39,46 +45,95 @@ export const speakingEvents: SpeakingEvent[] = [
 ];
 
 export const resumeSummary =
-  "Senior frontend engineer in Los Angeles with 10+ years building user interfaces and 6+ years specializing in accessibility. I work at the seam between design and engineering — interaction quality, design systems, and WCAG-compliant components — and I am extending my primary stack from Vue to React, Next.js, and TypeScript.";
+  "Senior frontend engineer in Los Angeles with 10+ years building consumer products, 6+ years specializing in accessibility, and deep experience in real-time UIs, performance, and design systems. I translate design intent into polished, accessible production code, and I treat accessibility as an architectural decision rather than an end-of-sprint feature. I work primarily in Vue today and am actively shipping React, Next.js, and TypeScript in current client engagements.";
 
 export const resumeItems: ResumeItem[] = [
   {
     role: "Senior Frontend Engineer",
-    company: "Independent / Calley Co.",
-    period: "2023 - Present",
-    summary: "Accessibility audits, frontend architecture, and AI-product integration for teams shipping production software.",
+    company: "Calley Co (independent)",
+    period: "Mar 2023 - Present",
+    summary: "AI-focused product engineering and accessibility engagements for startups, agencies, and e-commerce brands.",
     highlights: [
-      "Deliver WCAG 2.1 AA audits and remediation plans, then implement the fixes as reusable, tested components.",
-      "Advise teams on making the accessible implementation the lowest-friction one, including AI-assisted workflows.",
+      "Product designer and lead frontend engineer on a React + Shopify storefront with an AI-powered sizing recommendation system for a national school-uniform supplier.",
+      "Led a WCAG 2.1 audit and remediation of a 200+ page agency site — ARIA, semantic HTML, contrast, keyboard navigation — without sacrificing SEO or design.",
     ],
   },
   {
     role: "Senior Software Engineer",
-    company: "McKinsey",
-    period: "2021 - 2023",
-    summary: "Real-time, multiplayer interfaces for recruiting technology, built with inclusive interaction paths.",
+    company: "McKinsey & Company",
+    period: "Jun 2021 - Mar 2023",
+    summary: "Game-Based Innovations Lab — globally used game-based assessments and leadership training.",
     highlights: [
-      "Architected multiplayer recruiting simulations with real-time state synchronization over WebSockets, kept robust under high-latency conditions.",
-      "Strengthened keyboard and screen-reader paths across the product surface.",
+      "Built a distributed real-time multiplayer experience over WebSockets — globally synchronized shared state, turn-based control, and live drag-and-drop rendered on every player's screen.",
+      "Architected the team's Vue 3 + TypeScript component library and design system, with accessibility, performance, and reusability as core requirements.",
     ],
   },
   {
-    role: "Frontend Engineer",
-    company: "Shopify ecosystem + agency / client teams",
-    period: "2015 - 2021",
-    summary: "Consumer-facing experiences, Core Web Vitals work, and reusable UI systems across multiple brands.",
+    role: "Expert Frontend Developer (Contract)",
+    company: "Milliman",
+    period: "Dec 2020 - May 2021",
+    summary: "WCAG 2.0 conversion of data-heavy SaaS interfaces from ASP.NET Webforms to MVC.",
     highlights: [
-      "Rolled out a site-wide image-performance technique (compressive images) across Crowdrise, cutting Retina payloads without maintaining a doubled asset pipeline.",
-      "Maintained and extended component libraries across multiple Shopify brands.",
+      "Delivered a responsive, WCAG 2.0-compliant overhaul across four codebases and unified them under a new global navigation experience.",
+    ],
+  },
+  {
+    role: "Founder & Principal Engineer",
+    company: "Syren.io",
+    period: "Nov 2011 - Present",
+    summary: "Design, development, and product-strategy consultancy applying lean, empathy-driven design to complex technical problems.",
+    highlights: [
+      "Delivered frontend and full-stack work across 40+ client engagements, often refactoring large legacy codebases for measurable improvement.",
+    ],
+  },
+  {
+    role: "UI Engineer & Co-Founder",
+    company: "Popularium (acquired)",
+    period: "Feb 2016 - Dec 2018",
+    summary: "Storytelling-driven product recommendation platform.",
+    highlights: [
+      "Built the initial platform end-to-end in Django and established a custom testing and analytics framework that informed product decisions.",
+    ],
+  },
+  {
+    role: "UX Developer",
+    company: "Crowdrise (acquired by GoFundMe)",
+    period: "Sep 2013 - Feb 2016",
+    summary: "Charity crowdfunding platform used by many of the world's largest nonprofits.",
+    highlights: [
+      "Shipped a higher-converting responsive signup flow and established frontend standards in SASS and JavaScript.",
     ],
   },
 ];
 
+export const resumeEducation: ResumeEducation = {
+  school: "Full Sail University",
+  program: "Web Design & Development",
+  period: "2010 - 2011",
+};
+
 export const resumeSkills: SkillGroup[] = [
-  { group: "Languages & frameworks", items: ["TypeScript", "JavaScript", "Vue 3", "React", "Next.js"] },
   {
-    group: "Craft",
-    items: ["Accessibility (WCAG 2.1 AA)", "Design systems", "Interaction & motion", "Real-time / streaming UI"],
+    group: "Currently shipping",
+    items: ["React", "Next.js", "TypeScript", "Node.js", "Vue 3 (Composition API)", "Shopify (Liquid + Hydrogen)", "Tailwind CSS"],
   },
-  { group: "Performance", items: ["Core Web Vitals", "Bundle analysis", "Image optimization"] },
+  {
+    group: "Accessibility",
+    items: [
+      "WCAG 2.0–2.2 AA remediation",
+      "WAI-ARIA patterns",
+      "Semantic HTML",
+      "Focus & keyboard architecture",
+      "Screen reader testing (NVDA, VoiceOver, JAWS)",
+      "Accessible live-region patterns",
+    ],
+  },
+  {
+    group: "Real-time & streaming UIs",
+    items: ["WebSockets", "Shared-state synchronization", "Event-driven architecture", "Multiplayer interactions", "Optimistic UI updates"],
+  },
+  {
+    group: "Performance & design systems",
+    items: ["Core Web Vitals", "Lighthouse auditing", "Bundle analysis", "Component library architecture", "Storybook", "Design tokens"],
+  },
 ];
