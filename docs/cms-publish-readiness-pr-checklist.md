@@ -14,9 +14,9 @@ and performance bar.
 - [x] Public pages and indexes render only `published` content.
 - [ ] Draft/review content can be previewed locally without appearing in the
       production build.
-- [ ] Required fields are enforced for every writing entry:
+- [x] Required fields are enforced for every writing entry:
       `title`, `description`, `date`, `tags`, `status`, and body content.
-- [ ] Reading time is generated from content or validated against body length.
+- [x] Reading time is generated from content or validated against body length.
 - [ ] CMS schema prevents empty or placeholder descriptions.
 - [ ] CMS schema supports content notes needed for review, but those notes never
       render publicly.
@@ -27,19 +27,19 @@ and performance bar.
 
 ## Content Publish Gates
 
-- [ ] Add a `pnpm content:audit` script, or equivalent, that fails the build when
+- [x] Add a `pnpm content:audit` script, or equivalent, that fails the build when
       public content contains launch-blocking terms such as `stub`, `placeholder`,
       `TODO`, `TBD`, `pending`, `replace`, `will replace`, `synthetic test`, or
       `real-photo numbers`.
-- [ ] Content audit fails when a `published` essay is below the agreed minimum
+- [x] Content audit fails when a `published` essay is below the agreed minimum
       body length.
-- [ ] Content audit fails when `readingTime` does not match the actual body
+- [x] Content audit fails when `readingTime` does not match the actual body
       length within an acceptable range.
-- [ ] Content audit fails when a public essay is missing title, date,
+- [x] Content audit fails when a public essay is missing title, date,
       description, or tags.
-- [ ] Content audit is included in the pre-publish command path, either through
+- [x] Content audit is included in the pre-publish command path, either through
       `pnpm build`, CI, or a documented release checklist.
-- [ ] The audit output identifies the exact file and field that needs attention.
+- [x] The audit output identifies the exact file and field that needs attention.
 
 ## Known Publish Blockers To Resolve
 
