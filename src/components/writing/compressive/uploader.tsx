@@ -4,7 +4,8 @@ import type { ChangeEvent, ReactElement } from "react";
 import { useCompressiveSource } from "./source-provider";
 
 export function CompressiveUploader(): ReactElement {
-  const { image, fileName, error, isLoading, setFromFile, reset } = useCompressiveSource();
+  const { image, fileName, sourceKind, error, isLoading, setFromFile, reset } = useCompressiveSource();
+  const hasUploadedImage = image !== null && sourceKind === "uploaded";
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const file = event.target.files?.[0];
@@ -18,16 +19,16 @@ export function CompressiveUploader(): ReactElement {
     <div className="compressive-uploader">
       <div className="compressive-uploader-body">
         <h3 className="compressive-uploader-title">
-          {image ? "Using your image" : "Test it on your own photo"}
+          {hasUploadedImage ? "Using your image" : "Test it on your own photo"}
         </h3>
         <p className="compressive-uploader-copy">
-          {image
+          {hasUploadedImage
             ? "Every demo below now re-encodes your uploaded image, live, in your browser. Nothing is sent anywhere."
-            : "The demos use a built-in test scene by default. Upload a real photograph and every number on this page recomputes on it. Photographs work best; flat graphics and text-heavy images compress differently."}
+            : "The demos use Simon Berger's mountain photo by default. Upload your own photograph and every number on this page recomputes on it. Photographs work best; flat graphics and text-heavy images compress differently."}
         </p>
         {fileName && image ? (
           <p className="compressive-uploader-filename">
-            Loaded <strong>{fileName}</strong> — processed entirely on your device.
+            Loaded <strong>{fileName}</strong> — processed entirely in your browser.
           </p>
         ) : null}
         {error ? (
@@ -43,7 +44,7 @@ export function CompressiveUploader(): ReactElement {
           data-active="true"
           htmlFor="compressive-upload-input"
         >
-          <span>{isLoading ? "Loading…" : image ? "Choose another" : "Upload an image"}</span>
+          <span>{isLoading ? "Loading…" : hasUploadedImage ? "Choose another" : "Upload an image"}</span>
           <input
             accept="image/jpeg,image/png,image/webp"
             aria-label="Upload an image to test the compression demos"
@@ -54,7 +55,7 @@ export function CompressiveUploader(): ReactElement {
             type="file"
           />
         </label>
-        {image ? (
+        {hasUploadedImage ? (
           <button
             className="compressive-upload-button"
             onClick={reset}

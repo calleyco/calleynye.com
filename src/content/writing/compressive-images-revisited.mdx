@@ -27,7 +27,7 @@ The accepted Retina workflow wasn't wrong — it was built on an assumption nobo
 
 ## 02 See it work — live, in your browser
 
-Numbers in a blog post are easy to fudge, so I'm not going to ask you to trust mine. The demos below encode a real image in your browser and report the actual bytes the encoder produced. They run on a built-in test scene by default — or upload your own photograph and every figure on this page recomputes on it.
+Numbers in a blog post are easy to fudge, so I'm not going to ask you to trust mine. The demos below encode a real photograph in your browser and report the actual bytes the encoder produced. They use Simon Berger's mountain photograph from Unsplash by default — or upload your own photograph and every figure on this page recomputes on it.
 
 <CompressiveSource>
   <CompressiveUploader />
@@ -54,7 +54,7 @@ Numbers in a blog post are easy to fudge, so I'm not going to ask you to trust m
 
   <FormatBars />
 
-  The result is split. The headline survives everywhere: at @2x, compressive encoding cuts the accepted Retina method by a meaningful margin across JPEG, WebP, and AVIF *(synthetic-image figure pending replacement with real-photo measurements — upload your own above to see live numbers)*. But the bolder claim from the original 2015 pen — "smaller than even the @1x image" — is *image-dependent*. On this synthetic photographic test scene it cleared @1x in AVIF and fell short in JPEG and WebP. Anyone claiming the trick always beats a plain @1x is overselling it; careful testers found the same wobble back in 2013.
+  The result is split. The headline survives: at @2x, compressive encoding cuts the accepted Retina method by a meaningful margin in the live JPEG and WebP tests, with AVIF included as an offline reference because canvas cannot encode it. But the bolder claim from the original 2015 pen — "smaller than even the @1x image" — is *image-dependent*. On the default mountain photograph it can still lose to a plain @1x in some formats. Anyone claiming the trick always beats a plain @1x is overselling it; careful testers found the same wobble back in 2013.
 
   Toggle the demo to **@4x** and the more striking story appears. The naive answer to ultra-dense screens — ship a full-quality @4x asset — is punishing: a quarter-megabyte in JPEG, triple the accepted @2x. But a compressive @4x file, pushed to a lower quality, lands competitive with the accepted @2x and beats it outright in AVIF. This is the technique's own logic taken to its limit: the denser the display, the more aggressively you can compress, because each artifact occupies a smaller slice of physical space. @4x is where the idea is arguably most valuable, precisely because the conventional alternative is so heavy.
 
@@ -80,5 +80,5 @@ It would be easy to file compressive images under "obsolete — we have AVIF now
 And the ground has shifted in the technique's favor. In 2015, the device density it depends on was a premium-phone novelty. In 2026 it's the default for most of the traffic on the web. The bet compressive images quietly makes — that there are spare device pixels to hide artifacts behind — is now a safe bet far more often than it was when the idea was new.
 
 <div className="article-methodology">
-  Benchmark figures were measured offline with Pillow on a synthetic photographic test image at @1x, @2x, and @4x (JPEG, WebP, AVIF). Real-photograph measurements will replace these once collected. The live demos encode in-browser via `canvas.toBlob()`; AVIF can't be encoded in-canvas, so its row stays at the offline-measured figures, labeled as such. Prior art: Daan Jobsis, "Retina Revolution"; Filament Group, "Compressive Images" (2012).
+  Default image: Simon Berger's mountain photograph on Unsplash. The live demos encode JPEG and WebP in-browser via `canvas.toBlob()`. AVIF can't be encoded in-canvas, so its row is kept as an offline reference and labeled separately. Prior art: Daan Jobsis, "Retina Revolution"; Filament Group, "Compressive Images" (2012).
 </div>

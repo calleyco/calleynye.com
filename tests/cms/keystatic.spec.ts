@@ -52,6 +52,8 @@ test.describe("CMS writing previews", () => {
     await expect(page.getByText("Preview | review")).toBeVisible();
     await expect(page.getByRole("heading", { name: /The Retina image trick everyone forgot/i })).toBeVisible();
     await expect(page.getByText("In 2015 I built a CodePen")).toBeVisible();
+    await expect(page.getByText(/Simon Berger/i).first()).toBeVisible();
+    await expect(page.getByText(/pending replacement|Real-photograph measurements will replace|synthetic-image/i)).toHaveCount(0);
   });
 
   test("does not route previews through the Keystatic app shell", async ({ page }) => {

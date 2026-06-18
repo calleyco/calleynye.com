@@ -80,6 +80,23 @@ export function loadImageFile(file: File): Promise<LoadImageResult> {
   });
 }
 
+export function loadImageUrl(src: string, fileName: string): Promise<LoadImageResult> {
+  return new Promise((resolve) => {
+    const image = new Image();
+    image.decoding = "async";
+    image.onload = () => {
+      resolve({ ok: true, value: { image, fileName } });
+    };
+    image.onerror = () => {
+      resolve({
+        ok: false,
+        error: { message: "Couldn't load the default demo image. Try uploading your own image." },
+      });
+    };
+    image.src = src;
+  });
+}
+
 export function paintScene(ctx: CanvasRenderingContext2D, w: number, h: number): void {
   const sky = ctx.createLinearGradient(0, 0, 0, h);
   sky.addColorStop(0, "#244b6b");

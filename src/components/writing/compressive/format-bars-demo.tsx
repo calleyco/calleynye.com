@@ -50,7 +50,7 @@ function bytesToKilobytes(encoded: EncodedImage | null): number {
 }
 
 export function FormatBars(): ReactElement {
-  const { image } = useCompressiveSource();
+  const { image, sourceKind } = useCompressiveSource();
   const [mounted, setMounted] = useState<boolean>(false);
   const [visible, setVisible] = useState<boolean>(false);
   const [density, setDensity] = useState<Density>("2x");
@@ -231,14 +231,14 @@ export function FormatBars(): ReactElement {
       </div>
 
       <p className="compressive-demo-note">
-        {image
+        {sourceKind === "uploaded"
           ? "JPEG and WebP bars are encoded live from your uploaded image; AVIF can't be encoded in-browser, so its row stays at the offline-measured figures. Upload a flatter graphic or a text-heavy image and watch the win shrink — that's the boundary."
           : is4x
-            ? "For 4× screens, the naive 'serve a full-quality @4x asset' approach is brutal. A compressive @4x file pushed to lower quality lands competitive with or below the accepted @2x, and AVIF wins outright. The denser the screen, the harder you can compress."
-            : "The headline holds in every format: a large cut off the accepted Retina method. The honest part — against a plain @1x image, the win is image-dependent. JPEG and WebP here are computed live; AVIF is offline-measured."}
+            ? "For 4× screens, the naive 'serve a full-quality @4x asset' approach is brutal. A compressive @4x file pushed to lower quality lands competitive with or below the accepted @2x. The denser the screen, the harder you can compress."
+            : "The headline holds for the default mountain photo: a large cut off the accepted Retina method. The honest part — against a plain @1x image, the win is image-dependent. JPEG and WebP here are computed live; AVIF is offline-measured."}
       </p>
       <p className="compressive-demo-note compressive-demo-note--small">
-        Synthetic test image. Real-photo numbers will replace these once measured.
+        Default image: Simon Berger&apos;s Unsplash mountain photograph. JPEG and WebP values are encoded live in the browser; AVIF is included as an offline reference because canvas cannot encode AVIF.
       </p>
     </figure>
   );
