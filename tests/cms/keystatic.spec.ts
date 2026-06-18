@@ -29,7 +29,7 @@ test.describe("Keystatic writing CMS", () => {
       "The Retina image trick everyone forgot — and whether it still holds up in 2026",
     );
     await expect(page.getByRole("textbox", { name: "Description" })).toHaveValue(/single oversized, low-quality file/);
-    await expect(page.getByRole("button", { name: "Review Publication status" })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Published Publication status" })).toBeVisible();
   });
 
   test("opens the UI-engineer essay editor with valid tags and registered components", async ({ page }) => {
