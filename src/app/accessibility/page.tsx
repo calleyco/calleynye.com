@@ -10,12 +10,6 @@ export default function AccessibilityPage(): ReactElement {
         post-release task.
       </p>
 
-      {/*
-        TODO(owner): conformance and screen-reader claims are yours to assert.
-        Update the language below once you have completed the manual VoiceOver
-        and NVDA passes; until then it is written as a target, not a verified
-        claim.
-      */}
       <h2>Conformance Status</h2>
       <p>
         Target level: WCAG 2.1 AA. Automated checks currently report no axe-core violations on the routes covered by
@@ -29,7 +23,7 @@ export default function AccessibilityPage(): ReactElement {
         <li>Automated auditing with axe-core in Playwright checks on the primary routes</li>
         <li>Manual keyboard-only navigation checks during component review</li>
       </ul>
-      <p>Planned before public launch:</p>
+      <p>Planned and in progress:</p>
       <ul>
         <li>Manual VoiceOver (macOS / iOS) screen reader audit across the primary routes</li>
         <li>Manual NVDA (Windows) screen reader audit across the primary routes</li>

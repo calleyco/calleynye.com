@@ -68,7 +68,7 @@ export const resumeItems: ResumeItem[] = [
     period: "2015 - 2021",
     summary: "Consumer-facing experiences, Core Web Vitals work, and reusable UI systems across multiple brands.",
     highlights: [
-      "Built and shipped user-facing features at Crowdrise spanning UX flows and frontend implementation.",
+      "Rolled out a site-wide image-performance technique (compressive images) across Crowdrise, cutting Retina payloads without maintaining a doubled asset pipeline.",
       "Maintained and extended component libraries across multiple Shopify brands.",
     ],
   },

@@ -152,12 +152,6 @@ export default async function Home(): Promise<ReactElement> {
 
         <p className="resume-summary">{resumeSummary}</p>
 
-        {/*
-          TODO(owner): add an Education / certifications block here if you want it
-          on the inline resume — omitted rather than invented. The PDF remains the
-          complete record.
-        */}
-
         <h3 className="resume-subhead" id="resume-experience-head">
           Experience
         </h3>
