@@ -14,6 +14,8 @@ import { DensityShift } from "@/components/writing/compressive/density-shift";
 import { FormatBars } from "@/components/writing/compressive/format-bars-demo";
 import { NextImagePipelineDemo } from "@/components/writing/compressive/next-image-demo";
 import { QualitySliderDemo } from "@/components/writing/compressive/quality-slider-demo";
+import { TitleScatter } from "@/components/writing/ui-engineer/title-scatter";
+import { TwoLadders } from "@/components/writing/ui-engineer/two-ladders";
 
 const mdxComponents = {
   ArticleImage,
@@ -27,6 +29,8 @@ const mdxComponents = {
   FormatBars,
   NextImagePipelineDemo,
   QualitySliderDemo,
+  TitleScatter,
+  TwoLadders,
 };
 
 const writingDirectory = path.join(process.cwd(), "src/content/writing");

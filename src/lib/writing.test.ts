@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { formatWritingDate } from "@/lib/dates";
 import { getAllWritingMeta, getWritingBySlug } from "@/lib/writing";
+import { isWritingTag, writingTags } from "@/lib/writing-tags";
 
 describe("writing metadata", () => {
   it("returns posts sorted by date descending", async () => {
@@ -49,6 +50,27 @@ describe("writing metadata", () => {
 
     expect(post?.frontmatter.date).toBe("2026-05-30");
     expect(post?.frontmatter.status).toBe("published");
+  });
+
+  it("publishes the UI-engineer ladder essay", async () => {
+    const post = await getWritingBySlug("congratulations-on-your-promotion");
+
+    expect(post?.frontmatter.status).toBe("published");
+    expect(post?.frontmatter.title).toMatch(/not a UI engineer anymore/i);
+  });
+
+  it("only uses tags from the Keystatic controlled vocabulary", async () => {
+    // Regression guard: a tag outside the vocabulary is valid MDX but cannot be
+    // rendered in the Keystatic multiselect editor (it throws on open).
+    const posts = await getAllWritingMeta();
+
+    for (const post of posts) {
+      for (const tag of post.tags) {
+        expect(isWritingTag(tag), `"${tag}" in ${post.slug} is not a known tag (${writingTags.join(", ")})`).toBe(
+          true,
+        );
+      }
+    }
   });
 
   it("formats frontmatter dates without timezone drift", () => {

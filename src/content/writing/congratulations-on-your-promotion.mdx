@@ -1,0 +1,105 @@
+---
+title: "Congratulations on your promotion. You’re not a UI engineer anymore."
+slug: "congratulations-on-your-promotion"
+description: >-
+  The career ladder for UI engineers has exactly one rung, and it leads off the
+  team. That’s a design decision, not an accident — and it’s about to get
+  expensive.
+date: "2026-06-18"
+tags:
+  - Career
+  - Craft
+  - AI
+readingTime: "15 min"
+status: "published"
+---
+
+Here’s how you promote a UI engineer.
+
+You take the person who has spent years getting genuinely, unusually good at the surface of your product — the interactions, the motion, the accessibility, the thing that makes a screen feel *considered* instead of assembled — and you sit them down for their review. You tell them they’re doing great. You tell them they’re ready for the next level. And then you explain, gently, that to reach it they’ll need to demonstrate more architectural scope. Own a service. Take on backend systems. Show technical leadership across teams.
+
+In other words: to get promoted, they need to stop doing the thing they’re good at and start doing a different job. The promotion *is* the exit. You didn’t level them up. You issued them an eviction notice with a raise attached.
+
+I know this because it happened to me, and because I have watched the same rubric quietly end the specialty for people far better at it than I am. But this isn’t a grievance essay — I’ll keep the personal part brief and at the end, where it belongs. This is an argument about an org-chart bug that’s been costing the industry its best interface work for fifteen years, and that’s about to start costing a great deal more. The bug is simple to state:
+
+> The person who is fluent in both design and code is filed under engineering, evaluated as an engineer, and promoted only by ceasing to be one. They are on the wrong team.
+
+## The title was never one job
+
+Before we get to the ladder, we have to talk about the word, because the word is where the trouble starts.
+
+“Frontend developer” doesn’t mean anything. I don’t mean that as a slight — I mean it almost literally. It is one of the few job titles in our industry that can describe four people who could not do each other’s jobs.
+
+It describes the person who writes distributed systems in TypeScript and happens to render the result in a browser. It describes the person who lives in CSS, type, motion, and screen-reader output, and treats the visual result as the work. It describes the person whose entire toolkit is a JavaScript framework and a component library they didn’t design. And, increasingly, it describes nobody — because the moment “frontend” started meaning “also writes Node,” the title quietly collapsed into “fullstack,” and the job postings followed.
+
+<TitleScatter />
+
+And here’s the part that forecloses the easy rebuttal — that this is just HR being sloppy with titles. It isn’t only the postings. Engineers are abandoning the label from the inside too. In [Stack Overflow’s annual survey](https://stackoverflow.blog/2025/01/01/developers-want-more-more-more-the-2024-results-from-stack-overflow-s-annual-developer-survey/), “full-stack developer” has been the most common way developers describe *themselves* for six years running, while “front-end” shrinks year over year — by Stack Overflow’s own reading, the role is being subsumed into others. The title isn’t being killed off by recruiters. It’s being walked away from by the people who used to wear it, because it stopped describing anyone in particular.
+
+This is not a story about a good word going bad. There was no golden age when “frontend developer” meant one coherent thing and then drifted. For as long as I’ve been working, it has been a bag we throw dissimilar people into — and the bag is the problem, because a bag lets an org pretend its contents are interchangeable. If “frontend developer” covers both the systems engineer and the interface craftsperson, then management gets to believe the craftsperson is just a systems engineer who hasn’t grown up yet. Which is exactly the belief that builds the ladder I’m about to describe.
+
+The role I actually care about — call it UI engineer, design technologist, design engineer, I’ll use them interchangeably and so does the industry — is the rare one. The person who is genuinely bilingual: who can sit in a design review and argue about easing curves and focus order, then open the editor and ship the thing, and who cares about *how it feels* more than how the codebase is organized. That person is rare. And I’ve come to think they’re rare not by nature but by design — because we’ve built no place for them to exist and grow. The category keeps dissolving them back into one of the adjacent roles before they can cohere into something with a name and a future.
+
+## The work didn’t change. The filing did.
+
+Let me be precise about what this role does, because “designer who codes” undersells it to the point of caricature.
+
+A feature starts as a problem, not a picture. Say forty percent of users abandon onboarding before they finish. *Why* is a question with technical answers (the third step blocks on a slow request, the date picker is unusable on Android) and design answers (step four asks for information nobody has yet) and product answers (we’re solving the wrong problem). A design technologist can rule out the technical causes *because they can read the network tab*, and diagnose the design causes *because they think like a designer*, and that combination is the whole point. They’re not a translator standing between two teams. They’re the one person who doesn’t need a translation.
+
+When the fix is a redesign, the design technologist can take it the whole way — collaborate with a designer in Figma, or skip Figma and prototype in code because some things (an animation, a keyboard interaction, a drag affordance) are *lies* in a static mockup and only tell the truth when they’re real. They own the component library the feature draws from, and they have final say on changes to it, so the system stays coherent instead of accreting one-off variants every sprint. They write the tracking plan, because they know what success looks like and engineers usually aren’t told. And when the build hands off to engineering, they’re the required review on the final pull request — not to check the architecture, but to catch the eight-pixel margin and the missing animation that everyone else has stopped being able to see.
+
+If that sounds like four people’s jobs, hold that thought. We’ll come back to it, because the “that’s too much for one person” objection has a very interesting answer in 2026.
+
+## Now the part that actually matters: the ladder
+
+Everything above is just describing a useful person. Useful people exist on every team. The argument isn’t that this person is valuable — it’s that we’ve put them somewhere they cannot grow, and the proof is in the rubrics.
+
+Open any published engineering career ladder. I’ve read dozens; they rhyme. As you climb, the words that recur are `scope`, `systems`, `architecture`, *blast radius*, *force multiplier*, *technical strategy across teams*. A staff engineer “sets technical direction” and “solves the hardest problems — the ones no one else can solve.” Advancement is measured in how much *system* you can hold in your head and how many other engineers your decisions move. This is a good and coherent ladder. It is measuring a real thing.
+
+It is not measuring *your* thing. Interface craft — the quality of an interaction, the correctness of a focus trap, whether the streaming text is intelligible to a screen reader, whether the whole thing feels alive — does not map onto “scope and systems.” It’s not lower on that ladder. It’s *orthogonal* to it. So the design technologist gets measured against a rubric built for a different person, comes up short on axes that have nothing to do with their actual excellence, and stalls. The Pragmatic Engineer — not exactly a design-partisan source — puts the senior-to-staff transition plainly: it means “changing how you work,” and “can take the joy out of [the] day-to-day.” For a systems engineer, that’s a worthwhile trade. For a craftsperson, “change how you work” means “stop doing the work.” The ladder isn’t broken. It’s just not yours.
+
+Now look at a design career ladder. The words that recur there are *craft*, *product thinking*, *quality of execution*, *customer insight*, *influence on design direction*. That is a ladder where getting better at the surface of the product *is the advancement*. Where “I made this feel right, and I can articulate why, and I raised the bar for how the whole team thinks about it” is the promotion case, not a distraction from it.
+
+<TwoLadders />
+
+Here’s the test that makes it undeniable. Run the most extreme version — all the way up. Picture a UI engineer with real ambition and real people skills, the kind who could plausibly reach the C-suite. On the engineering track, what’s at the top? CTO. Can you picture a CTO whose distinguishing expertise is interaction design and accessibility — who got there *without abandoning the craft somewhere around senior*? I can’t. The role doesn’t survive the climb. Now put the same person on the design track. Chief Design Officer. Chief Product Officer. Suddenly the summit is *made of* the thing they’re good at. Same person. Same talent. One ladder treats their specialty as something to outgrow; the other treats it as the destination.
+
+That’s not a motivational point about aiming for the C-suite. It’s a diagnostic. The question “on which ladder can this person reach the top *as themselves*?” has an answer, and the answer tells you which team they were always supposed to be on.
+
+## “But you push to GitHub, so you’re an engineer”
+
+The objection to all of this is usually unspoken, but I’ve heard it said out loud, to my face: *“If you push to GitHub, you’re an engineer.”* As if the act of writing code is a tribal marking that determines your seating chart.
+
+It doesn’t hold up, and it didn’t even hold up before AI. Data scientists write code; they’re not on the engineering team. Researchers write code. Increasingly, marketers run repos of automation, and designers maintain prototype codebases, and the entire premise that *touching a repository* makes you an engineer is a fossil from an era when engineers were the only people who could. “If you push to GitHub you’re an engineer” is a social rule wearing a technical rule’s clothing.
+
+The healthy version of the boundary isn’t about *who* writes code. It’s about *what the code is allowed to do*. A sane org says: *this repo is production-tier, so every pull request needs two engineering reviews and a staff-or-above merge.* That’s a real safeguard, and it has nothing to do with the author’s job title. There is nothing — nothing technical, anyway — stopping a design technologist who goes to design standup instead of engineering standup from writing production code that clears exactly those gates. The thing stopping it is the seating chart, and the seating chart is a habit, not a law.
+
+## Why this stops being a niche complaint in 2026
+
+For fifteen years this was a quality-of-life problem for a small number of oddly-shaped people. I think it’s about to become a strategy problem for companies, and the reason is the obvious one: AI writes the code now.
+
+Be careful here, because the lazy version of this point is wrong and a little ugly. The lazy version says “AI replaces frontend devs.” It doesn’t. What AI compresses is a specific, narrow thing: the part of the job that was *only translation* — turning an unambiguous spec into syntax, with no judgment above it and no systems depth below it. That layer is getting cheap fast. The early data is already grim for the people stuck in it: [by mid-2025, employment for developers aged 22–25 had fallen roughly 20% from its 2022 peak, and entry-level tech hiring dropped about 25% year-over-year in 2024](https://stackoverflow.blog/2025/12/26/ai-vs-gen-z/) — the exact cohort whose value was “I can implement a clear ticket.”
+
+So the squeeze isn’t hitting “frontend.” It’s hitting *implementation-without-judgment*, wherever it lives. And that has a sharp implication for the two ends of the old frontend bag. The deep systems engineer is safe — they hold architecture AI can’t yet keep in its head. The design technologist is safe — they hold *taste*, the judgment to look at a generated component and know it’s subtly, unnameably wrong, and the user empathy to know what should have been built instead. The person genuinely exposed is the one in the middle who was filed as an engineer but only ever did the translation. The bag is being emptied from the center.
+
+You can already see the field re-sorting along exactly this line. The fastest-rising role in [Stack Overflow’s 2025 survey](https://survey.stackoverflow.co/2025/developers/) is “architect” — brand new to the survey and already the fourth most common answer — and it’s defined precisely as the systems-judgment work AI can’t do: how services should be structured, how data should move, which trade-offs to make. That’s one end of the old frontend bag walking toward durable ground. My argument is just that there’s a second end, and it’s walking the other way — toward *design* judgment, the taste and accessibility and feel that are every bit as un-automatable as architecture, and every bit as deserving of a name and a ladder. Systems judgment already got its rebrand. Design judgment is still filed under “frontend.”
+
+Which means the design technologist isn’t just a nice-to-have whose career we should be kinder to. They’re one of the *most durable* roles on a product team in an agentic world — because their value was never the typing. It was the knowing-what-to-build and the knowing-whether-it’s-any-good. AI raises the floor on production for everyone; it makes *judgment* the scarce thing; and judgment is precisely what this role sells.
+
+This also dissolves the “that’s four people’s jobs” objection from earlier. It was four people’s jobs when each of those jobs was hours of manual labor. Armed with agents they’ve configured themselves, one design technologist can credibly own a feature end to end — not because they’re a unicorn, but because the parts that used to require four sets of hands now require one set of judgment and a good set of tools. On a bigger team, “design technologist” names a *function*, not a headcount — but one of them should still own a given feature from problem to polish, because the value is in the continuity. There is a lot of downtime in this work — waiting on design, waiting on eng, waiting on a decision — and that downtime is where the same person fixes the component library, writes the docs, and clears the interface bugs nobody else will.
+
+## What I’m actually proposing
+
+Not a workflow revolution. The day-to-day handoff between design engineering and platform engineering barely needs to change. What needs to change is two things, and they’re both about *belonging*, not process.
+
+First, move the role to the design team — reporting line, standup, performance review, ladder, all of it. Not because design is better, but because that’s where the role’s *incentives* already live. An engineer and a designer asked to independently build “the best car” will build two different cars, because they’re optimizing for different things — system health and velocity on one side, the user’s actual experience on the other. Neither is wrong. But a design technologist optimizes like a designer, thinks like a designer, *grieves over the eight pixels* like a designer — and then evaluating them on an engineer’s rubric, surrounded by engineers, isn’t neutral. It’s setting them up to fail. I speak engineering fluently. I respect engineers enormously. And my daily motivation is making things feel right and arguing about how users feel — which is a design motivation, on a design team, measured by a design ladder.
+
+Second — and this is the part most orgs miss — *let them lead*. A design technologist who has spent a career in both languages is the single best candidate to run a design team, precisely because they close the gap that makes design-engineering relationships so often fraught. They can take an engineer’s “we can’t ship that, it’ll tank performance” and translate it into design constraints the team actually believes, because it’s coming from someone who can read the flame graph. They make the whole interface between the two disciplines less of a wall and more of a door. That’s not a consolation prize for someone who couldn’t make staff engineer. It’s a leadership track that the engineering org structurally cannot offer them.
+
+## P.S. — to the hiring manager reading this
+
+I’m aware of exactly how this looks. I’m publishing an argument about why I shouldn’t be on an engineering team, and there’s a reasonable chance you found it because I’m applying for a role on yours.
+
+So let me be direct, the way I’d be in the room. I’ve spent a career walking into interviews for jobs that didn’t quite fit and saying some version of: *I can’t answer that the way you’ve framed it — but here’s the thing you actually need, and it’s me.* This is that move, in essay form. I would be glad to be on your engineering team. I’ll write the production code, I’ll clear your review gates, I’ll respect your architecture. But what I’m best at, and what your product is going to live or die on once the code is cheap, is the judgment layer — the taste, the accessibility, the feel of the thing. Put that on your design team or put it on your engineering team; I care much less about the seating chart than this whole essay implies. I care that someone owns it, that they’re measured for being good at it, and that being good at it is allowed to be a career instead of a phase.
+
+If that someone is me, I already know which standup I’d rather attend. But I’ll take either one.

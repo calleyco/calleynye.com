@@ -1,18 +1,8 @@
 import { collection, config, fields } from "@keystatic/core";
 import { block, wrapper } from "@keystatic/core/content-components";
+import { writingTags } from "./src/lib/writing-tags";
 
-const tagOptions = [
-  { label: "Accessibility", value: "Accessibility" },
-  { label: "AI", value: "AI" },
-  { label: "Career", value: "Career" },
-  { label: "Craft", value: "Craft" },
-  { label: "Engineering", value: "Engineering" },
-  { label: "Engineering judgment", value: "Engineering judgment" },
-  { label: "Images", value: "Images" },
-  { label: "Performance", value: "Performance" },
-  { label: "Philosophy", value: "Philosophy" },
-  { label: "Real-time", value: "Real-time" },
-] as const;
+const tagOptions = writingTags.map((tag) => ({ label: tag, value: tag }));
 
 const mdxComponents = {
   div: wrapper({
@@ -72,6 +62,16 @@ const mdxComponents = {
     label: "Scaling Diagram",
     schema: {},
     ContentView: () => "Scaling Diagram",
+  }),
+  TitleScatter: block({
+    label: "Title Scatter",
+    schema: {},
+    ContentView: () => "Title Scatter",
+  }),
+  TwoLadders: block({
+    label: "Two Ladders",
+    schema: {},
+    ContentView: () => "Two Ladders",
   }),
 };
 
