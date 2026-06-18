@@ -26,6 +26,12 @@ describe("writing metadata", () => {
     await expect(getWritingBySlug("compressive-images-revisited")).resolves.toBeNull();
   });
 
+  it("can load draft or review posts for local preview", async () => {
+    const post = await getWritingBySlug("accessibility-as-the-path-of-least-resistance", { includeUnpublished: true });
+
+    expect(post?.frontmatter.status).toBe("draft");
+  });
+
   it("formats frontmatter dates without timezone drift", () => {
     expect(formatWritingDate("2026-03-14", { year: "numeric", month: "short", day: "numeric" })).toBe("Mar 14, 2026");
   });

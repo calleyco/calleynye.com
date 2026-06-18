@@ -50,6 +50,10 @@ export interface WritingPost {
   content: ReactElement;
 }
 
+interface GetWritingBySlugOptions {
+  includeUnpublished?: boolean;
+}
+
 interface ParsedMdxSource {
   data: Record<string, unknown>;
   content: string;
@@ -130,7 +134,7 @@ export async function getAllWritingMeta(): Promise<WritingMeta[]> {
   return meta.filter((post) => post.status === "published").sort((left, right) => right.date.localeCompare(left.date));
 }
 
-export async function getWritingBySlug(slug: string): Promise<WritingPost | null> {
+export async function getWritingBySlug(slug: string, options: GetWritingBySlugOptions = {}): Promise<WritingPost | null> {
   const filePath = path.join(writingDirectory, `${slug}.mdx`);
 
   try {
@@ -138,7 +142,7 @@ export async function getWritingBySlug(slug: string): Promise<WritingPost | null
     const parsed = parseMdxSource(slug, source);
     const frontmatter = assertFrontmatter(slug, parsed.data);
 
-    if (frontmatter.status !== "published") {
+    if (frontmatter.status !== "published" && options.includeUnpublished !== true) {
       return null;
     }
 

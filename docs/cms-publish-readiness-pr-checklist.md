@@ -7,22 +7,22 @@ and performance bar.
 
 ## CMS Implementation
 
-- [ ] CMS choice is documented, including why it fits this repo's Next.js App
+- [x] CMS choice is documented, including why it fits this repo's Next.js App
       Router, MDX, TypeScript, and static-generation setup.
 - [x] Writing content has structured frontmatter with explicit publication state:
       `draft`, `review`, or `published`.
 - [x] Public pages and indexes render only `published` content.
-- [ ] Draft/review content can be previewed locally without appearing in the
+- [x] Draft/review content can be previewed locally without appearing in the
       production build.
 - [x] Required fields are enforced for every writing entry:
       `title`, `description`, `date`, `tags`, `status`, and body content.
 - [x] Reading time is generated from content or validated against body length.
-- [ ] CMS schema prevents empty or placeholder descriptions.
-- [ ] CMS schema supports content notes needed for review, but those notes never
+- [x] CMS schema prevents empty or placeholder descriptions.
+- [x] CMS schema supports content notes needed for review, but those notes never
       render publicly.
-- [ ] CMS setup keeps content in Git or otherwise preserves reviewable change
+- [x] CMS setup keeps content in Git or otherwise preserves reviewable change
       history.
-- [ ] CMS implementation does not introduce unnecessary client-side JavaScript on
+- [x] CMS implementation does not introduce unnecessary client-side JavaScript on
       public pages.
 
 ## Content Publish Gates
@@ -93,7 +93,7 @@ and performance bar.
 - [ ] Public pages remain statically generated where possible.
 - [ ] Lighthouse production-build scores meet project targets:
       Performance 95+, Accessibility 100, Best Practices 95+, SEO 95+.
-- [ ] CMS implementation does not add a large public bundle or unnecessary
+- [x] CMS implementation does not add a large public bundle or unnecessary
       `'use client'` boundaries.
 
 ## Design, UX, And Taste Review
@@ -114,5 +114,5 @@ and performance bar.
 - [ ] PR description lists which publish blockers were resolved.
 - [ ] PR description lists any remaining known limitations.
 - [ ] Screenshots or local URLs are included for changed public pages.
-- [ ] Any new CMS/editorial workflow is documented clearly enough for future use.
+- [x] Any new CMS/editorial workflow is documented clearly enough for future use.
 - [ ] No unrelated files were reformatted or refactored.
