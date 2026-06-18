@@ -33,6 +33,7 @@ const writingDirectory = path.join(process.cwd(), "src/content/writing");
 
 export interface WritingFrontmatter {
   title: string;
+  slug: string;
   description: string;
   date: string;
   tags: string[];
@@ -84,6 +85,7 @@ function parseMdxSource(slug: string, source: string): ParsedMdxSource {
 
 function assertFrontmatter(slug: string, data: Record<string, unknown>): WritingFrontmatter {
   const title = data.title;
+  const frontmatterSlug = data.slug;
   const description = data.description;
   const date = data.date;
   const tags = data.tags;
@@ -92,6 +94,8 @@ function assertFrontmatter(slug: string, data: Record<string, unknown>): Writing
 
   if (
     typeof title !== "string" ||
+    typeof frontmatterSlug !== "string" ||
+    frontmatterSlug !== slug ||
     typeof description !== "string" ||
     typeof date !== "string" ||
     !Array.isArray(tags) ||
@@ -104,6 +108,7 @@ function assertFrontmatter(slug: string, data: Record<string, unknown>): Writing
 
   return {
     title,
+    slug: frontmatterSlug,
     description,
     date,
     tags,
@@ -124,10 +129,7 @@ export async function getAllWritingMeta(): Promise<WritingMeta[]> {
       const parsed = parseMdxSource(slug, source);
       const frontmatter = assertFrontmatter(slug, parsed.data);
 
-      return {
-        slug,
-        ...frontmatter,
-      };
+      return frontmatter;
     }),
   );
 

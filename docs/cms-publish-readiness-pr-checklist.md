@@ -15,7 +15,7 @@ and performance bar.
 - [x] Draft/review content can be previewed locally without appearing in the
       production build.
 - [x] Required fields are enforced for every writing entry:
-      `title`, `description`, `date`, `tags`, `status`, and body content.
+      `title`, `slug`, `description`, `date`, `tags`, `status`, and body content.
 - [x] Reading time is generated from content or validated against body length.
 - [x] CMS schema prevents empty or placeholder descriptions.
 - [x] CMS schema supports content notes needed for review, but those notes never

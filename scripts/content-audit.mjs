@@ -61,9 +61,14 @@ function readingMinutes(readingTime) {
 
 function auditFrontmatter(filename, frontmatter) {
   const errors = [];
+  const expectedSlug = filename.replace(/\.mdx$/, "");
 
   if (typeof frontmatter.title !== "string" || frontmatter.title.trim().length === 0) {
     errors.push(`${filename}: title is required`);
+  }
+
+  if (typeof frontmatter.slug !== "string" || frontmatter.slug !== expectedSlug) {
+    errors.push(`${filename}: slug must match filename \"${expectedSlug}\"`);
   }
 
   if (typeof frontmatter.description !== "string" || frontmatter.description.trim().length === 0) {
