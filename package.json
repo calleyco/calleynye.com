@@ -5,7 +5,7 @@
   "packageManager": "pnpm@10.33.4",
   "scripts": {
     "dev": "next dev",
-    "dev:cms-test": "next dev --hostname 127.0.0.1 --port 3100",
+    "dev:cms-test": "NEXT_DIST_DIR=.next-e2e-cms next dev --hostname 127.0.0.1 --port 3100",
     "content:audit": "node scripts/content-audit.mjs",
     "prebuild": "pnpm content:audit",
     "build": "next build",

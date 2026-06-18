@@ -64,6 +64,18 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
+function normalizeFrontmatterDate(value: unknown): string | null {
+  if (typeof value === "string") {
+    return /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : null;
+  }
+
+  if (value instanceof Date && !Number.isNaN(value.valueOf())) {
+    return value.toISOString().slice(0, 10);
+  }
+
+  return null;
+}
+
 function parseMdxSource(slug: string, source: string): ParsedMdxSource {
   const frontmatterMatch = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(source);
 
@@ -87,7 +99,7 @@ function assertFrontmatter(slug: string, data: Record<string, unknown>): Writing
   const title = data.title;
   const frontmatterSlug = data.slug;
   const description = data.description;
-  const date = data.date;
+  const date = normalizeFrontmatterDate(data.date);
   const tags = data.tags;
   const readingTime = data.readingTime;
   const status = data.status;
@@ -97,7 +109,7 @@ function assertFrontmatter(slug: string, data: Record<string, unknown>): Writing
     typeof frontmatterSlug !== "string" ||
     frontmatterSlug !== slug ||
     typeof description !== "string" ||
-    typeof date !== "string" ||
+    date === null ||
     !Array.isArray(tags) ||
     tags.some((tag) => typeof tag !== "string") ||
     typeof readingTime !== "string" ||

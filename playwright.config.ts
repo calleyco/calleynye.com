@@ -8,7 +8,7 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "pnpm build && pnpm start --hostname 127.0.0.1 --port 3200",
+    command: "NEXT_DIST_DIR=.next-e2e-public pnpm build && NEXT_DIST_DIR=.next-e2e-public pnpm start --hostname 127.0.0.1 --port 3200",
     url: "http://127.0.0.1:3200",
     reuseExistingServer: false,
     timeout: 180_000,

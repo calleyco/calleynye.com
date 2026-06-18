@@ -32,3 +32,13 @@ test("review essays are not publicly routable", async ({ page }) => {
 
   expect(response?.status()).toBe(404);
 });
+
+test("writing index renders published posts without server errors", async ({ page }) => {
+  const response = await page.goto("/writing");
+
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole("heading", { name: /The index/i })).toBeVisible();
+  await expect(page.getByRole("link", { name: /Which model of disability/i })).toBeVisible();
+  await expect(page.getByText("Application error")).toHaveCount(0);
+  await expect(page.getByText("The Retina image trick everyone forgot")).toHaveCount(0);
+});

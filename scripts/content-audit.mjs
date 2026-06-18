@@ -54,6 +54,18 @@ function wordCount(body) {
     .filter(Boolean).length;
 }
 
+function normalizeFrontmatterDate(value) {
+  if (typeof value === "string") {
+    return /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : null;
+  }
+
+  if (value instanceof Date && !Number.isNaN(value.valueOf())) {
+    return value.toISOString().slice(0, 10);
+  }
+
+  return null;
+}
+
 function readingMinutes(readingTime) {
   const match = /^(\d+)\s+min$/.exec(readingTime);
   return match ? Number(match[1]) : null;
@@ -75,7 +87,7 @@ function auditFrontmatter(filename, frontmatter) {
     errors.push(`${filename}: description is required`);
   }
 
-  if (typeof frontmatter.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(frontmatter.date)) {
+  if (normalizeFrontmatterDate(frontmatter.date) === null) {
     errors.push(`${filename}: date must use YYYY-MM-DD format`);
   }
 
