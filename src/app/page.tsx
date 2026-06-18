@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
 import { formatWritingDate } from "@/lib/dates";
-import { centralThesis, resumeItems, speakingEvents } from "@/lib/site-data";
+import { centralThesis, resumeItems, resumeSkills, resumeSummary, speakingEvents } from "@/lib/site-data";
 import { getAllWritingMeta } from "@/lib/writing";
 import styles from "./home.module.scss";
 
@@ -143,20 +143,51 @@ export default async function Home(): Promise<ReactElement> {
         <div className="section-header">
           <p className="section-tag">05 | Resume</p>
           <h2 className="section-head" id="resume-head">
-            Inline resume
+            Resume
           </h2>
           <a className="section-link" href="/resume.pdf">
             PDF download -&gt;
           </a>
         </div>
-        <ul className="resume-list">
+
+        <p className="resume-summary">{resumeSummary}</p>
+
+        {/*
+          TODO(owner): add an Education / certifications block here if you want it
+          on the inline resume — omitted rather than invented. The PDF remains the
+          complete record.
+        */}
+
+        <h3 className="resume-subhead" id="resume-experience-head">
+          Experience
+        </h3>
+        <ol aria-labelledby="resume-experience-head" className="resume-list">
           {resumeItems.map((item) => (
             <li className="resume-item" key={`${item.company}-${item.role}`}>
-              <h3>{item.role}</h3>
-              <p className="resume-meta">
-                {item.company} | {item.period}
-              </p>
-              <p>{item.details}</p>
+              <div className="resume-item-head">
+                <h4 className="resume-role">{item.role}</h4>
+                <p className="resume-meta">
+                  {item.company} | {item.period}
+                </p>
+              </div>
+              <p className="resume-item-summary">{item.summary}</p>
+              <ul className="resume-highlights">
+                {item.highlights.map((highlight) => (
+                  <li key={highlight}>{highlight}</li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ol>
+
+        <h3 className="resume-subhead" id="resume-skills-head">
+          Core skills
+        </h3>
+        <ul aria-labelledby="resume-skills-head" className="resume-skills">
+          {resumeSkills.map((group) => (
+            <li className="resume-skill-group" key={group.group}>
+              <span className="resume-skill-label">{group.group}</span>
+              <span className="resume-skill-items">{group.items.join(" · ")}</span>
             </li>
           ))}
         </ul>

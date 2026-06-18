@@ -8,7 +8,13 @@ export interface ResumeItem {
   role: string;
   company: string;
   period: string;
-  details: string;
+  summary: string;
+  highlights: string[];
+}
+
+export interface SkillGroup {
+  group: string;
+  items: string[];
 }
 
 export const centralThesis =
@@ -32,26 +38,47 @@ export const speakingEvents: SpeakingEvent[] = [
   },
 ];
 
+export const resumeSummary =
+  "Senior frontend engineer in Los Angeles with 10+ years building user interfaces and 6+ years specializing in accessibility. I work at the seam between design and engineering — interaction quality, design systems, and WCAG-compliant components — and I am extending my primary stack from Vue to React, Next.js, and TypeScript.";
+
 export const resumeItems: ResumeItem[] = [
   {
     role: "Senior Frontend Engineer",
     company: "Independent / Calley Co.",
     period: "2023 - Present",
-    details:
-      "Deliver accessibility audits, frontend architecture, and AI product integration work for teams shipping production software.",
+    summary: "Accessibility audits, frontend architecture, and AI-product integration for teams shipping production software.",
+    highlights: [
+      "Deliver WCAG 2.1 AA audits and remediation plans, then implement the fixes as reusable, tested components.",
+      "Advise teams on making the accessible implementation the lowest-friction one, including AI-assisted workflows.",
+    ],
   },
   {
     role: "Senior Software Engineer",
     company: "McKinsey",
     period: "2021 - 2023",
-    details:
-      "Built real-time interfaces and advocated for disability-inclusive product decisions in recruiting technology.",
+    summary: "Real-time, multiplayer interfaces for recruiting technology, built with inclusive interaction paths.",
+    highlights: [
+      "Architected multiplayer recruiting simulations with real-time state synchronization over WebSockets, kept robust under high-latency conditions.",
+      "Strengthened keyboard and screen-reader paths across the product surface.",
+    ],
   },
   {
     role: "Frontend Engineer",
-    company: "Shopify ecosystem + agency/client teams",
+    company: "Shopify ecosystem + agency / client teams",
     period: "2015 - 2021",
-    details:
-      "Shipped consumer-facing experiences, optimized performance, and scaled reusable UI systems.",
+    summary: "Consumer-facing experiences, Core Web Vitals work, and reusable UI systems across multiple brands.",
+    highlights: [
+      "Built and shipped user-facing features at Crowdrise spanning UX flows and frontend implementation.",
+      "Maintained and extended component libraries across multiple Shopify brands.",
+    ],
   },
+];
+
+export const resumeSkills: SkillGroup[] = [
+  { group: "Languages & frameworks", items: ["TypeScript", "JavaScript", "Vue 3", "React", "Next.js"] },
+  {
+    group: "Craft",
+    items: ["Accessibility (WCAG 2.1 AA)", "Design systems", "Interaction & motion", "Real-time / streaming UI"],
+  },
+  { group: "Performance", items: ["Core Web Vitals", "Bundle analysis", "Image optimization"] },
 ];
