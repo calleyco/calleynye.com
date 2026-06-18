@@ -209,7 +209,6 @@
   color: var(--fg-dim);
 }
 
-.work-grid,
 .resume-list,
 .speaking-list {
   list-style: none;
@@ -219,12 +218,10 @@
   gap: 20px;
 }
 
-.work-grid,
 .resume-list {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
-.work-card,
 .resume-item,
 .speaking-item {
   padding: 24px;
@@ -233,7 +230,6 @@
   border-radius: 18px;
 }
 
-.work-card h3,
 .resume-item h3,
 .speaking-item h3 {
   margin: 0 0 8px;
@@ -242,7 +238,6 @@
   font-weight: 400;
 }
 
-.work-impact,
 .resume-meta,
 .speaking-year {
   font-family: var(--font-geist-mono), ui-monospace, monospace;

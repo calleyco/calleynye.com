@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
 import { formatWritingDate } from "@/lib/dates";
-import { caseStudies, centralThesis, resumeItems, speakingEvents } from "@/lib/site-data";
+import { centralThesis, resumeItems, speakingEvents } from "@/lib/site-data";
 import { getAllWritingMeta } from "@/lib/writing";
 import styles from "./home.module.scss";
 
@@ -121,24 +121,8 @@ export default async function Home(): Promise<ReactElement> {
         </ol>
       </section>
 
-      <section aria-labelledby="work-head" className="work" id="work">
-        <p className="section-tag">04 | Selected work</p>
-        <h2 className="section-head" id="work-head">
-          Case studies in prose
-        </h2>
-        <div className="work-grid">
-          {caseStudies.map((study) => (
-            <article className="work-card" key={study.title}>
-              <h3>{study.title}</h3>
-              <p>{study.summary}</p>
-              <p className="work-impact">{study.impact}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
       <section aria-labelledby="speaking-head" className="speaking" id="speaking">
-        <p className="section-tag">05 | Speaking</p>
+        <p className="section-tag">04 | Speaking</p>
         <h2 className="section-head" id="speaking-head">
           Talks and workshops
         </h2>
@@ -157,7 +141,7 @@ export default async function Home(): Promise<ReactElement> {
 
       <section aria-labelledby="resume-head" className="resume" id="resume">
         <div className="section-header">
-          <p className="section-tag">06 | Resume</p>
+          <p className="section-tag">05 | Resume</p>
           <h2 className="section-head" id="resume-head">
             Inline resume
           </h2>
@@ -179,7 +163,7 @@ export default async function Home(): Promise<ReactElement> {
       </section>
 
       <section aria-labelledby="contact-head" className="contact" id="contact">
-        <p className="section-tag">07 | Contact</p>
+        <p className="section-tag">06 | Contact</p>
         <h2 className="contact-head" id="contact-head">
           Say hello.
         </h2>

@@ -1,9 +1,3 @@
-export interface CaseStudy {
-  title: string;
-  summary: string;
-  impact: string;
-}
-
 export interface SpeakingEvent {
   event: string;
   year: string;
@@ -19,37 +13,6 @@ export interface ResumeItem {
 
 export const centralThesis =
   "AI-assisted development is the leverage point that finally makes inclusive engineering the path of least resistance rather than the path of most resistance.";
-
-export const caseStudies: CaseStudy[] = [
-  {
-    title: "McKinsey Recruiting Platform",
-    summary:
-      "Led frontend architecture for multiplayer recruiting simulations with real-time state synchronization over WebSockets.",
-    impact:
-      "Built interactions that remained robust under high-latency conditions while improving keyboard and screen-reader paths.",
-  },
-  {
-    title: "Milliman Accessibility Program",
-    summary:
-      "Owned WCAG 2.1 AA remediation and long-term accessibility enablement across product teams.",
-    impact:
-      "Shifted accessibility from periodic audits to a repeatable engineering workflow with shared components and checklists.",
-  },
-  {
-    title: "Calley Co. Systems Work",
-    summary:
-      "Designed and implemented component patterns for client platforms balancing speed, performance, and inclusive UX.",
-    impact:
-      "Reduced rework by aligning design and implementation constraints early through reusable primitives.",
-  },
-  {
-    title: "Crowdrise Consumer Feature",
-    summary:
-      "Built and shipped a key user-facing feature spanning UX flows and frontend implementation.",
-    impact:
-      "Feature contributed approximately 20% of business impact at the time, validating end-to-end product thinking.",
-  },
-];
 
 export const speakingEvents: SpeakingEvent[] = [
   {
