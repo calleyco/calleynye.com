@@ -16,6 +16,7 @@
 /playwright-report
 /blob-report
 /playwright/.cache
+/lighthouse-report.*
 
 # design reference (kept locally, not shipped)
 /design_handoff_kinetic_portfolio

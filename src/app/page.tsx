@@ -2,13 +2,14 @@ import Link from "next/link";
 import type { ReactElement } from "react";
 import { caseStudies, centralThesis, resumeItems, speakingEvents } from "@/lib/site-data";
 import { getAllWritingMeta } from "@/lib/writing";
+import styles from "./home.module.scss";
 
 export default async function Home(): Promise<ReactElement> {
   const posts = await getAllWritingMeta();
   const featuredPosts = posts.slice(0, 4);
 
   return (
-    <main id="main">
+    <main className={styles.homeScope} id="main">
       <section aria-labelledby="hero-head" className="hero">
         <div className="hero-scroll">
           <span>DESIGN TECHNOLOGIST</span>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactElement } from "react";
+import styles from "./lab.module.scss";
 
 export const metadata: Metadata = {
   title: "Lab | Calley Nye",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function LabIndexPage(): ReactElement {
   return (
-    <main className="lab-index-page" id="main">
+    <main className={`lab-index-page ${styles.labScope}`} id="main">
       <section className="lab-index-hero">
         <h1>
           The <em>lab</em>.
