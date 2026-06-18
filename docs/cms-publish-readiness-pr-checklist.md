@@ -70,8 +70,8 @@ and performance bar.
 
 ## Accessibility
 
-- [ ] `pnpm lint` passes with JSX accessibility rules enabled.
-- [ ] `pnpm test:e2e` passes with zero axe violations.
+- [x] `pnpm lint` passes with JSX accessibility rules enabled.
+- [x] `pnpm test:e2e` passes with zero axe violations.
 - [ ] Keyboard navigation works for every interactive element.
 - [ ] Skip link is present and works on every page.
 - [ ] Focus-visible styles are visible and meet contrast requirements.
@@ -85,12 +85,12 @@ and performance bar.
 
 ## Performance + Build
 
-- [ ] `pnpm lint` passes.
-- [ ] `pnpm test` passes.
-- [ ] `pnpm test:e2e` passes.
-- [ ] `pnpm audit` reports no known vulnerabilities.
-- [ ] `pnpm build` passes.
-- [ ] Public pages remain statically generated where possible.
+- [x] `pnpm lint` passes.
+- [x] `pnpm test` passes.
+- [x] `pnpm test:e2e` passes.
+- [x] `pnpm audit` reports no known vulnerabilities.
+- [x] `pnpm build` passes.
+- [x] Public pages remain statically generated where possible.
 - [ ] Lighthouse production-build scores meet project targets:
       Performance 95+, Accessibility 100, Best Practices 95+, SEO 95+.
 - [x] CMS implementation does not add a large public bundle or unnecessary
