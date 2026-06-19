@@ -30,22 +30,27 @@ export const speakingEvents: SpeakingEvent[] = [
   {
     event: "JS.LA",
     year: "2015",
-    talk: "Frontend architecture and design-engineering collaboration",
+    talk: "Conference talk on JavaScript and frontend practice",
+  },
+  {
+    event: "DeveloperWeek",
+    year: "2015",
+    talk: "Conference speaker",
   },
   {
     event: "Crypto Invest Summit",
     year: "2018",
-    talk: "Design systems under rapid product iteration",
+    talk: "Women of Crypto Track — Marketing Workshop panelist",
   },
   {
-    event: "McKinsey - What is a Disability?",
+    event: "McKinsey — What is a Disability?",
     year: "2022",
-    talk: "Five models of disability and their consequences for product teams",
+    talk: "The five models of disability and their implications for how we build recruiting products",
   },
 ];
 
 export const resumeSummary =
-  "Senior frontend engineer in Los Angeles with 10+ years building consumer products, 6+ years specializing in accessibility, and deep experience in real-time UIs, performance, and design systems. I translate design intent into polished, accessible production code, and I treat accessibility as an architectural decision rather than an end-of-sprint feature. I work primarily in Vue today and am actively shipping React, Next.js, and TypeScript in current client engagements.";
+  "Senior frontend engineer in Los Angeles with 10+ years building consumer products, with a focus on accessibility and UX. I treat accessibility as an architectural decision rather than an end-of-sprint feature, and I bring deep experience in real-time UIs, performance, and design systems. I work primarily in Vue today and am actively shipping React, Next.js, and TypeScript in current client engagements.";
 
 export const resumeItems: ResumeItem[] = [
   {
@@ -61,7 +66,7 @@ export const resumeItems: ResumeItem[] = [
   {
     role: "Senior Software Engineer",
     company: "McKinsey & Company",
-    period: "Jun 2021 - Mar 2023",
+    period: "Jun 2021 - Jul 2023",
     summary: "Game-Based Innovations Lab — globally used game-based assessments and leadership training.",
     highlights: [
       "Built a distributed real-time multiplayer experience over WebSockets — globally synchronized shared state, turn-based control, and live drag-and-drop rendered on every player's screen.",
@@ -80,7 +85,7 @@ export const resumeItems: ResumeItem[] = [
   {
     role: "Founder & Principal Engineer",
     company: "Syren.io",
-    period: "Nov 2011 - Present",
+    period: "Nov 2011 - Nov 2021",
     summary: "Design, development, and product-strategy consultancy applying lean, empathy-driven design to complex technical problems.",
     highlights: [
       "Delivered frontend and full-stack work across 40+ client engagements, often refactoring large legacy codebases for measurable improvement.",
@@ -115,7 +120,16 @@ export const resumeEducation: ResumeEducation = {
 export const resumeSkills: SkillGroup[] = [
   {
     group: "Currently shipping",
-    items: ["React", "Next.js", "TypeScript", "Node.js", "Vue 3 (Composition API)", "Shopify (Liquid + Hydrogen)", "Tailwind CSS"],
+    items: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Vue 3 (Composition API)",
+      "Shopify (Liquid + Hydrogen)",
+      "Tailwind CSS",
+      "AI-assisted development workflows",
+    ],
   },
   {
     group: "Accessibility",
@@ -134,6 +148,14 @@ export const resumeSkills: SkillGroup[] = [
   },
   {
     group: "Performance & design systems",
-    items: ["Core Web Vitals", "Lighthouse auditing", "Bundle analysis", "Component library architecture", "Storybook", "Design tokens"],
+    items: [
+      "Core Web Vitals",
+      "Lighthouse auditing",
+      "Bundle analysis",
+      "Component library architecture",
+      "Storybook",
+      "Design tokens",
+      "Cross-codebase design system unification",
+    ],
   },
 ];

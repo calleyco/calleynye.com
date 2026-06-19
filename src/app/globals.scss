@@ -150,6 +150,19 @@ button:focus-visible {
   }
 }
 
+// Defined globally (not in home.module.scss) so the name stays "marquee".
+// Inside a CSS-Module's :global block the @keyframes name gets hashed while the
+// `animation: marquee` reference does not, so they never match and the marquee
+// silently does not move. The hero ticker references this.
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 .topnav {
   display: flex;
   gap: 18px;

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactElement } from "react";
+import { Fragment, type ReactElement } from "react";
 import { formatWritingDate } from "@/lib/dates";
 import {
   centralThesis,
@@ -12,6 +12,25 @@ import {
 import { getAllWritingMeta } from "@/lib/writing";
 import styles from "./home.module.scss";
 
+const heroRoles = ["DESIGN TECHNOLOGIST", "ACCESSIBILITY SPECIALIST", "REAL-TIME UI ENGINEER"];
+const heroTech = ["VUE", "REACT", "NEXT", "TYPESCRIPT", "WEBSOCKETS", "DESIGN SYSTEMS", "WCAG", "PERFORMANCE"];
+
+// One marquee "tile": items separated by accent pipes, with a trailing pipe so the
+// loop seam keeps the same rhythm. The track renders two identical tiles, so the
+// translateX(-50%) loop lands exactly on the start of the second copy.
+function MarqueeTile({ items }: { items: string[] }): ReactElement {
+  return (
+    <div className="hero-scroll-set">
+      {items.map((item) => (
+        <Fragment key={item}>
+          <span>{item}</span>
+          <span className="accent">|</span>
+        </Fragment>
+      ))}
+    </div>
+  );
+}
+
 export default async function Home(): Promise<ReactElement> {
   const posts = await getAllWritingMeta();
   const featuredPosts = posts.slice(0, 4);
@@ -19,23 +38,20 @@ export default async function Home(): Promise<ReactElement> {
   return (
     <main className={styles.homeScope} id="main">
       <section aria-labelledby="hero-head" className="hero">
-        <div className="hero-scroll">
-          <span>DESIGN TECHNOLOGIST</span>
-          <span className="accent">|</span>
-          <span>ACCESSIBILITY SPECIALIST</span>
-          <span className="accent">|</span>
-          <span>REAL-TIME UI ENGINEER</span>
-          <span className="accent">|</span>
-          <span>DESIGN TECHNOLOGIST</span>
-          <span className="accent">|</span>
-          <span>ACCESSIBILITY SPECIALIST</span>
-          <span className="accent">|</span>
-          <span>REAL-TIME UI ENGINEER</span>
+        <div aria-hidden="true" className="hero-scroll">
+          <div className="hero-scroll-track">
+            <MarqueeTile items={heroRoles} />
+            <MarqueeTile items={heroRoles} />
+          </div>
         </div>
 
         <div className="hero-body">
           <p className="hero-kicker">01 | Hello</p>
           <h1 className="hero-head" id="hero-head">
+            <span className="line">
+              <span className="w">Hi,</span> <span className="w">I&rsquo;m</span>{" "}
+              <span className="italic accent">Calley</span>.
+            </span>
             <span className="line">
               <span className="w">I</span> <span className="w">build</span> <span className="w italic">interfaces</span>
             </span>
@@ -44,12 +60,12 @@ export default async function Home(): Promise<ReactElement> {
             </span>
             <span className="line">
               <span className="w italic accent">everyone</span> <span className="w">is</span> <span className="w">the</span>{" "}
-              <span className="w">default</span>.
+              <span className="w">default.</span>
             </span>
           </h1>
           <p className="hero-sub">
-            Senior frontend engineer with 10+ years in UI engineering and 6+ years specializing in accessibility. I
-            design systems where shipping fast and shipping inclusively are the same path.
+            Senior frontend engineer with 10+ years in UI engineering, with a focus on accessibility and UX. I design
+            systems where shipping fast and shipping inclusively are the same path.
           </p>
           <p className="hero-sub thesis-line">{centralThesis}</p>
 
@@ -66,11 +82,11 @@ export default async function Home(): Promise<ReactElement> {
           </div>
         </div>
 
-        <div className="hero-scroll reverse">
-          <span>
-            VUE | REACT | NEXT | TYPESCRIPT | WEBSOCKETS | DESIGN SYSTEMS | WCAG | PERFORMANCE | VUE | REACT | NEXT |
-            TYPESCRIPT | WEBSOCKETS
-          </span>
+        <div aria-hidden="true" className="hero-scroll reverse">
+          <div className="hero-scroll-track">
+            <MarqueeTile items={heroTech} />
+            <MarqueeTile items={heroTech} />
+          </div>
         </div>
       </section>
 
