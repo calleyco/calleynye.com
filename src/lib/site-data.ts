@@ -61,7 +61,7 @@ export const resumeItems: ResumeItem[] = [
   {
     role: "Senior Software Engineer",
     company: "McKinsey & Company",
-    period: "Jun 2021 - Mar 2023",
+    period: "Jun 2021 - Jul 2023",
     summary: "Game-Based Innovations Lab — globally used game-based assessments and leadership training.",
     highlights: [
       "Built a distributed real-time multiplayer experience over WebSockets — globally synchronized shared state, turn-based control, and live drag-and-drop rendered on every player's screen.",
@@ -80,7 +80,7 @@ export const resumeItems: ResumeItem[] = [
   {
     role: "Founder & Principal Engineer",
     company: "Syren.io",
-    period: "Nov 2011 - Present",
+    period: "Nov 2011 - Nov 2021",
     summary: "Design, development, and product-strategy consultancy applying lean, empathy-driven design to complex technical problems.",
     highlights: [
       "Delivered frontend and full-stack work across 40+ client engagements, often refactoring large legacy codebases for measurable improvement.",
