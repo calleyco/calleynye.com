@@ -50,7 +50,7 @@ export const speakingEvents: SpeakingEvent[] = [
 ];
 
 export const resumeSummary =
-  "Senior frontend engineer in Los Angeles with 10+ years building consumer products, and accessibility has been my focus the whole time — I've been designing for it since my first job, fighting for contrast on a cruise-line website. I treat accessibility as an architectural decision rather than an end-of-sprint feature, and I bring deep experience in real-time UIs, performance, and design systems. I work primarily in Vue today and am actively shipping React, Next.js, and TypeScript in current client engagements.";
+  "Senior frontend engineer in Los Angeles with 10+ years building consumer products, with a focus on accessibility and UX. I treat accessibility as an architectural decision rather than an end-of-sprint feature, and I bring deep experience in real-time UIs, performance, and design systems. I work primarily in Vue today and am actively shipping React, Next.js, and TypeScript in current client engagements.";
 
 export const resumeItems: ResumeItem[] = [
   {
