@@ -49,6 +49,10 @@ export default async function Home(): Promise<ReactElement> {
           <p className="hero-kicker">01 | Hello</p>
           <h1 className="hero-head" id="hero-head">
             <span className="line">
+              <span className="w">Hi,</span> <span className="w">I&rsquo;m</span>{" "}
+              <span className="w italic accent">Calley</span>.
+            </span>
+            <span className="line">
               <span className="w">I</span> <span className="w">build</span> <span className="w italic">interfaces</span>
             </span>
             <span className="line">
