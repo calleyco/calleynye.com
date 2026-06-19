@@ -50,7 +50,7 @@ export default async function Home(): Promise<ReactElement> {
           <h1 className="hero-head" id="hero-head">
             <span className="line">
               <span className="w">Hi,</span> <span className="w">I&rsquo;m</span>{" "}
-              <span className="w italic accent">Calley</span>.
+              <span className="italic accent">Calley</span>.
             </span>
             <span className="line">
               <span className="w">I</span> <span className="w">build</span> <span className="w italic">interfaces</span>
@@ -60,7 +60,7 @@ export default async function Home(): Promise<ReactElement> {
             </span>
             <span className="line">
               <span className="w italic accent">everyone</span> <span className="w">is</span> <span className="w">the</span>{" "}
-              <span className="w">default</span>.
+              <span className="w">default.</span>
             </span>
           </h1>
           <p className="hero-sub">
