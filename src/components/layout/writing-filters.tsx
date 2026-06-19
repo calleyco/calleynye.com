@@ -47,7 +47,7 @@ export function WritingFilters({ posts }: WritingFiltersProps): ReactElement {
       <ol className="articles">
         {visiblePosts.map((post, index) => (
           <li className="art" key={post.slug}>
-            <Link className="art-link" href={`/writing/${post.slug}`}>
+            <Link className="art-link" href={`/writing/${post.slug}`} prefetch={false}>
               <span aria-hidden="true" className="art-num">
                 {String(index + 1).padStart(2, "0")}
               </span>

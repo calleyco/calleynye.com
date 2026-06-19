@@ -7,7 +7,7 @@ export default function NotFound(): ReactElement {
     <main className={`article-page ${styles.writingScope}`} id="main">
       <h1 className="section-head">Page not found</h1>
       <p>The page you requested does not exist.</p>
-      <Link className="section-link" href="/">
+      <Link className="section-link" href="/" prefetch={false}>
         Return home -&gt;
       </Link>
     </main>

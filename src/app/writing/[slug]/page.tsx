@@ -41,7 +41,7 @@ export default async function WritingPostPage({ params }: WritingPageProps): Pro
 
   return (
     <main className={`article-page ${styles.writingScope}`} id="main">
-      <Link className="article-back" href="/writing">
+      <Link className="article-back" href="/writing" prefetch={false}>
         &lt;- Back to index
       </Link>
 

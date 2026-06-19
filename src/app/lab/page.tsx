@@ -24,7 +24,7 @@ export default function LabIndexPage(): ReactElement {
 
       <ul className="lab-index-list">
         <li>
-          <Link className="lab-index-link" href="/lab/live-regions">
+          <Link className="lab-index-link" href="/lab/live-regions" prefetch={false}>
             <span className="lab-index-link-title">Live Region Lab</span>
             <span className="lab-index-link-dek">
               A test harness for streaming-announcement strategies.
