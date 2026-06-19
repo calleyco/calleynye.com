@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { ConsoleEasterEgg } from "@/components/layout/console-easter-egg";
 import { ReadingProgress } from "@/components/layout/reading-progress";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -39,6 +40,7 @@ export default function RootLayout({
         <a className="skip" href="#main">
           Skip to content
         </a>
+        <ConsoleEasterEgg />
         <ReadingProgress />
         <div className="stage">
           <SiteHeader />

@@ -70,7 +70,11 @@ export default async function Home(): Promise<ReactElement> {
           <p className="hero-sub thesis-line">{centralThesis}</p>
 
           <div className="hero-ctas">
-            <Link className="cta-primary" href="/writing/which-model-of-disability-is-your-ai-product-operating-from">
+            <Link
+              className="cta-primary"
+              href="/writing/which-model-of-disability-is-your-ai-product-operating-from"
+              prefetch={false}
+            >
               Read the essay <span aria-hidden="true">-&gt;</span>
             </Link>
             <a className="cta-secondary" href="/resume.pdf">
@@ -113,14 +117,14 @@ export default async function Home(): Promise<ReactElement> {
           <h2 className="section-head" id="writing-head">
             Recent essays
           </h2>
-          <Link className="section-link" href="/writing">
+          <Link className="section-link" href="/writing" prefetch={false}>
             Full index -&gt;
           </Link>
         </div>
         <ol className="articles">
           {featuredPosts.map((post, index) => (
             <li className="art" key={post.slug}>
-              <Link className="art-link" href={`/writing/${post.slug}`}>
+              <Link className="art-link" href={`/writing/${post.slug}`} prefetch={false}>
                 <span aria-hidden="true" className="art-num">
                   {String(index + 1).padStart(2, "0")}
                 </span>
