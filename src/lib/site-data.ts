@@ -30,17 +30,22 @@ export const speakingEvents: SpeakingEvent[] = [
   {
     event: "JS.LA",
     year: "2015",
-    talk: "Frontend architecture and design-engineering collaboration",
+    talk: "Conference talk on JavaScript and frontend practice",
+  },
+  {
+    event: "DeveloperWeek",
+    year: "2015",
+    talk: "Conference speaker",
   },
   {
     event: "Crypto Invest Summit",
     year: "2018",
-    talk: "Design systems under rapid product iteration",
+    talk: "Women of Crypto Track — Marketing Workshop panelist",
   },
   {
-    event: "McKinsey - What is a Disability?",
+    event: "McKinsey — What is a Disability?",
     year: "2022",
-    talk: "Five models of disability and their consequences for product teams",
+    talk: "The five models of disability and their implications for how we build recruiting products",
   },
 ];
 
@@ -115,7 +120,16 @@ export const resumeEducation: ResumeEducation = {
 export const resumeSkills: SkillGroup[] = [
   {
     group: "Currently shipping",
-    items: ["React", "Next.js", "TypeScript", "Node.js", "Vue 3 (Composition API)", "Shopify (Liquid + Hydrogen)", "Tailwind CSS"],
+    items: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "Vue 3 (Composition API)",
+      "Shopify (Liquid + Hydrogen)",
+      "Tailwind CSS",
+      "AI-assisted development workflows",
+    ],
   },
   {
     group: "Accessibility",
@@ -134,6 +148,14 @@ export const resumeSkills: SkillGroup[] = [
   },
   {
     group: "Performance & design systems",
-    items: ["Core Web Vitals", "Lighthouse auditing", "Bundle analysis", "Component library architecture", "Storybook", "Design tokens"],
+    items: [
+      "Core Web Vitals",
+      "Lighthouse auditing",
+      "Bundle analysis",
+      "Component library architecture",
+      "Storybook",
+      "Design tokens",
+      "Cross-codebase design system unification",
+    ],
   },
 ];
