@@ -8,7 +8,9 @@ export function SiteFooter(): ReactElement {
         <Link href="/accessibility" prefetch={false}>
           Accessibility
         </Link>
-        <a href="/resume.pdf">Resume PDF</a>
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+          Resume PDF<span className="sr-only"> (opens in new tab)</span>
+        </a>
       </nav>
       <div className="footer-row">
         <span>Copyright 2026 Calley Nye. Built in Los Angeles.</span>

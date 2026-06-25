@@ -79,8 +79,8 @@ export default async function Home(): Promise<ReactElement> {
             >
               Read the essay <span aria-hidden="true">-&gt;</span>
             </Link>
-            <a className="cta-secondary" href="/resume.pdf">
-              Download resume PDF
+            <a className="cta-secondary" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              Download resume PDF<span className="sr-only"> (opens in new tab)</span>
             </a>
             <a className="cta-secondary" href="#contact">
               Contact <span aria-hidden="true">-&gt;</span>
@@ -218,8 +218,8 @@ export default async function Home(): Promise<ReactElement> {
           <h2 className="section-head" id="resume-head">
             Resume
           </h2>
-          <a className="section-link" href="/resume.pdf">
-            PDF download -&gt;
+          <a className="section-link" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            PDF download -&gt;<span className="sr-only"> (opens in new tab)</span>
           </a>
         </div>
 
