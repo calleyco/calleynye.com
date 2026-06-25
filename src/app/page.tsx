@@ -183,14 +183,14 @@ export default async function Home(): Promise<ReactElement> {
         <h2 className="section-head" id="lab-head">
           The Lab
         </h2>
-        {/* TODO(owner): confirm/replace teaser copy in Calley's voice. */}
         <p className="lab-dek">
-          Research explorations in streaming and real-time accessibility. The first is the Live Region Lab — an
-          instrument for studying how screen readers announce streaming token output, the same UI problem that sits at
-          the center of conversational AI products.
+          Research explorations &mdash; each one an instrument, not a conclusion. The first, the Live Region Lab, is a
+          test harness for streaming-announcement strategies: different ways to chunk and sequence aria-live updates as
+          text streams in. It&rsquo;s the same problem a conversational AI interface faces every time it streams a
+          response to the screen.
         </p>
-        <Link className="section-link" href="/lab" prefetch={false}>
-          Enter the lab -&gt;
+        <Link className="section-link" href="/lab/live-regions" prefetch={false}>
+          Enter the Live Region Lab -&gt;
         </Link>
       </section>
 
