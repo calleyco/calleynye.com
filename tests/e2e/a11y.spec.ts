@@ -10,6 +10,8 @@ const ROUTES_TO_SCAN = [
   { name: "lab index", path: "/lab" },
   { name: "live region lab", path: "/lab/live-regions" },
   { name: "accessibility statement", path: "/accessibility" },
+  { name: "work index", path: "/work" },
+  { name: "fundraise case study", path: "/work/fundraise-for-anything" },
 ];
 
 for (const route of ROUTES_TO_SCAN) {
@@ -27,6 +29,8 @@ const SKIP_LINK_ROUTES = [
   "/writing/congratulations-on-your-promotion",
   "/lab",
   "/accessibility",
+  "/work",
+  "/work/fundraise-for-anything",
 ];
 
 for (const path of SKIP_LINK_ROUTES) {
@@ -96,4 +100,22 @@ test("writing index renders published posts without server errors", async ({ pag
   await expect(page.getByText("Application error")).toHaveCount(0);
   await expect(page.getByRole("link", { name: /The Retina image trick everyone forgot/i })).toBeVisible();
   await expect(page.getByText("Live regions are a real-time UI problem")).toHaveCount(0);
+});
+
+test("the published case study is publicly routable", async ({ page }) => {
+  const response = await page.goto("/work/fundraise-for-anything");
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole("heading", { name: /Fundraise for Anything/i })).toBeVisible();
+});
+
+test("work index lists the published case study", async ({ page }) => {
+  const response = await page.goto("/work");
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole("link", { name: /Fundraise for Anything/i })).toBeVisible();
+  await expect(page.getByText("Application error")).toHaveCount(0);
+});
+
+test("an unknown case study returns 404", async ({ page }) => {
+  const response = await page.goto("/work/not-a-real-study");
+  expect(response?.status()).toBe(404);
 });

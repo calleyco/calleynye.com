@@ -9,13 +9,18 @@ uses Next.js App Router, and statically generates public pages. It adds an
 editorial UI and schema without moving content into a hosted database or adding
 client-side JavaScript to public routes.
 
-The CMS is intentionally scoped to writing content first. The public site still
-reads from `src/content/writing/*.mdx`, and the publication gate still lives in
-the app code and `pnpm content:audit`.
+The CMS now manages two collections:
+
+- **`writing`** — essays and long-form content; public routes live at `/writing/[slug]`; preview at `/cms-preview/writing/[slug]`.
+- **`caseStudies`** — work case studies; public routes live at `/work/[slug]`; preview at `/cms-preview/work/[slug]`.
+
+Both collections read from `src/content/<collection>/*.mdx` and are gated by `status` and `pnpm content:audit`. Neither collection publishes draft or review content to production routes.
 
 The writing schema requires publication metadata, validates description quality,
 and includes private `reviewNotes` for editorial context. The public writing
 loader ignores `reviewNotes`, so those notes never render on the site.
+
+The `caseStudies` schema follows the same `status` gate. Case study entries are authored and previewed in Keystatic at `/keystatic`, written to `src/content/caseStudies/*.mdx`, and only `published` entries appear at `/work` and `/work/[slug]`.
 
 ## Local Editing
 
