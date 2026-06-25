@@ -588,6 +588,15 @@ html.light {
     --t-edge: #dff3ec !important;
   }
 
+  // essay-callout--social code: hardcoded #9fe1cb is ~1.05:1 on the light callout
+  // bg (~#bfd5ce). #094e3c on that bg = 6.63:1. Selector must win over the
+  // CSS-Module rule (.writingScope :global .essay-callout--social code) which has
+  // specificity (0,1,1) inside a :global block — html.light nesting adds (0,1,0)
+  // for a total of (0,2,1) which beats the module's (0,1,1). No !important needed.
+  .essay-callout--social code {
+    color: #094e3c;
+  }
+
   // Craft-indicator dot colors — dark enough to pass 4.5:1 on light pastel surfaces
   .ladder-rung[data-craft="full"],
   .two-ladders-legend-item[data-craft="full"] {

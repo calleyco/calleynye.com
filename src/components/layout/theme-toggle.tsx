@@ -70,8 +70,11 @@ export function ThemeToggle(): ReactElement {
       <legend className="sr-only">Theme</legend>
       {THEME_PREFERENCES.map((option) => (
         <label className="tt-option" htmlFor={`theme-${option}`} key={option}>
+          {/* Radio is labeled by its wrapping <label> (htmlFor + id association);
+              jsx-a11y/control-has-associated-label does not recognise the wrapping
+              pattern for radios hidden via sr-only, but the association is valid. */}
+          {/* eslint-disable-next-line jsx-a11y/control-has-associated-label */}
           <input
-            aria-label={LABELS[option]}
             checked={preference === option}
             className="sr-only"
             id={`theme-${option}`}
