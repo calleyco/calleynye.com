@@ -1,8 +1,14 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import type { ReactElement } from "react";
 import { getAllCaseStudyMeta } from "@/lib/case-studies";
 import writingStyles from "../writing/writing.module.scss";
 import styles from "./work.module.scss";
+
+export const metadata: Metadata = {
+  title: "Selected work | Calley Nye",
+  description: "Case studies in prose — real products, real constraints, and what I shipped.",
+};
 
 export default async function WorkIndexPage(): Promise<ReactElement> {
   const studies = await getAllCaseStudyMeta();
