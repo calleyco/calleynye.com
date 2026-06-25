@@ -589,12 +589,12 @@ html.light {
   }
 
   // essay-callout--social code: hardcoded #9fe1cb is ~1.05:1 on the light callout
-  // bg (~#bfd5ce). #094e3c on that bg = 6.63:1. Selector must win over the
-  // CSS-Module rule (.writingScope :global .essay-callout--social code) which has
-  // specificity (0,1,1) inside a :global block — html.light nesting adds (0,1,0)
-  // for a total of (0,2,1) which beats the module's (0,1,1). No !important needed.
+  // bg (~#bfd5ce). #094e3c on that bg = 6.63:1. !important guarantees this wins over
+  // the CSS-Module rule (.writingScope :global .essay-callout--social code) regardless
+  // of bundle source-order — matching the flavor-panel overrides above. axe cannot
+  // score the color-mix() callout bg, so this fix is verified by hand, not the suite.
   .essay-callout--social code {
-    color: #094e3c;
+    color: #094e3c !important;
   }
 
   // Craft-indicator dot colors — dark enough to pass 4.5:1 on light pastel surfaces
