@@ -9,6 +9,7 @@ import {
   resumeSummary,
   speakingEvents,
 } from "@/lib/site-data";
+import { getAllCaseStudyMeta } from "@/lib/case-studies";
 import { getAllWritingMeta } from "@/lib/writing";
 import styles from "./home.module.scss";
 
@@ -34,6 +35,7 @@ function MarqueeTile({ items }: { items: string[] }): ReactElement {
 export default async function Home(): Promise<ReactElement> {
   const posts = await getAllWritingMeta();
   const featuredPosts = posts.slice(0, 4);
+  const caseStudies = await getAllCaseStudyMeta();
 
   return (
     <main className={styles.homeScope} id="main">
@@ -111,9 +113,37 @@ export default async function Home(): Promise<ReactElement> {
         </div>
       </section>
 
+      <section aria-labelledby="work-head" className="work" id="work">
+        <div className="section-header">
+          <p className="section-tag">03 | Selected work</p>
+          <h2 className="section-head" id="work-head">
+            Selected work
+          </h2>
+          <Link className="section-link" href="/work" prefetch={false}>
+            All work -&gt;
+          </Link>
+        </div>
+        <ol className="work-cards">
+          {caseStudies.map((study) => (
+            <li className="work-card" key={study.slug}>
+              <Link className="work-card-link" href={`/work/${study.slug}`} prefetch={false}>
+                <span className="work-card-client">
+                  {study.client} · {study.role} · {study.timeframe}
+                </span>
+                <h3 className="work-card-title">{study.title}</h3>
+                <p className="work-card-dek">{study.description}</p>
+                <span aria-hidden="true" className="work-card-arrow">
+                  -&gt;
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       <section aria-labelledby="writing-head" className="writing" id="writing">
         <div className="section-header">
-          <p className="section-tag">03 | Writing</p>
+          <p className="section-tag">04 | Writing</p>
           <h2 className="section-head" id="writing-head">
             Recent essays
           </h2>
@@ -148,8 +178,24 @@ export default async function Home(): Promise<ReactElement> {
         </ol>
       </section>
 
+      <section aria-labelledby="lab-head" className="lab" id="lab">
+        <p className="section-tag">05 | Lab</p>
+        <h2 className="section-head" id="lab-head">
+          The Lab
+        </h2>
+        {/* TODO(owner): confirm/replace teaser copy in Calley's voice. */}
+        <p className="lab-dek">
+          Research explorations in streaming and real-time accessibility. The first is the Live Region Lab — an
+          instrument for studying how screen readers announce streaming token output, the same UI problem that sits at
+          the center of conversational AI products.
+        </p>
+        <Link className="section-link" href="/lab" prefetch={false}>
+          Enter the lab -&gt;
+        </Link>
+      </section>
+
       <section aria-labelledby="speaking-head" className="speaking" id="speaking">
-        <p className="section-tag">04 | Speaking</p>
+        <p className="section-tag">06 | Speaking</p>
         <h2 className="section-head" id="speaking-head">
           Talks and workshops
         </h2>
@@ -168,7 +214,7 @@ export default async function Home(): Promise<ReactElement> {
 
       <section aria-labelledby="resume-head" className="resume" id="resume">
         <div className="section-header">
-          <p className="section-tag">05 | Resume</p>
+          <p className="section-tag">07 | Resume</p>
           <h2 className="section-head" id="resume-head">
             Resume
           </h2>
@@ -223,7 +269,7 @@ export default async function Home(): Promise<ReactElement> {
       </section>
 
       <section aria-labelledby="contact-head" className="contact" id="contact">
-        <p className="section-tag">06 | Contact</p>
+        <p className="section-tag">08 | Contact</p>
         <h2 className="contact-head" id="contact-head">
           Say hello.
         </h2>
