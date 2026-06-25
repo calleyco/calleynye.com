@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
 import { MotionToggle } from "@/components/layout/motion-toggle";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 export function SiteHeader(): ReactElement {
   return (
@@ -34,6 +35,7 @@ export function SiteHeader(): ReactElement {
         </Link>
       </nav>
       <MotionToggle />
+      <ThemeToggle />
     </header>
   );
 }
