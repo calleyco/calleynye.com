@@ -18,6 +18,28 @@
   --demo-accent-ink: var(--accent-ink);
 }
 
+:root {
+  color-scheme: dark;
+}
+
+html.light {
+  --bg: #f7f2f6;
+  --bg-2: #efe7ef;
+  --fg: #1c1322;
+  --fg-mute: #5e5266;
+  --fg-dim: #6e6076;
+  --rule: #ddd0dd;
+  --accent: #c2186b;
+  --accent-ink: #ffffff;
+
+  --demo-good: #0f6e56;
+  --demo-good-ink: #eafff7;
+  --demo-bad: #b23b3b;
+  --demo-bad-soft: #9a5a5a;
+
+  color-scheme: light;
+}
+
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--fg);
@@ -410,6 +432,12 @@ button:focus-visible {
 
   .topnav {
     margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .topnav {
+    display: none;
   }
 }
 
