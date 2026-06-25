@@ -429,5 +429,69 @@
   }
 }
 
+.work-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.work-card {
+  background: color-mix(in oklab, var(--fg), transparent 92%);
+}
+
+.work-card-link {
+  position: relative;
+  display: block;
+  padding: 26px 4px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.work-card-client {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+.work-card-title {
+  margin: 10px 0 8px;
+  font-size: clamp(20px, 2.6vw, 26px);
+  line-height: 1.25;
+}
+
+.work-card-link:hover .work-card-title {
+  color: var(--accent);
+}
+
+.work-card-dek {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--fg-mute);
+}
+
+.work-card-arrow {
+  position: absolute;
+  top: 26px;
+  right: 4px;
+  color: var(--accent);
+}
+
+.lab-dek {
+  margin: 0 0 1.25rem;
+  max-width: 60ch;
+  color: var(--fg-mute);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .work-card-title {
+    transition: color 0.15s ease;
+  }
+}
+
   }
 }

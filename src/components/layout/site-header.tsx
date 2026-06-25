@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactElement } from "react";
 import { MotionToggle } from "@/components/layout/motion-toggle";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 export function SiteHeader(): ReactElement {
   return (
@@ -11,24 +12,30 @@ export function SiteHeader(): ReactElement {
           <span className="bm-dot" />
           <span className="bm-dot" />
         </span>
-        <span className="brand-name">CALLEY.NYE</span>
+        <span className="brand-name">CALLEY NYE</span>
       </Link>
       <nav aria-label="Primary" className="topnav">
-        <Link href="/writing" prefetch={false}>
+        <Link href="/#work" prefetch={false}>
+          Work
+        </Link>
+        <Link href="/#writing" prefetch={false}>
           Writing
         </Link>
-        <Link href="/lab" prefetch={false}>
+        <Link href="/#lab" prefetch={false}>
           Lab
         </Link>
         <Link href="/#speaking" prefetch={false}>
           Speaking
         </Link>
-        <Link href="/accessibility" prefetch={false}>
-          Accessibility
+        <Link href="/#resume" prefetch={false}>
+          Resume
         </Link>
-        <a href="/resume.pdf">Resume PDF</a>
+        <Link href="/#contact" prefetch={false}>
+          Contact
+        </Link>
       </nav>
       <MotionToggle />
+      <ThemeToggle />
     </header>
   );
 }
