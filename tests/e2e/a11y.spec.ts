@@ -119,3 +119,61 @@ test("an unknown case study returns 404", async ({ page }) => {
   const response = await page.goto("/work/not-a-real-study");
   expect(response?.status()).toBe(404);
 });
+
+const LIGHT_ROUTES = [
+  "/",
+  "/work",
+  "/work/fundraise-for-anything",
+  "/writing",
+  "/writing/compressive-images-revisited",
+  "/lab",
+  "/accessibility",
+];
+
+for (const path of LIGHT_ROUTES) {
+  test(`${path} has no axe violations in light theme @a11y`, async ({ page }) => {
+    await page.addInitScript(() => {
+      try {
+        localStorage.setItem("calley.theme", "light");
+      } catch {
+        // ignore
+      }
+    });
+    await page.goto(path);
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+}
+
+test("theme toggle switches to light and persists across reload @a11y", async ({ page }) => {
+  await page.goto("/");
+  // The radio is sr-only; click its wrapping label to activate it
+  await page.locator("label[for='theme-light']").click();
+  await expect(page.locator("html")).toHaveClass(/light/);
+
+  await page.reload();
+  await expect(page.locator("html")).toHaveClass(/light/);
+  await expect(page.getByRole("radio", { name: "Light" })).toBeChecked();
+});
+
+test("primary section nav is hidden on mobile; skip link still works @a11y", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 800 });
+  await page.goto("/");
+
+  await expect(page.getByRole("link", { name: "Work", exact: true })).toBeHidden();
+
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("link", { name: /skip to content/i })).toBeFocused();
+});
+
+test("resume PDF links open in a new tab with an accessible cue @a11y", async ({ page }) => {
+  await page.goto("/");
+  // Verify the footer resume link (exact name) carries the required attributes
+  const footerLink = page.getByRole("link", { name: "Resume PDF (opens in new tab)", exact: true });
+  await expect(footerLink).toHaveAttribute("target", "_blank");
+  await expect(footerLink).toHaveAttribute("rel", /noopener/);
+  // Also verify the hero CTA link has the same attributes
+  const heroLink = page.getByRole("link", { name: /^Download resume PDF/i });
+  await expect(heroLink).toHaveAttribute("target", "_blank");
+  await expect(heroLink).toHaveAttribute("rel", /noopener/);
+});

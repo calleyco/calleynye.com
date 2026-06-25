@@ -27,14 +27,14 @@ html.light {
   --bg-2: #efe7ef;
   --fg: #1c1322;
   --fg-mute: #5e5266;
-  --fg-dim: #6e6076;
+  --fg-dim: #635870;
   --rule: #ddd0dd;
-  --accent: #c2186b;
+  --accent: #9c1355;
   --accent-ink: #ffffff;
 
-  --demo-good: #0f6e56;
+  --demo-good: #094e3c;
   --demo-good-ink: #eafff7;
-  --demo-bad: #b23b3b;
+  --demo-bad: #9e2f2f;
   --demo-bad-soft: #9a5a5a;
 
   color-scheme: light;
@@ -492,4 +492,128 @@ button:focus-visible {
 .rm *::after {
   animation: none !important;
   transition: none !important;
+}
+
+// ─── Essay flavor-panel light-mode overrides ──────────────────────────────────
+// The model-explorer, title-scatter, and two-ladders panels use hardcoded dark
+// palette tokens (--m-surface, --f-surface, --t-surface etc.) that don't adapt
+// to the page theme. These global overrides re-token them to light pastels so
+// every text element inside passes WCAG AA contrast in both dark and light themes.
+// Specificity must beat the writing.module.scss rules, so we use
+// html.light [data-*] which adds the element selector to the chain.
+
+// Essay flavor-panel light-mode overrides.
+// The model-explorer, title-scatter, and two-ladders panels use hardcoded dark
+// palette tokens set in writing.module.scss with specificity (0,2,0). These
+// global rules need to win in light mode, so we use the !important flag on
+// CSS custom properties — the only mechanism that overrides specificity for
+// custom properties without adding hashed scoping that globals.scss can't know.
+html.light {
+  // .model-tab-era uses opacity:0.75 for de-emphasis. At 75% opacity no
+  // foreground color can reach 4.5:1 on the light bg (luminance math proves
+  // the constraint is impossible). Full opacity is sufficient; fg-dim already
+  // provides the visual hierarchy difference without opacity.
+  .model-tab-era {
+    opacity: 1;
+    color: var(--fg-dim);
+  }
+
+  // Model-explorer panels (disability-models essay).
+  // --m-fg must pass 4.5:1 on both --m-surface and the badge bg
+  // (color-mix(in oklab, --m-surface, --m-edge 45%)).
+  .model-tab[data-model="eugenics"],
+  .model-panel[data-model="eugenics"] {
+    --m-fg: #801818 !important;
+    --m-surface: #fdf0f0 !important;
+    --m-edge: #d44040 !important;
+  }
+
+  .model-tab[data-model="medical"],
+  .model-panel[data-model="medical"] {
+    --m-fg: #7a4f00 !important;
+    --m-surface: #fef5e8 !important;
+    --m-edge: #c07820 !important;
+  }
+
+  .model-tab[data-model="charity"],
+  .model-panel[data-model="charity"] {
+    --m-fg: #701448 !important;
+    --m-surface: #fdf0f5 !important;
+    --m-edge: #b84470 !important;
+  }
+
+  .model-tab[data-model="social"],
+  .model-panel[data-model="social"] {
+    --m-fg: #094838 !important;
+    --m-surface: #edf8f4 !important;
+    --m-edge: #1a7a60 !important;
+  }
+
+  .model-tab[data-model="justice"],
+  .model-panel[data-model="justice"] {
+    --m-fg: #332ca0 !important;
+    --m-surface: #f2f0fc !important;
+    --m-edge: #5c53c0 !important;
+  }
+
+  // Title-scatter panels (ui-engineer essay).
+  // --f-fg must pass 4.5:1 on both --f-surface and the badge bg.
+  .title-scatter-tab[data-flavor="implementation"],
+  .title-scatter-panel[data-flavor="implementation"],
+  .title-scatter-legend-item[data-flavor="implementation"] {
+    --f-fg: #7a4f00 !important;
+    --f-surface: #fef5e8 !important;
+    --f-edge: #c07820 !important;
+  }
+
+  .title-scatter-tab[data-flavor="systems"],
+  .title-scatter-panel[data-flavor="systems"],
+  .title-scatter-legend-item[data-flavor="systems"] {
+    --f-fg: #094838 !important;
+    --f-surface: #edf8f4 !important;
+    --f-edge: #1a7a60 !important;
+  }
+
+  .title-scatter-tab[data-flavor="craft"],
+  .title-scatter-panel[data-flavor="craft"],
+  .title-scatter-legend-item[data-flavor="craft"] {
+    --f-fg: #332ca0 !important;
+    --f-surface: #f2f0fc !important;
+    --f-edge: #5c53c0 !important;
+  }
+
+  // Two-ladders columns (ui-engineer essay).
+  // --t-fg must pass 4.5:1 on both --t-surface and on --t-edge (terminal bg).
+  .ladder-column[data-track="eng"] {
+    --t-fg: #801818 !important;
+    --t-surface: #fdf0f0 !important;
+    --t-edge: #fde0e0 !important;
+  }
+
+  .ladder-column[data-track="design"] {
+    --t-fg: #094838 !important;
+    --t-surface: #edf8f4 !important;
+    --t-edge: #dff3ec !important;
+  }
+
+  // Craft-indicator dot colors — dark enough to pass 4.5:1 on light pastel surfaces
+  .ladder-rung[data-craft="full"],
+  .two-ladders-legend-item[data-craft="full"] {
+    --c-dot: #0f7a65 !important;
+  }
+
+  .ladder-rung[data-craft="fading"],
+  .two-ladders-legend-item[data-craft="fading"] {
+    --c-dot: #8c6200 !important;
+  }
+
+  .ladder-rung[data-craft="shed"],
+  .two-ladders-legend-item[data-craft="shed"] {
+    --c-dot: #942566 !important;
+  }
+
+  .ladder-rung[data-craft="gone"],
+  .two-ladders-legend-item[data-craft="gone"] {
+    --c-dot: #b82020 !important;
+  }
 }
