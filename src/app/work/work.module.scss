@@ -1,0 +1,147 @@
+.workScope {
+  :global {
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1px;
+      margin: 2.5rem 0 0;
+      border: 1px solid color-mix(in oklab, var(--fg), transparent 88%);
+      background: color-mix(in oklab, var(--fg), transparent 88%);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .stat {
+      margin: 0;
+      padding: 22px 20px;
+      background: var(--bg);
+    }
+
+    .stat-value {
+      font-family: var(--font-instrument-serif), Georgia, serif;
+      font-size: 30px;
+      line-height: 1;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      margin: 8px 0 0;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--fg-mute);
+    }
+
+    .work-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .work-item {
+      background: color-mix(in oklab, var(--fg), transparent 92%);
+    }
+
+    .work-link {
+      display: block;
+      padding: 28px 4px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .work-link:hover .work-title {
+      color: var(--accent);
+    }
+
+    .work-client {
+      font-family: var(--font-geist-mono), ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-dim);
+    }
+
+    .work-title {
+      margin: 10px 0 8px;
+      font-size: clamp(22px, 3vw, 30px);
+      line-height: 1.2;
+      transition: color 0.15s ease;
+    }
+
+    .work-dek {
+      margin: 0;
+      color: var(--fg-mute);
+      max-width: 60ch;
+    }
+
+    // CaseStudyVideo (Task 2) emits these bare class names; they live here
+    // because case studies own them and both pages that use the component
+    // (detail, preview) carry .workScope.
+    .cs-video {
+      margin: 0 0 2.5rem;
+    }
+
+    .cs-video-frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .cs-video-iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .cs-video-play {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--fg);
+    }
+
+    .cs-video-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--accent-ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cs-video-place {
+      position: absolute;
+      bottom: 14px;
+      left: 16px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .cs-video-caption {
+      margin-top: 14px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--fg-mute);
+    }
+  }
+}
