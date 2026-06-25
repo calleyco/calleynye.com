@@ -11,7 +11,7 @@ export function SiteHeader(): ReactElement {
           <span className="bm-dot" />
           <span className="bm-dot" />
         </span>
-        <span className="brand-name">CALLEY.NYE</span>
+        <span className="brand-name">CALLEY NYE</span>
       </Link>
       <nav aria-label="Primary" className="topnav">
         <Link href="/writing" prefetch={false}>
