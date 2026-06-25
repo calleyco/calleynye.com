@@ -15,7 +15,8 @@ const ROUTES_TO_SCAN = [
 ];
 
 for (const route of ROUTES_TO_SCAN) {
-  test(`${route.name} has no axe violations @a11y`, async ({ page }) => {
+  test(`${route.name} has no axe violations in dark theme @a11y`, async ({ page }) => {
+    await page.emulateMedia({ colorScheme: "dark" });
     await page.goto(route.path);
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
@@ -126,6 +127,8 @@ const LIGHT_ROUTES = [
   "/work/fundraise-for-anything",
   "/writing",
   "/writing/compressive-images-revisited",
+  "/writing/which-model-of-disability-is-your-ai-product-operating-from",
+  "/writing/congratulations-on-your-promotion",
   "/lab",
   "/accessibility",
 ];

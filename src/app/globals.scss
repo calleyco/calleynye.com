@@ -494,14 +494,6 @@ button:focus-visible {
   transition: none !important;
 }
 
-// ─── Essay flavor-panel light-mode overrides ──────────────────────────────────
-// The model-explorer, title-scatter, and two-ladders panels use hardcoded dark
-// palette tokens (--m-surface, --f-surface, --t-surface etc.) that don't adapt
-// to the page theme. These global overrides re-token them to light pastels so
-// every text element inside passes WCAG AA contrast in both dark and light themes.
-// Specificity must beat the writing.module.scss rules, so we use
-// html.light [data-*] which adds the element selector to the chain.
-
 // Essay flavor-panel light-mode overrides.
 // The model-explorer, title-scatter, and two-ladders panels use hardcoded dark
 // palette tokens set in writing.module.scss with specificity (0,2,0). These
