@@ -36,7 +36,8 @@ Open the Keystatic admin route:
 http://localhost:3000/keystatic
 ```
 
-Edits are written to the MDX files in `src/content/writing/`. Review those file
+Edits are written to the MDX files in the respective collection directory
+(`src/content/writing/` or `src/content/case-studies/`). Review those file
 changes in Git before committing.
 
 ## Publication States
