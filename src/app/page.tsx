@@ -202,9 +202,14 @@ export default async function Home(): Promise<ReactElement> {
                   {event.url ? (
                     <>
                       {" "}
-                      <a className="speaking-link" href={event.url}>
+                      <a
+                        className="speaking-link"
+                        href={event.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Video
-                        <span className="sr-only">: {event.talk}, on YouTube</span>{" "}
+                        <span className="sr-only">: {event.talk}, on YouTube (opens in new tab)</span>{" "}
                         <span aria-hidden="true">-&gt;</span>
                       </a>
                     </>
