@@ -198,14 +198,17 @@ export default async function Home(): Promise<ReactElement> {
               <div>
                 <h3>{event.event}</h3>
                 <p>
+                  {event.talk}
                   {event.url ? (
-                    <a href={event.url}>
-                      {event.talk}
-                      <span className="sr-only"> (video recording on YouTube)</span>
-                    </a>
-                  ) : (
-                    event.talk
-                  )}
+                    <>
+                      {" "}
+                      <a className="speaking-link" href={event.url}>
+                        Video
+                        <span className="sr-only">: {event.talk}, on YouTube</span>{" "}
+                        <span aria-hidden="true">-&gt;</span>
+                      </a>
+                    </>
+                  ) : null}
                 </p>
               </div>
             </li>
