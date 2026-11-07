@@ -14,29 +14,17 @@
   border-top: 0;
 }
 
+// The row is the positioning context for the link's stretched ::after.
 .item {
+  position: relative;
+  padding: clamp(28px, 3.4vw, 44px) 56px clamp(28px, 3.4vw, 44px) 4px;
   border-bottom: 1px solid var(--rule);
 }
 
-.link {
-  position: relative;
-  display: block;
-  padding: clamp(28px, 3.4vw, 44px) 56px clamp(28px, 3.4vw, 44px) 4px;
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.2s ease;
-}
-
-.link:hover {
+// Hover and keyboard focus get the same treatment.
+.item:hover,
+.item:focus-within {
   background: color-mix(in oklab, var(--accent) 5%, transparent);
-}
-
-// Rows span the full section width, and home sections use content-visibility:
-// auto (paint containment), which clips anything drawn outside them — the
-// global 4px outset ring lost its left and right edges. Inset it instead.
-.link:focus-visible {
-  outline-offset: -2px;
-  border-radius: 6px;
 }
 
 .eyebrow {
@@ -75,11 +63,36 @@
   line-height: 1.06;
   letter-spacing: -0.02em;
   text-wrap: balance;
-  transition: color 0.15s ease;
 }
 
-.link:hover .title {
+.item:hover .title,
+.item:focus-within .title {
   color: var(--accent);
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Stretch the link's hit area over the whole row.
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 6px;
+}
+
+// The focus ring is drawn on the stretched ::after so it outlines the whole
+// row. It sits inset because home sections use content-visibility: auto, whose
+// paint containment clips anything drawn outside the section.
+.link:focus-visible {
+  outline: none;
+}
+
+.link:focus-visible::after {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
 }
 
 .dek {
@@ -97,15 +110,29 @@
   font-size: 22px;
   line-height: 1;
   color: var(--accent);
-  transition: transform 0.2s ease;
 }
 
-.link:hover .arrow {
+.item:hover .arrow,
+.item:focus-within .arrow {
   transform: translateX(5px);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .item {
+    transition: background 0.2s ease;
+  }
+
+  .title {
+    transition: color 0.15s ease;
+  }
+
+  .arrow {
+    transition: transform 0.2s ease;
+  }
+}
+
 @media (max-width: 720px) {
-  .link {
+  .item {
     padding-right: 36px;
   }
 

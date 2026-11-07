@@ -46,9 +46,12 @@ html.light {
   --accent-ink: #ffffff;
   --glow: var(--accent);
   --shadow-glow: 0 18px 48px -26px color-mix(in oklab, var(--accent) 36%, transparent);
+  // Softer than the design file's 15% / 10%: at full strength the violet pool
+  // pulled --fg-dim to ~4.4:1 near the top-left. axe can't see a pseudo-element
+  // background, so this is verified by sampling rendered pixels instead.
   --bloom:
-    radial-gradient(120% 80% at 6% -14%, color-mix(in oklab, var(--accent) 15%, transparent), transparent 52%),
-    radial-gradient(100% 74% at 106% 0%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 50%);
+    radial-gradient(120% 80% at 6% -14%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 52%),
+    radial-gradient(100% 74% at 106% 0%, color-mix(in oklab, var(--accent) 7%, transparent), transparent 50%);
   --grain-opacity: 0.035;
   --grain-blend: multiply;
 
@@ -358,8 +361,10 @@ html.light .topbar {
   display: block;
 }
 
-.tt-option {
-  transition: background 0.18s ease, color 0.18s ease;
+@media (prefers-reduced-motion: no-preference) {
+  .tt-option {
+    transition: background 0.18s ease, color 0.18s ease;
+  }
 }
 
 .tt-option:hover {

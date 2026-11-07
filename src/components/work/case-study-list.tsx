@@ -10,6 +10,9 @@ interface CaseStudyListProps {
   headingLevel: 2 | 3;
 }
 
+// Only the title is the link, so its accessible name is just the title — not
+// client, role, years, title and summary run together. The link's ::after is
+// stretched over the whole row, so the full row stays clickable.
 export function CaseStudyList({ studies, headingLevel }: CaseStudyListProps): ReactElement {
   const Heading = headingLevel === 2 ? "h2" : "h3";
 
@@ -17,21 +20,23 @@ export function CaseStudyList({ studies, headingLevel }: CaseStudyListProps): Re
     <ol className={styles.list}>
       {studies.map((study) => (
         <li className={styles.item} key={study.slug}>
-          <Link className={styles.link} href={`/work/${study.slug}`} prefetch={false}>
-            {/* Separator dots are drawn in CSS after each part, so when the line
-                wraps a dot ends a line instead of starting one. The {" "} spaces
-                keep the text readable for screen readers and copy-paste. */}
-            <span className={styles.eyebrow}>
-              <span className={styles.part}>{study.client}</span>{" "}
-              <span className={styles.part}>{study.role}</span>{" "}
-              <span className={`${styles.part} ${styles.years}`}>{study.timeframe}</span>
-            </span>
-            <Heading className={styles.title}>{study.title}</Heading>
-            <p className={styles.dek}>{study.description}</p>
-            <span aria-hidden="true" className={styles.arrow}>
-              -&gt;
-            </span>
-          </Link>
+          {/* Separator dots are drawn in CSS after each part, so when the line
+              wraps a dot ends a line instead of starting one. The {" "} spaces
+              keep the text readable for screen readers and copy-paste. */}
+          <p className={styles.eyebrow}>
+            <span className={styles.part}>{study.client}</span>{" "}
+            <span className={styles.part}>{study.role}</span>{" "}
+            <span className={`${styles.part} ${styles.years}`}>{study.timeframe}</span>
+          </p>
+          <Heading className={styles.title}>
+            <Link className={styles.link} href={`/work/${study.slug}`} prefetch={false}>
+              {study.title}
+            </Link>
+          </Heading>
+          <p className={styles.dek}>{study.description}</p>
+          <span aria-hidden="true" className={styles.arrow}>
+            -&gt;
+          </span>
         </li>
       ))}
     </ol>

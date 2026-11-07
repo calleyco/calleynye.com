@@ -77,12 +77,25 @@
       color: var(--fg);
     }
 
-    // Darkening scrim over the poster so the play button and label read on any frame.
+    // The button fills a frame with overflow: hidden, which clipped the global
+    // 4px outset focus ring entirely, so the ring is inset. It is two-tone
+    // (white outline, near-black band inside it) because it sits on an
+    // arbitrary video frame: the light theme's violet accent is only ~3:1 on
+    // black, and any single color fails on some poster.
+    .cs-video-play:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: -3px;
+      box-shadow: inset 0 0 0 6px #0c0810;
+    }
+
+    // Darkening scrim over the poster so the play button and label read on any
+    // frame. The bottom stop is dark enough for white label text to clear 4.5:1
+    // even over an all-white poster.
     .cs-video-play::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(rgba(12, 8, 16, 0.1), rgba(12, 8, 16, 0.55));
+      background: linear-gradient(rgba(12, 8, 16, 0.1), rgba(12, 8, 16, 0.7));
     }
 
     .cs-video-icon {
@@ -97,7 +110,12 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
-      transition: transform 0.2s ease;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .cs-video-icon {
+        transition: transform 0.2s ease;
+      }
     }
 
     .cs-video-play:hover .cs-video-icon {
