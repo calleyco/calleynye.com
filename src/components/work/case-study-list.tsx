@@ -35,7 +35,7 @@ export function CaseStudyList({ studies, headingLevel }: CaseStudyListProps): Re
           </Heading>
           <p className={styles.dek}>{study.description}</p>
           <span aria-hidden="true" className={styles.arrow}>
-            -&gt;
+            →
           </span>
         </li>
       ))}

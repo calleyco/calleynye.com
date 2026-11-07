@@ -46,7 +46,8 @@ export const speakingEvents: SpeakingEvent[] = [
   {
     event: "Crypto Invest Summit",
     year: "2018",
-    talk: "Women of Crypto Track — Marketing Workshop panelist",
+    talk: "Women of Crypto Track — Interactive Marketing Workshop panelist",
+    url: "https://www.youtube.com/watch?v=wICOxNCjrZ0",
   },
   {
     event: "McKinsey — What is a Disability?",

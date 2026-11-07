@@ -63,7 +63,7 @@ export function WritingFilters({ posts }: WritingFiltersProps): ReactElement {
                 </div>
               </div>
               <span aria-hidden="true" className="art-arrow">
-                -&gt;
+                →
               </span>
             </Link>
           </li>

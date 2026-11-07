@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Arrow } from "@/components/ui/arrow";
 import type { ReactElement } from "react";
 import styles from "./writing/writing.module.scss";
 
@@ -8,7 +9,7 @@ export default function NotFound(): ReactElement {
       <h1 className="section-head">Page not found</h1>
       <p>The page you requested does not exist.</p>
       <Link className="section-link" href="/" prefetch={false}>
-        Return home -&gt;
+        Return home <Arrow />
       </Link>
     </main>
   );
