@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getAllCaseStudyMeta, getCaseStudyBySlug } from "@/lib/case-studies";
+import { compareCaseStudies, getAllCaseStudyMeta, getCaseStudyBySlug } from "@/lib/case-studies";
 import { isCaseStudyTag } from "@/lib/case-study-tags";
 
 describe("case study reader", () => {
@@ -26,6 +26,31 @@ describe("case study reader", () => {
         expect(isCaseStudyTag(tag), `"${tag}" in ${study.slug} is not a known tag`).toBe(true);
       }
     }
+  });
+
+  it("lists studies in their display order, sizing recommender first", async () => {
+    const studies = await getAllCaseStudyMeta();
+    expect(studies.map((s) => s.slug).slice(0, 2)).toEqual(["ai-sizing-recommender", "fundraise-for-anything"]);
+  });
+
+  it("sorts numbered studies first, then unnumbered ones by slug", () => {
+    const base = {
+      title: "t",
+      description: "d",
+      client: "c",
+      role: "r",
+      timeframe: "y",
+      tags: [],
+      stats: [],
+      status: "published" as const,
+    };
+    const studies = [
+      { ...base, slug: "zeta", order: null },
+      { ...base, slug: "beta", order: 2 },
+      { ...base, slug: "alpha", order: null },
+      { ...base, slug: "gamma", order: 1 },
+    ];
+    expect([...studies].sort(compareCaseStudies).map((s) => s.slug)).toEqual(["gamma", "beta", "alpha", "zeta"]);
   });
 
   it("returns null for an unknown slug", async () => {

@@ -1,85 +1,39 @@
 .workScope {
   :global {
+    // Stat tiles: a ruled grid of bg-2 tiles; the 1px gap shows the rule color.
     .stat-row {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 1px;
-      margin: 2.5rem 0 0;
-      border: 1px solid color-mix(in oklab, var(--fg), transparent 88%);
-      background: color-mix(in oklab, var(--fg), transparent 88%);
-      border-radius: 12px;
+      margin: 2.6rem 0 0;
+      border: 1px solid var(--rule);
+      background: var(--rule);
+      border-radius: 14px;
       overflow: hidden;
     }
 
     .stat {
       margin: 0;
-      padding: 22px 20px;
-      background: var(--bg);
+      padding: 26px 22px;
+      background: var(--bg-2);
     }
 
     .stat-value {
       font-family: var(--font-instrument-serif), Georgia, serif;
-      font-size: 30px;
+      font-size: 40px;
       line-height: 1;
+      letter-spacing: -0.01em;
       color: var(--accent);
     }
 
     .stat-label {
-      margin: 8px 0 0;
-      font-size: 13px;
-      line-height: 1.4;
-      color: var(--fg-mute);
-    }
-
-    .work-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-    }
-
-    .work-item {
-      background: color-mix(in oklab, var(--fg), transparent 92%);
-    }
-
-    .work-link {
-      display: block;
-      padding: 28px 4px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .work-link:hover .work-title,
-    .work-link:focus-visible .work-title {
-      color: var(--accent);
-    }
-
-    .work-client {
+      margin: 12px 0 0;
       font-family: var(--font-geist-mono), ui-monospace, monospace;
-      font-size: 12px;
-      letter-spacing: 0.08em;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      line-height: 1.45;
       text-transform: uppercase;
-      color: var(--fg-dim);
-    }
-
-    .work-title {
-      margin: 10px 0 8px;
-      font-size: clamp(22px, 3vw, 30px);
-      line-height: 1.2;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-      .work-title {
-        transition: color 0.15s ease;
-      }
-    }
-
-    .work-dek {
-      margin: 0;
       color: var(--fg-mute);
-      max-width: 60ch;
     }
 
     // CaseStudyVideo (Task 2) emits these bare class names; they live here
@@ -93,7 +47,8 @@
       position: relative;
       aspect-ratio: 16 / 9;
       width: 100%;
-      border-radius: 12px;
+      border-radius: 14px;
+      border: 1px solid var(--rule);
       overflow: hidden;
       background: #000;
     }
@@ -122,32 +77,55 @@
       color: var(--fg);
     }
 
+    // Darkening scrim over the poster so the play button and label read on any frame.
+    .cs-video-play::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(12, 8, 16, 0.1), rgba(12, 8, 16, 0.55));
+    }
+
     .cs-video-icon {
-      width: 72px;
-      height: 72px;
+      position: relative;
+      z-index: 2;
+      width: 76px;
+      height: 76px;
       border-radius: 50%;
       background: var(--accent);
       color: var(--accent-ink);
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 10px 34px rgba(0, 0, 0, 0.45);
+      transition: transform 0.2s ease;
+    }
+
+    .cs-video-play:hover .cs-video-icon {
+      transform: scale(1.07);
     }
 
     .cs-video-place {
       position: absolute;
+      z-index: 2;
       bottom: 14px;
       left: 16px;
       color: #fff;
-      font-size: 13px;
-      font-weight: 500;
-      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+      font-family: var(--font-geist-mono), ui-monospace, monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
     }
 
     .cs-video-caption {
-      margin-top: 14px;
-      font-size: 14px;
-      line-height: 1.7;
+      margin-top: 16px;
+      font-size: 15px;
+      line-height: 1.65;
       color: var(--fg-mute);
+    }
+
+    .cs-video-caption strong {
+      color: var(--fg);
+      font-weight: 600;
     }
 
     // BeforeAfter emits these. Same placement rule as .cs-video above.

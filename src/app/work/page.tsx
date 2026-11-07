@@ -1,6 +1,6 @@
-import Link from "next/link";
 import type { Metadata } from "next";
 import type { ReactElement } from "react";
+import { CaseStudyList } from "@/components/work/case-study-list";
 import { getAllCaseStudyMeta } from "@/lib/case-studies";
 import writingStyles from "../writing/writing.module.scss";
 import styles from "./work.module.scss";
@@ -21,19 +21,7 @@ export default async function WorkIndexPage(): Promise<ReactElement> {
         </h1>
         <p>Case studies in prose. Each one is a real product, a real constraint, and what I shipped.</p>
       </section>
-      <ol className="work-list">
-        {studies.map((study) => (
-          <li className="work-item" key={study.slug}>
-            <Link className="work-link" href={`/work/${study.slug}`} prefetch={false}>
-              <span className="work-client">
-                {study.client} · {study.timeframe}
-              </span>
-              <h2 className="work-title">{study.title}</h2>
-              <p className="work-dek">{study.description}</p>
-            </Link>
-          </li>
-        ))}
-      </ol>
+      <CaseStudyList headingLevel={2} studies={studies} />
     </main>
   );
 }

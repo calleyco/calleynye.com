@@ -233,6 +233,11 @@ export default config({
         client: fields.text({ label: "Client", validation: { isRequired: true } }),
         role: fields.text({ label: "Role", validation: { isRequired: true } }),
         timeframe: fields.text({ label: "Timeframe", description: 'e.g. "2013–2016"', validation: { isRequired: true } }),
+        order: fields.integer({
+          label: "Display order",
+          description: "Position on the home page and /work. 1 shows first. Leave empty to list after numbered studies.",
+          validation: { min: 1 },
+        }),
         tags: fields.multiselect({ label: "Tags", options: [...caseStudyTagOptions], defaultValue: [] }),
         stats: fields.array(
           fields.object({

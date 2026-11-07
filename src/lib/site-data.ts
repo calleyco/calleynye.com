@@ -26,6 +26,9 @@ export interface ResumeEducation {
 export const centralThesis =
   "AI-assisted development is the leverage point that finally makes inclusive engineering the path of least resistance rather than the path of most resistance.";
 
+// Hero availability pill. Wording is a placeholder pending Calley's pick.
+export const availabilityStatus = "Available — for the right role";
+
 export const speakingEvents: SpeakingEvent[] = [
   {
     event: "JS.LA",

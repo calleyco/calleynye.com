@@ -30,6 +30,9 @@ export interface CaseStudyFrontmatter {
   tags: string[];
   stats: CaseStudyStat[];
   status: "draft" | "review" | "published";
+  // Display position on the home page and /work. Lower comes first; studies
+  // without one follow, alphabetically by slug.
+  order: number | null;
 }
 
 export type CaseStudyMeta = CaseStudyFrontmatter;
@@ -62,6 +65,11 @@ function parseStats(value: unknown): CaseStudyStat[] | null {
 function assertFrontmatter(slug: string, data: Record<string, unknown>): CaseStudyFrontmatter {
   const { title, slug: frontmatterSlug, description, client, role, timeframe, tags, status } = data;
   const stats = parseStats(data.stats);
+  const rawOrder = data.order;
+  const order = typeof rawOrder === "number" && Number.isInteger(rawOrder) ? rawOrder : null;
+  if (rawOrder !== undefined && rawOrder !== null && order === null) {
+    throw new Error(`Invalid order in ${slug}.mdx: must be a whole number`);
+  }
 
   if (
     typeof title !== "string" ||
@@ -79,7 +87,20 @@ function assertFrontmatter(slug: string, data: Record<string, unknown>): CaseStu
     throw new Error(`Invalid frontmatter in ${slug}.mdx`);
   }
 
-  return { title, slug: frontmatterSlug, description, client, role, timeframe, tags, stats, status };
+  return { title, slug: frontmatterSlug, description, client, role, timeframe, tags, stats, status, order };
+}
+
+export function compareCaseStudies(left: CaseStudyMeta, right: CaseStudyMeta): number {
+  if (left.order !== null && right.order !== null && left.order !== right.order) {
+    return left.order - right.order;
+  }
+  if (left.order !== null && right.order === null) {
+    return -1;
+  }
+  if (left.order === null && right.order !== null) {
+    return 1;
+  }
+  return left.slug.localeCompare(right.slug);
 }
 
 export async function getAllCaseStudyMeta(): Promise<CaseStudyMeta[]> {
@@ -95,7 +116,7 @@ export async function getAllCaseStudyMeta(): Promise<CaseStudyMeta[]> {
     }),
   );
 
-  return meta.filter((study) => study.status === "published").sort((left, right) => left.slug.localeCompare(right.slug));
+  return meta.filter((study) => study.status === "published").sort(compareCaseStudies);
 }
 
 export async function getCaseStudyBySlug(

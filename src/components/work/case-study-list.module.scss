@@ -1,0 +1,115 @@
+// Case study rows: one full-width row per study, ruled like the essay list.
+// Shared by the home page's Selected work section and the /work index so the
+// two always render identically.
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+
+// On the home page the section header already draws the rule above the list.
+:global(.section-header) + .list {
+  border-top: 0;
+}
+
+.item {
+  border-bottom: 1px solid var(--rule);
+}
+
+.link {
+  position: relative;
+  display: block;
+  padding: clamp(28px, 3.4vw, 44px) 56px clamp(28px, 3.4vw, 44px) 4px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s ease;
+}
+
+.link:hover {
+  background: color-mix(in oklab, var(--accent) 5%, transparent);
+}
+
+// Rows span the full section width, and home sections use content-visibility:
+// auto (paint containment), which clips anything drawn outside them — the
+// global 4px outset ring lost its left and right edges. Inset it instead.
+.link:focus-visible {
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+
+.eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 16px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--fg-mute);
+}
+
+// The dot is decorative: the empty alt text after "/" keeps screen readers
+// from announcing it. The first declaration is the fallback for browsers
+// without alt-text support for generated content.
+.part:not(:last-child)::after {
+  content: "·";
+  content: "·" / "";
+  margin-left: 9px;
+  color: var(--fg-dim);
+}
+
+.years {
+  color: var(--accent);
+}
+
+.title {
+  margin: 0 0 14px;
+  // em, not ch: Instrument Serif is condensed, so 30ch wrapped at ~460px.
+  max-width: 18em;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-size: clamp(28px, 3.4vw, 46px);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  transition: color 0.15s ease;
+}
+
+.link:hover .title {
+  color: var(--accent);
+}
+
+.dek {
+  margin: 0;
+  max-width: 60ch;
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--fg-mute);
+}
+
+.arrow {
+  position: absolute;
+  top: clamp(28px, 3.4vw, 44px);
+  right: 4px;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--accent);
+  transition: transform 0.2s ease;
+}
+
+.link:hover .arrow {
+  transform: translateX(5px);
+}
+
+@media (max-width: 720px) {
+  .link {
+    padding-right: 36px;
+  }
+
+  .dek {
+    font-size: 16px;
+  }
+}

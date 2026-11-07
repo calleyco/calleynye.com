@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { Fragment, type ReactElement } from "react";
 import { formatWritingDate } from "@/lib/dates";
+import { CaseStudyList } from "@/components/work/case-study-list";
 import {
+  availabilityStatus,
   centralThesis,
   resumeEducation,
   resumeItems,
@@ -71,6 +73,11 @@ export default async function Home(): Promise<ReactElement> {
           </p>
           <p className="hero-sub thesis-line">{centralThesis}</p>
 
+          <p className="hero-status">
+            <span aria-hidden="true" className="hero-status-dot" />
+            {availabilityStatus}
+          </p>
+
           <div className="hero-ctas">
             <Link
               className="cta-primary"
@@ -123,22 +130,7 @@ export default async function Home(): Promise<ReactElement> {
             All work -&gt;
           </Link>
         </div>
-        <ol className="work-cards">
-          {caseStudies.map((study) => (
-            <li className="work-card" key={study.slug}>
-              <Link className="work-card-link" href={`/work/${study.slug}`} prefetch={false}>
-                <span className="work-card-client">
-                  {study.client} · {study.role} · {study.timeframe}
-                </span>
-                <h3 className="work-card-title">{study.title}</h3>
-                <p className="work-card-dek">{study.description}</p>
-                <span aria-hidden="true" className="work-card-arrow">
-                  -&gt;
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
+        <CaseStudyList headingLevel={3} studies={caseStudies} />
       </section>
 
       <section aria-labelledby="writing-head" className="writing" id="writing">
