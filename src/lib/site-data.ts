@@ -36,7 +36,7 @@ export const speakingEvents: SpeakingEvent[] = [
     event: "JS.LA",
     year: "2015",
     talk: "UX for Developers",
-    url: "https://www.youtube.com/watch?v=zKwNkX7MU3c&t=388s",
+    url: "https://www.youtube.com/watch?v=zKwNkX7MU3c",
   },
   {
     event: "DeveloperWeek",
