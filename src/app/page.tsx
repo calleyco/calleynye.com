@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Arrow } from "@/components/ui/arrow";
 import { Fragment, type ReactElement } from "react";
 import { formatWritingDate } from "@/lib/dates";
 import { CaseStudyList } from "@/components/work/case-study-list";
@@ -84,13 +85,13 @@ export default async function Home(): Promise<ReactElement> {
               href="/writing/which-model-of-disability-is-your-ai-product-operating-from"
               prefetch={false}
             >
-              Read the essay <span aria-hidden="true">-&gt;</span>
+              Read the essay <Arrow />
             </Link>
             <a className="cta-secondary" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
               Download resume PDF<span className="sr-only"> (opens in new tab)</span>
             </a>
             <a className="cta-secondary" href="#contact">
-              Contact <span aria-hidden="true">-&gt;</span>
+              Contact <Arrow />
             </a>
           </div>
         </div>
@@ -127,7 +128,7 @@ export default async function Home(): Promise<ReactElement> {
             Selected work
           </h2>
           <Link className="section-link" href="/work" prefetch={false}>
-            All work -&gt;
+            All work <Arrow />
           </Link>
         </div>
         <CaseStudyList headingLevel={3} studies={caseStudies} />
@@ -140,7 +141,7 @@ export default async function Home(): Promise<ReactElement> {
             Recent essays
           </h2>
           <Link className="section-link" href="/writing" prefetch={false}>
-            Full index -&gt;
+            Full index <Arrow />
           </Link>
         </div>
         <ol className="articles">
@@ -161,6 +162,7 @@ export default async function Home(): Promise<ReactElement> {
                     <span>{post.tags.join(" / ")}</span>
                   </div>
                 </div>
+                {/* "->" on purpose: Geist Sans draws it as a short, bold arrow (ligature). */}
                 <span aria-hidden="true" className="art-arrow">
                   -&gt;
                 </span>
@@ -182,7 +184,7 @@ export default async function Home(): Promise<ReactElement> {
           response to the screen.
         </p>
         <Link className="section-link" href="/lab/live-regions" prefetch={false}>
-          Enter the Live Region Lab -&gt;
+          Enter the Live Region Lab <Arrow />
         </Link>
       </section>
 
@@ -199,6 +201,14 @@ export default async function Home(): Promise<ReactElement> {
                 <h3>{event.event}</h3>
                 <p>{event.talk}</p>
               </div>
+              {event.url ? (
+                <a className="speaking-link" href={event.url} target="_blank" rel="noopener noreferrer">
+                  Video
+                  <span className="sr-only">
+                    : {event.event} {event.year}, on YouTube (opens in new tab)
+                  </span> <Arrow />
+                </a>
+              ) : null}
             </li>
           ))}
         </ul>
@@ -211,7 +221,7 @@ export default async function Home(): Promise<ReactElement> {
             Resume
           </h2>
           <a className="section-link" href="/resume.pdf" target="_blank" rel="noopener noreferrer">
-            PDF download -&gt;<span className="sr-only"> (opens in new tab)</span>
+            PDF download <Arrow /><span className="sr-only"> (opens in new tab)</span>
           </a>
         </div>
 

@@ -514,6 +514,13 @@ html.light .topbar {
   color: var(--fg-dim);
 }
 
+/* Shared arrow after link text. Always Geist Sans so the glyph matches the
+   Selected Work / Recent Essays arrows even inside Geist Mono links. */
+.arrow-glyph {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
 .footer {
   padding-block: 32px;
   border-top: 1px solid var(--rule);

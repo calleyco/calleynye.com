@@ -34,6 +34,7 @@ export function CaseStudyList({ studies, headingLevel }: CaseStudyListProps): Re
             </Link>
           </Heading>
           <p className={styles.dek}>{study.description}</p>
+          {/* "->" on purpose: Geist Sans draws it as a short, bold arrow (ligature). */}
           <span aria-hidden="true" className={styles.arrow}>
             -&gt;
           </span>

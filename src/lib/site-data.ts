@@ -2,6 +2,8 @@ export interface SpeakingEvent {
   event: string;
   year: string;
   talk: string;
+  /** Optional link to a recording of the talk. */
+  url?: string;
 }
 
 export interface ResumeItem {
@@ -33,7 +35,8 @@ export const speakingEvents: SpeakingEvent[] = [
   {
     event: "JS.LA",
     year: "2015",
-    talk: "Conference talk on JavaScript and frontend practice",
+    talk: "UX for Developers",
+    url: "https://www.youtube.com/watch?v=zKwNkX7MU3c",
   },
   {
     event: "DeveloperWeek",
@@ -43,7 +46,8 @@ export const speakingEvents: SpeakingEvent[] = [
   {
     event: "Crypto Invest Summit",
     year: "2018",
-    talk: "Women of Crypto Track — Marketing Workshop panelist",
+    talk: "Women of Crypto Track — Interactive Marketing Workshop panelist",
+    url: "https://www.youtube.com/watch?v=wICOxNCjrZ0",
   },
   {
     event: "McKinsey — What is a Disability?",
