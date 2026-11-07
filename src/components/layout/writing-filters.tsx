@@ -62,8 +62,9 @@ export function WritingFilters({ posts }: WritingFiltersProps): ReactElement {
                   <span>{post.tags.join(" / ")}</span>
                 </div>
               </div>
+              {/* "->" on purpose: Geist Sans draws it as a short, bold arrow (ligature). */}
               <span aria-hidden="true" className="art-arrow">
-                →
+                -&gt;
               </span>
             </Link>
           </li>
