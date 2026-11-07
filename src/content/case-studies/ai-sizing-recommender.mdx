@@ -1,0 +1,175 @@
+---
+title: "An AI recommendation is only as honest as its interface"
+slug: ai-sizing-recommender
+description: >-
+  A uniform startup's AI size recommender promised more than its data could
+  support. I re-scoped it around what it could actually know, then redesigned
+  every screen so parents could verify, question, or overrule it.
+client: School uniform delivery startup
+role: Product designer & design engineer (contract)
+timeframe: "Feb–Aug 2026"
+tags:
+  - AI product design
+  - Trust & transparency
+  - Accessibility
+  - Design systems
+  - Consumer product
+stats:
+  - value: "9"
+    label: components shipped
+  - value: "3"
+    label: design variants per component
+  - value: "11"
+    label: recorded design decisions
+status: published
+---
+
+## The bet
+
+The company's differentiator was delivery. No shipping, no boxes, no carriers: uniforms arrived at the family's door, in person, from a local driver. Parents loved it. The operations team had a harder relationship with it, because returns worked the same way. Every wrong size meant scheduling a pickup, sending a driver back out, and inspecting the item at the warehouse.
+
+So sizing wasn't a conversion nicety. It was a cost line. The plan was an AI size recommender that would tell a parent exactly what size their child wore, then predict growth and suggest new products when it guessed the child had sized up. Fewer wrong sizes, fewer trucks, more re-orders.
+
+When I joined, another developer had already built the first version. I was brought in to redesign the experience around it, as a contract product designer and design engineer, from February to August 2026.
+
+## The premise that didn't hold
+
+The first thing I did was map the flow as it actually ran, screen by screen and API call by API call. The wizard asked for a child's age, gender, height, and weight, sent them to a sizing endpoint, and got back one size per category. The intro screen promised a "95% accuracy rate." The results screen said, in effect, "Bobby is a Youth Large."
+
+Two things were wrong with that, and neither was visual.
+
+First, there was no data behind it. Predicting a child's uniform size from age and weight needs a dataset of children's body measurements by age and weight. The company didn't have one. The 95% was a number on a screen, not a measurement of anything. Growth prediction stacked a second guess on top of the first.
+
+Second, "Bobby is a Youth Large" was a universal claim, and sizes aren't universal. I'll come back to that one, because I only found it after fixing the first.
+
+A precise answer to the wrong question is worse than no answer. For a business where every wrong size is a truck coming back, a confident recommender built on nothing was the most expensive version of the feature.
+
+## Re-scoping around what the data could support
+
+I didn't argue for killing the wizard. I argued for making it tell the truth about itself. The redesign started with a fork:
+
+- **Use measurements (most accurate).** Parents who had a tape measure entered chest, waist, inseam, and a few more. Those numbers were stored on the child's profile and matched against real size charts.
+- **Use height and weight (easiest).** The original quick path stayed, but labeled as the less accurate option, with the trade-off stated up front: faster, but more likely to need an exchange.
+
+<CaseStudyScreen
+  src="/images/work/ai-sizing-recommender/path-selection.webp"
+  alt="A modal asking 'How would you like to size?' with two cards. Left: Easiest, height and weight, about one minute, with a half-full bar labeled Good accuracy. Right, highlighted in green: Most accurate, body measurements, about three minutes with a tape measure, with a nearly full bar labeled Best accuracy."
+  width="1030"
+  height="808"
+  caption="The fork. Each path states its accuracy and its cost in time, so the parent makes the trade-off knowingly."
+/>
+
+To make the accurate path the easy one too, I proposed a branded measuring tape in every first delivery. The cheapest way to get good data was to hand parents the instrument.
+
+Then I hit the second problem. Once real measurements were in the system, it became obvious that a medium isn't a medium. Every product, and often every supplier, sized differently. A single "Youth Large" for a child was never true across a catalog. The recommendation had to be per product.
+
+That required infrastructure nobody had planned: a **size-chart manager**. Staff upload a supplier's PDF size guide, an AI parser extracts the table, and a person reviews it before it goes live. Rows the parser couldn't read with confidence are flagged in amber for a human to fill in. Approved charts are assigned to products. I product-managed it, and another developer on the team built it while I redesigned the wizard; it shipped while I was there.
+
+The last piece was time. Children grow, so a measurement is only true for a while. I designed the system to admit that:
+
+- **Under 3 months old:** the recommended size, highlighted normally.
+- **3 to 6 months old:** the highlight fades slightly, with an amber note: "Emma's measurements are 4 months old. Kids grow fast."
+- **6 months or more:** a stronger warning, a heavily faded highlight, and "Update now, takes 30 seconds."
+
+A stale recommendation is still more useful than none, so the system never hides it. It just stops pretending it's current. Updating skips straight to the measurements screen, filled in with the old values and marked as old.
+
+Growth prediction, the feature the project started with, only makes sense on top of real measurements. I specced a version that works from stored measurements and their age. I don't know whether it was built after I left.
+
+## The method: a design workflow that could fail a build
+
+Before touching a screen, I built wireframes in Claude for the whole product and delivery lifecycle: the wizard, the size-chart admin, and the returns, exchange, and trade-in flows across parent, driver, and warehouse. That gave a small team one picture of where sizing errors cost money, and it's where the per-product and staleness problems first showed up on paper.
+
+Then I redesigned the recommender one component at a time, with a process I built in Claude and ran for each of 11 components:
+
+1. **Problem statement.** One or two sentences in my own words, often blunt ("I hate the icons").
+2. **Before.** A screenshot of the live component and a written description of how it currently behaves in code.
+3. **Three variants.** Claude generated three genuinely different directions, each with a rationale.
+4. **Critique.** A set of critique skills reviewed the variant I leaned toward against WCAG, the brand voice guide, the existing design tokens, and real-data edge cases. Each problem was rated Critical or Major, with where it was, why it mattered, and a check to verify the fix.
+5. **Refine.** Fix what the critique found. Some components took two rounds; the size guide modal took several.
+6. **Decision record.** The chosen variant, the rationale, what was rejected and why, and exactly what changed in the code.
+7. **Build.** Claude implemented the decision in the real components, directed and reviewed by me.
+8. **After.** A screenshot of what shipped.
+
+The engineering analogy is continuous integration. Variants are branches. The critique skills are the linter and the test suite. The decision record is the commit log. The point of CI isn't that it passes; it's that it can fail. This process failed my designs regularly, and that's why I trusted what came out of it.
+
+The critiques kept catching the same kind of problem. Not ugliness, but places where the interface claimed more certainty than the system had.
+
+## Five places the interface claimed more than the AI knew
+
+### 1. The progress bar that lied
+
+While the recommender calculated, the parent saw a spinner and a typewriter animation. The first redesign added a progress bar, and the critique caught it immediately: the bar was hardcoded at 85% and told screen readers "85% complete" on every render, while the checklist beside it showed step 3 of 5. Two signals, two different stories, on a screen whose only job is to earn a parent's patience.
+
+What shipped: an indeterminate progress ring, an honest checklist of what's being worked out, the child's name in the heading, and a static fallback so the active step is still visible with reduced motion turned on.
+
+<BeforeAfter
+  caption="The calculating screen. The redesign shows real work being done instead of a percentage nobody measured."
+  beforeSrc="/images/work/ai-sizing-recommender/thinking-before.webp"
+  beforeAlt="A small modal reading 'Calculating your child's perfect size...' with a tiny gear icon and a typewriter cursor."
+  beforeWidth="348"
+  beforeHeight="219"
+  afterSrc="/images/work/ai-sizing-recommender/thinking-after.webp"
+  afterAlt="A full-height step headed 'Finding the right fit' with a progress ring, the heading 'Getting Alex's sizes just right,' and a five-item checklist: waist measurements done, chest measurements in progress, and inseam, shirt sizes, and pants sizes still to come."
+  afterWidth="350"
+  afterHeight="716"
+/>
+
+### 2. "Best fit"
+
+A badge on the size picker read "Best fit." The critique flagged it as an algorithm overpromising from a handful of measurements, against a brand voice guide that explicitly bans words like "perfect." It also found the badge's screen reader description pointed at an element that didn't exist, so assistive technology users got no recommendation at all. The revision says "Recommended" and carries it in text, not just a visual badge. *(This component was still in exploration when I left.)*
+
+### 3. Letting the parent overrule the AI
+
+When the wizard finishes, its pick is pre-selected. But a parent knows things the model doesn't: the child is between sizes, hates tight collars, will grow into it. So the design gives each size pill two separate states, *selected* and *recommended*. If the parent picks a different size, the AI's pick stays visibly marked as the AI's pick. The override is easy, and nothing pretends the parent agreed. *(Same exploration project as above.)*
+
+### 4. Showing why, not just what
+
+The size guide modal highlighted the recommended row. One variant moved the child's measurements into chips above the table, which looked cleaner. The critique rejected it: a parent had to hold "chest 25 inches" in memory, scroll, and find the right column to check the match. The highlight told them which row to pick but no longer let them verify why, and that is the difference between trusting a recommendation and second-guessing it.
+
+What shipped: the child's measurement sits inline in the highlighted row, next to the chart's value, in the same cell. The parent can check the AI's work at a glance.
+
+### 5. An error that didn't blame the parent
+
+When entered measurements fell outside the typical range, the old screen centered a paragraph and a list. One redesign put the "You entered" column header in error red. The critique flagged that the color landed on a label, not on data, so it read as an accusation, against a brand voice that says families are doing their best.
+
+What shipped: a short, neutral explanation ("usually a quick typo or unit mix-up"), a table with the entered value beside the typical range, and one clear action, "Fix measurements," which returns to the form with flagged fields highlighted and their old values filled in.
+
+<BeforeAfter
+  caption="The validation screen. Each flagged value sits next to its typical range, and there is one obvious way forward."
+  beforeSrc="/images/work/ai-sizing-recommender/validation-before.webp"
+  beforeAlt="A centered paragraph saying the details entered don't look right for a 6-year-1-month-old girl, one flagged height value with its typical range, and Back and Try again buttons."
+  beforeWidth="1028"
+  beforeHeight="932"
+  afterSrc="/images/work/ai-sizing-recommender/validation-after.webp"
+  afterAlt="A step with Back and 'Step 2 of 3' in the header, a one-line explanation that two measurements for Alex, age 7, are outside what's typical, a table listing each flagged measurement beside its typical range, and a single Fix measurements button."
+  afterWidth="350"
+  afterHeight="628"
+/>
+
+## Where the system overruled me
+
+The product page had a quiet line of green text: "For Karamo we recommend 6." I wanted it to be more noticeable, and I asked for the wizard emoji the brand had been using, for consistency.
+
+The critique said no. The brand voice guide allowed exactly one accent emoji, and it wasn't the wizard. It also pointed out that a wizard has nothing to do with uniform sizing for this audience of parents, and that the emoji was carrying the whole visual identity of the component. It also caught two tap targets under 44 pixels, sitting directly above the add-to-cart button.
+
+I shipped a ruler icon. I tell this story on purpose. A review process that only ever agrees with its author is a rubber stamp. This one held my own ideas to the same standard as everything else, and the product was better for it.
+
+<BeforeAfter
+  caption="The product-page recommendation. A contained callout with a ruler icon, the child's name, and a way to update their profile."
+  beforeSrc="/images/work/ai-sizing-recommender/callout-before.webp"
+  beforeAlt="A size dropdown set to 3, followed by a small green link reading 'What's My Size?' and a Size Chart link."
+  beforeWidth="510"
+  beforeHeight="80"
+  afterSrc="/images/work/ai-sizing-recommender/callout-after.webp"
+  afterAlt="A size dropdown set to 6, and below it a light blue callout with a ruler icon reading 'For Karamo, we recommend 6' and an Update child button, followed by a Size Chart link."
+  afterWidth="970"
+  afterHeight="380"
+/>
+
+## What I didn't get to see
+
+Nine of the 11 components shipped. Two were still in exploration when my engagement ended: the product-page size picker (decisions 2 and 3 above) and the results step. The results step is the one I most wish I'd finished. The old version told parents "your child is a Youth Large." Once sizes are per product, that sentence is false, so the screen has to teach something else: look for the recommended size on each product page, and here is what it looks like.
+
+The product launched after I left, so I don't have return rates or conversion numbers, and I'm not going to invent them. What I can show is the reasoning: every decision above is recorded, with the problem it solved and the alternative it beat.
+
+If I take one thing from this project into the next, it's that an AI recommendation is only as honest as its interface. The model can be uncertain, the data can be old, the person can know better. The interface's job is to say so, clearly enough that someone can act, question, or overrule it.

@@ -85,6 +85,32 @@ const mdxComponents = {
     },
     ContentView: () => "Case Study Video",
   }),
+  BeforeAfter: block({
+    label: "Before / After",
+    schema: {
+      caption: fields.text({ label: "Caption", multiline: true }),
+      beforeSrc: fields.text({ label: "Before image path" }),
+      beforeAlt: fields.text({ label: "Before alt text", multiline: true }),
+      beforeWidth: fields.text({ label: "Before width (px)" }),
+      beforeHeight: fields.text({ label: "Before height (px)" }),
+      afterSrc: fields.text({ label: "After image path" }),
+      afterAlt: fields.text({ label: "After alt text", multiline: true }),
+      afterWidth: fields.text({ label: "After width (px)" }),
+      afterHeight: fields.text({ label: "After height (px)" }),
+    },
+    ContentView: () => "Before / After",
+  }),
+  CaseStudyScreen: block({
+    label: "Case Study Screen",
+    schema: {
+      src: fields.text({ label: "Image path" }),
+      alt: fields.text({ label: "Alt text", multiline: true }),
+      width: fields.text({ label: "Width (px)" }),
+      height: fields.text({ label: "Height (px)" }),
+      caption: fields.text({ label: "Caption", multiline: true }),
+    },
+    ContentView: () => "Case Study Screen",
+  }),
 };
 
 export default config({

@@ -149,5 +149,81 @@
       line-height: 1.7;
       color: var(--fg-mute);
     }
+
+    // BeforeAfter emits these. Same placement rule as .cs-video above.
+    .cs-ba {
+      margin: 2.4em max(-14vw, calc((68ch - 100vw + 40px) / 2));
+      padding: 0;
+    }
+
+    .cs-ba-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      align-items: start;
+    }
+
+    .cs-ba-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cs-ba-label {
+      margin: 0;
+      font-family: var(--font-geist-mono), ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--fg-mute);
+    }
+
+    .cs-ba-panel--after .cs-ba-label {
+      color: var(--accent);
+    }
+
+    .cs-ba-frame {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      background: var(--bg-2);
+    }
+
+    // The img keeps its intrinsic width (from the width attribute) and only
+    // shrinks to fit, so small screenshots are never upscaled and the box is
+    // reserved before the image loads.
+    .cs-ba-frame img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .cs-ba--single {
+      margin-right: 0;
+      margin-left: 0;
+    }
+
+    .cs-ba-caption {
+      max-width: 68ch;
+      margin: 12px auto 0;
+      color: var(--fg-mute);
+      font-family: var(--font-geist-mono), ui-monospace, monospace;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 720px) {
+      .cs-ba {
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      .cs-ba-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
   }
 }

@@ -120,6 +120,39 @@
   margin: 0 0 1.1em;
 }
 
+// Subheads and lists. The global reset zeroes list padding and markers, so
+// long-form content restores them here.
+.article-body h3 {
+  font-size: 1.05em;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 2em 0 0.5em;
+  color: var(--fg);
+}
+
+.article-body ul,
+.article-body ol {
+  margin: 0 0 1.4em;
+  padding-left: 1.4em;
+}
+
+.article-body ul {
+  list-style: disc;
+}
+
+.article-body ol {
+  list-style: decimal;
+}
+
+.article-body li {
+  margin: 0 0 0.6em;
+  padding-left: 0.3em;
+}
+
+.article-body li::marker {
+  color: var(--accent);
+}
+
 .article-body strong {
   color: var(--fg);
   font-weight: 600;

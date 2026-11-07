@@ -10,6 +10,8 @@ export const caseStudyTags = [
   "Accessibility",
   "Performance",
   "Real-time",
+  "AI product design",
+  "Trust & transparency",
 ] as const;
 
 export type CaseStudyTag = (typeof caseStudyTags)[number];

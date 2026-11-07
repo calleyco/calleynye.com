@@ -3,10 +3,13 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { compileMDX } from "next-mdx-remote/rsc";
 import type { ReactElement } from "react";
+import { BeforeAfter, CaseStudyScreen } from "@/components/work/before-after";
 import { CaseStudyVideo } from "@/components/work/case-study-video";
 import { isRecord, parseMdxSource } from "@/lib/mdx-frontmatter";
 
 const mdxComponents = {
+  BeforeAfter,
+  CaseStudyScreen,
   CaseStudyVideo,
 };
 

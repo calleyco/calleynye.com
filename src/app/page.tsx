@@ -13,8 +13,8 @@ import { getAllCaseStudyMeta } from "@/lib/case-studies";
 import { getAllWritingMeta } from "@/lib/writing";
 import styles from "./home.module.scss";
 
-const heroRoles = ["DESIGN TECHNOLOGIST", "ACCESSIBILITY SPECIALIST", "REAL-TIME UI ENGINEER"];
-const heroTech = ["VUE", "REACT", "NEXT", "TYPESCRIPT", "WEBSOCKETS", "DESIGN SYSTEMS", "WCAG", "PERFORMANCE"];
+const heroRoles = ["DESIGN ENGINEER", "ACCESSIBILITY SPECIALIST", "TRUSTWORTHY AI INTERFACES"];
+const heroTech = ["REACT", "NEXT", "TYPESCRIPT", "CLAUDE CODE", "DESIGN SYSTEMS", "WCAG", "WEBSOCKETS", "PERFORMANCE", "VUE"];
 
 // One marquee "tile": items separated by accent pipes, with a trailing pipe so the
 // loop seam keeps the same rhythm. The track renders two identical tiles, so the
@@ -66,8 +66,8 @@ export default async function Home(): Promise<ReactElement> {
             </span>
           </h1>
           <p className="hero-sub">
-            Senior frontend engineer with 10+ years in UI engineering, with a focus on accessibility and UX. I design
-            systems where shipping fast and shipping inclusively are the same path.
+            Design engineer with 10+ years building consumer products, specializing in accessibility since day one. I
+            design systems where shipping fast and shipping inclusively are the same path.
           </p>
           <p className="hero-sub thesis-line">{centralThesis}</p>
 
