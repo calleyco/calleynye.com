@@ -4,10 +4,13 @@
   padding: 8px 0 0;
 }
 
+// Full-bleed strip that fades out at both viewport edges.
 .hero-scroll {
   overflow: hidden;
   border-bottom: 1px solid var(--rule);
-  margin: 0 calc(-1 * clamp(20px, 3vw, 36px));
+  margin-inline: calc(50% - 50vw);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 
 .hero-scroll.reverse {
@@ -97,10 +100,38 @@
   color: var(--fg);
 }
 
+// Availability pill. The dot is decorative; the text carries the status, so
+// nothing depends on color. The pulse is stopped by the global
+// prefers-reduced-motion rule and by the Motion toggle (.rm).
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--fg-mute);
+  border: 1px solid var(--rule);
+  background: color-mix(in oklab, var(--fg) 3%, transparent);
+  padding: 7px 15px 7px 12px;
+  border-radius: 999px;
+  margin: 0 0 26px;
+}
+
+.hero-status-dot {
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: statusPulse 2.6s ease-out infinite;
+}
+
 .hero-ctas {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .cta-primary,
@@ -114,22 +145,32 @@
   font-weight: 600;
   font-size: 15px;
   border-radius: 999px;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .cta-primary {
   background: var(--accent);
   color: var(--accent-ink);
+  box-shadow: var(--shadow-glow);
 }
 
 .cta-secondary {
   color: var(--fg);
   border: 1px solid var(--rule);
+  background: color-mix(in oklab, var(--fg) 3%, transparent);
 }
 
 .cta-primary:hover,
 .cta-secondary:hover {
   transform: translateY(-2px);
+}
+
+.cta-primary:hover {
+  box-shadow: 0 22px 70px -18px color-mix(in oklab, var(--accent) 80%, transparent);
+}
+
+.cta-secondary:hover {
+  border-color: var(--fg-mute);
 }
 
 .manifesto-head {
@@ -387,16 +428,17 @@
   flex-direction: column;
   gap: 10px;
   padding: 24px;
-  background: var(--bg-2);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--fg) 4%, transparent), transparent 60%), var(--bg-2);
   border: 1px solid var(--rule);
   border-radius: 18px;
   text-decoration: none;
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .contact-item:hover {
   border-color: var(--accent);
   transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
 }
 
 .ci-label {
@@ -429,68 +471,10 @@
   }
 }
 
-.work-cards {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-}
-
-.work-card {
-  background: color-mix(in oklab, var(--fg), transparent 92%);
-}
-
-.work-card-link {
-  position: relative;
-  display: block;
-  padding: 26px 4px;
-  text-decoration: none;
-  color: inherit;
-}
-
-.work-card-client {
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--fg-dim);
-}
-
-.work-card-title {
-  margin: 10px 0 8px;
-  font-size: clamp(20px, 2.6vw, 26px);
-  line-height: 1.25;
-}
-
-.work-card-link:hover .work-card-title {
-  color: var(--accent);
-}
-
-.work-card-dek {
-  margin: 0;
-  max-width: 60ch;
-  color: var(--fg-mute);
-}
-
-.work-card-arrow {
-  position: absolute;
-  top: 26px;
-  right: 4px;
-  color: var(--accent);
-}
-
 .lab-dek {
   margin: 0 0 1.25rem;
   max-width: 60ch;
   color: var(--fg-mute);
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .work-card-title {
-    transition: color 0.15s ease;
-  }
 }
 
   }

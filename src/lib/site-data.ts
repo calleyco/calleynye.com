@@ -26,6 +26,9 @@ export interface ResumeEducation {
 export const centralThesis =
   "AI-assisted development is the leverage point that finally makes inclusive engineering the path of least resistance rather than the path of most resistance.";
 
+// Hero availability pill. Wording is a placeholder pending Calley's pick.
+export const availabilityStatus = "Available — for the right role";
+
 export const speakingEvents: SpeakingEvent[] = [
   {
     event: "JS.LA",
@@ -57,14 +60,12 @@ export const resumeItems: ResumeItem[] = [
     role: "Founder & Design Engineer",
     company: "Calley Co",
     period: "Mar 2023 - Present",
-    summary:
-      "Independent design and engineering studio building AI-powered products, automation, and accessible interfaces for startups, agencies, and e-commerce brands.",
+    summary: "Independent studio building AI products, automation, and accessible interfaces.",
     highlights: [
-      "Re-scoped an AI size-recommendation product for a pre-launch school uniform brand whose local, in-person delivery made every return a costly pickup. Found the existing age-and-weight model had no measurement data behind it, and redesigned around what the data could honestly support: a measurement-first path, a faster estimate path labeled as less accurate, per-product size charts, and a branded measuring tape in every first delivery.",
-      "Built and directed a Claude design workflow (three variants per component, automated critique for accessibility, brand voice, and overconfident AI messaging, then refinement) that shipped 9 recommender components. Product-managed an AI size-chart manager that parses supplier PDFs for human review, and specced the returns, exchange, and trade-in flows across customer, driver, and warehouse.",
-      "Moving a marketing agency's senior living client sites off site-builder WordPress and an accessibility overlay plugin, onto accessible-by-default static sites built with Claude, versioned in GitHub, and deployed on Cloudflare, reducing clients' ADA lawsuit risk with projected savings of $2,500+/month in hosting and software.",
-      "Build Claude-driven automation workflows for agencies and e-commerce brands across product development, merchandising, and content operations.",
-      "Accessibility and performance audits and remediation for web products: WCAG 2.1/2.2 AA conformance, Core Web Vitals, and prioritized fixes teams can ship.",
+      "Re-scoped a uniform startup's AI size recommender around what its data could honestly support, and redesigned it so parents could verify or overrule it.",
+      "Built a Claude design workflow that critiques every component for accessibility and overconfident AI messaging before it ships.",
+      "Moving an agency's senior living sites off WordPress and an accessibility overlay onto accessible-by-default static sites, with projected savings of $2,500+/month.",
+      "Claude automation workflows and WCAG 2.1/2.2 AA and performance audits for agencies and e-commerce brands.",
     ],
   },
   {

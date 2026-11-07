@@ -9,6 +9,15 @@
   --rule: #2a1e30;
   --accent: #ff3ea5;
   --accent-ink: #0c0810;
+  // Secondary bloom hue for the background glow; light theme folds it into the accent.
+  --glow: #7a2bff;
+  --shadow-glow: 0 18px 60px -22px color-mix(in oklab, var(--accent) 65%, transparent);
+  --bloom:
+    radial-gradient(118% 78% at 8% -12%, color-mix(in oklab, var(--accent) 15%, transparent), transparent 52%),
+    radial-gradient(96% 70% at 104% 2%, color-mix(in oklab, var(--glow) 13%, transparent), transparent 48%),
+    radial-gradient(80% 60% at 50% 116%, color-mix(in oklab, var(--glow) 9%, transparent), transparent 60%);
+  --grain-opacity: 0.045;
+  --grain-blend: overlay;
 
   --demo-good: #5dcaa5;
   --demo-good-ink: #0d2218;
@@ -22,15 +31,29 @@
   color-scheme: dark;
 }
 
+// Light theme: the "Violet" palette — cool white with a bright violet accent.
+// --fg-dim is darkened from the design file's #a09bb6 (2.6:1, fails AA) to
+// #68637f, which keeps the violet tint and clears 4.5:1 on both --bg (5.5:1)
+// and --bg-2 (5.0:1).
 html.light {
-  --bg: #f7f2f6;
-  --bg-2: #efe7ef;
-  --fg: #1c1322;
-  --fg-mute: #5e5266;
-  --fg-dim: #635870;
-  --rule: #ddd0dd;
-  --accent: #9c1355;
+  --bg: #fbfaff;
+  --bg-2: #f1effb;
+  --fg: #16131f;
+  --fg-mute: #5f5a72;
+  --fg-dim: #68637f;
+  --rule: #e7e3f4;
+  --accent: #6d28d9;
   --accent-ink: #ffffff;
+  --glow: var(--accent);
+  --shadow-glow: 0 18px 48px -26px color-mix(in oklab, var(--accent) 36%, transparent);
+  // Softer than the design file's 15% / 10%: at full strength the violet pool
+  // pulled --fg-dim to ~4.4:1 near the top-left. axe can't see a pseudo-element
+  // background, so this is verified by sampling rendered pixels instead.
+  --bloom:
+    radial-gradient(120% 80% at 6% -14%, color-mix(in oklab, var(--accent) 10%, transparent), transparent 52%),
+    radial-gradient(100% 74% at 106% 0%, color-mix(in oklab, var(--accent) 7%, transparent), transparent 50%);
+  --grain-opacity: 0.035;
+  --grain-blend: multiply;
 
   --demo-good: #094e3c;
   --demo-good-ink: #eafff7;
@@ -56,13 +79,13 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
   color: var(--fg);
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  background: var(--bg);
 }
 
 body {
@@ -71,6 +94,46 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+// Background glow and film grain. Both are fixed, viewport-sized layers behind
+// the content. They live on pseudo-elements rather than on body with
+// background-attachment: fixed, because a fixed background repaints on every
+// scroll frame and iOS Safari ignores it; a position: fixed layer is composited
+// once. z-index: -1 with no stacking context on body places them above the html
+// background and below all content. Neither layer moves, so reduced motion is
+// unaffected.
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  background: var(--bloom);
+}
+
+body::after {
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+// Shared pulse for status dots (hero availability pill). Global so the name is
+// not hashed by a CSS Module — see the marquee note below.
+@keyframes statusPulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 9px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
 }
 
 a {
@@ -120,19 +183,44 @@ button:focus-visible {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 clamp(20px, 3vw, 36px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Footer sits at the bottom of short pages.
+.stage > main {
+  flex: 1 0 auto;
+}
+
+// Header and footer bleed to the viewport edges while their content stays
+// aligned with the 1440px stage. margin-inline pulls the box out to 100vw;
+// padding-inline pushes the content back to the stage's content edge.
+.topbar,
+.footer {
+  margin-inline: calc(50% - 50vw);
+  padding-inline: max(clamp(20px, 3vw, 36px), calc(50vw - 720px + clamp(20px, 3vw, 36px)));
 }
 
 .topbar {
   display: flex;
   align-items: center;
   gap: 24px;
-  padding: 22px 0 16px;
+  padding-block: 22px 16px;
   border-bottom: 1px solid var(--rule);
   position: sticky;
   top: 0;
   z-index: 20;
   background: color-mix(in oklab, var(--bg), transparent 10%);
   backdrop-filter: blur(12px);
+}
+
+// In light mode a 90%-opaque bar reads as a pale band across the glow, so the
+// bar paints the same bloom. background-attachment: fixed lines its gradient
+// up with the page's fixed glow layer exactly.
+html.light .topbar {
+  background: var(--bloom), var(--bg);
+  background-attachment: fixed;
 }
 
 .brand {
@@ -249,12 +337,13 @@ button:focus-visible {
 .theme-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 0;
+  gap: 2px;
   margin: 0;
-  padding: 2px;
+  padding: 3px;
   min-inline-size: 0;
   border: 1px solid var(--rule);
   border-radius: 999px;
+  background: color-mix(in oklab, var(--fg) 3%, transparent);
 }
 
 .tt-option {
@@ -272,9 +361,20 @@ button:focus-visible {
   display: block;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .tt-option {
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+}
+
+.tt-option:hover {
+  color: var(--fg);
+  background: color-mix(in oklab, var(--fg) 6%, transparent);
+}
+
 .tt-option:has(input:checked) {
-  background: var(--bg-2);
-  color: var(--fg-mute);
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 .tt-option:has(input:focus-visible) {
@@ -415,8 +515,9 @@ button:focus-visible {
 }
 
 .footer {
-  padding: 32px 0;
+  padding-block: 32px;
   border-top: 1px solid var(--rule);
+  flex-shrink: 0;
 }
 
 .footer-row {

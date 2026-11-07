@@ -143,6 +143,10 @@ function auditCaseStudyFrontmatter(filename, frontmatter) {
     errors.push(`${filename}: stats must be a non-empty array of { value, label } strings`);
   }
 
+  if (frontmatter.order !== undefined && frontmatter.order !== null && !(Number.isInteger(frontmatter.order) && frontmatter.order >= 1)) {
+    errors.push(`${filename}: order must be a whole number of 1 or more when set`);
+  }
+
   if (!allowedStatuses.has(frontmatter.status)) {
     errors.push(`${filename}: status must be draft, review, or published`);
   }
