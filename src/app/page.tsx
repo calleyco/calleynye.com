@@ -197,7 +197,16 @@ export default async function Home(): Promise<ReactElement> {
               <span className="speaking-year">{event.year}</span>
               <div>
                 <h3>{event.event}</h3>
-                <p>{event.talk}</p>
+                <p>
+                  {event.url ? (
+                    <a href={event.url}>
+                      {event.talk}
+                      <span className="sr-only"> (video recording on YouTube)</span>
+                    </a>
+                  ) : (
+                    event.talk
+                  )}
+                </p>
               </div>
             </li>
           ))}
