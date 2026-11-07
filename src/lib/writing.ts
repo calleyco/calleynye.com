@@ -1,8 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { load as loadYaml } from "js-yaml";
 import { compileMDX } from "next-mdx-remote/rsc";
 import type { ReactElement } from "react";
+import { parseMdxSource } from "@/lib/mdx-frontmatter";
 import { ArticleImage } from "@/components/writing/article-image";
 import { DisabilityModelsIllustration } from "@/components/writing/disability-models-illustration";
 import { ModelExplorer } from "@/components/writing/model-explorer";
@@ -59,15 +59,6 @@ interface GetWritingBySlugOptions {
   includeUnpublished?: boolean;
 }
 
-interface ParsedMdxSource {
-  data: Record<string, unknown>;
-  content: string;
-}
-
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
 function normalizeFrontmatterDate(value: unknown): string | null {
   if (typeof value === "string") {
     return /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : null;
@@ -78,25 +69,6 @@ function normalizeFrontmatterDate(value: unknown): string | null {
   }
 
   return null;
-}
-
-function parseMdxSource(slug: string, source: string): ParsedMdxSource {
-  const frontmatterMatch = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(source);
-
-  if (!frontmatterMatch) {
-    throw new Error(`Missing frontmatter in ${slug}.mdx`);
-  }
-
-  const loaded = loadYaml(frontmatterMatch[1] ?? "");
-
-  if (!isRecord(loaded)) {
-    throw new Error(`Invalid frontmatter in ${slug}.mdx`);
-  }
-
-  return {
-    data: loaded,
-    content: source.slice(frontmatterMatch[0].length),
-  };
 }
 
 function assertFrontmatter(slug: string, data: Record<string, unknown>): WritingFrontmatter {

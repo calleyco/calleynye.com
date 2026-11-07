@@ -10,10 +10,13 @@ const ROUTES_TO_SCAN = [
   { name: "lab index", path: "/lab" },
   { name: "live region lab", path: "/lab/live-regions" },
   { name: "accessibility statement", path: "/accessibility" },
+  { name: "work index", path: "/work" },
+  { name: "fundraise case study", path: "/work/fundraise-for-anything" },
 ];
 
 for (const route of ROUTES_TO_SCAN) {
-  test(`${route.name} has no axe violations @a11y`, async ({ page }) => {
+  test(`${route.name} has no axe violations in dark theme @a11y`, async ({ page }) => {
+    await page.emulateMedia({ colorScheme: "dark" });
     await page.goto(route.path);
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
@@ -27,6 +30,8 @@ const SKIP_LINK_ROUTES = [
   "/writing/congratulations-on-your-promotion",
   "/lab",
   "/accessibility",
+  "/work",
+  "/work/fundraise-for-anything",
 ];
 
 for (const path of SKIP_LINK_ROUTES) {
@@ -96,4 +101,82 @@ test("writing index renders published posts without server errors", async ({ pag
   await expect(page.getByText("Application error")).toHaveCount(0);
   await expect(page.getByRole("link", { name: /The Retina image trick everyone forgot/i })).toBeVisible();
   await expect(page.getByText("Live regions are a real-time UI problem")).toHaveCount(0);
+});
+
+test("the published case study is publicly routable", async ({ page }) => {
+  const response = await page.goto("/work/fundraise-for-anything");
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole("heading", { name: /Fundraise for Anything/i })).toBeVisible();
+});
+
+test("work index lists the published case study", async ({ page }) => {
+  const response = await page.goto("/work");
+  expect(response?.status()).toBe(200);
+  await expect(page.getByRole("link", { name: /Fundraise for Anything/i })).toBeVisible();
+  await expect(page.getByText("Application error")).toHaveCount(0);
+});
+
+test("an unknown case study returns 404", async ({ page }) => {
+  const response = await page.goto("/work/not-a-real-study");
+  expect(response?.status()).toBe(404);
+});
+
+const LIGHT_ROUTES = [
+  "/",
+  "/work",
+  "/work/fundraise-for-anything",
+  "/writing",
+  "/writing/compressive-images-revisited",
+  "/writing/which-model-of-disability-is-your-ai-product-operating-from",
+  "/writing/congratulations-on-your-promotion",
+  "/lab",
+  "/accessibility",
+];
+
+for (const path of LIGHT_ROUTES) {
+  test(`${path} has no axe violations in light theme @a11y`, async ({ page }) => {
+    await page.addInitScript(() => {
+      try {
+        localStorage.setItem("calley.theme", "light");
+      } catch {
+        // ignore
+      }
+    });
+    await page.goto(path);
+    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
+  });
+}
+
+test("theme toggle switches to light and persists across reload @a11y", async ({ page }) => {
+  await page.goto("/");
+  // The radio is sr-only; click its wrapping label to activate it
+  await page.locator("label[for='theme-light']").click();
+  await expect(page.locator("html")).toHaveClass(/light/);
+
+  await page.reload();
+  await expect(page.locator("html")).toHaveClass(/light/);
+  await expect(page.getByRole("radio", { name: "Light" })).toBeChecked();
+});
+
+test("primary section nav is hidden on mobile; skip link still works @a11y", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 800 });
+  await page.goto("/");
+
+  await expect(page.getByRole("link", { name: "Work", exact: true })).toBeHidden();
+
+  await page.keyboard.press("Tab");
+  await expect(page.getByRole("link", { name: /skip to content/i })).toBeFocused();
+});
+
+test("resume PDF links open in a new tab with an accessible cue @a11y", async ({ page }) => {
+  await page.goto("/");
+  // Verify the footer resume link (exact name) carries the required attributes
+  const footerLink = page.getByRole("link", { name: "Resume PDF (opens in new tab)", exact: true });
+  await expect(footerLink).toHaveAttribute("target", "_blank");
+  await expect(footerLink).toHaveAttribute("rel", /noopener/);
+  // Also verify the hero CTA link has the same attributes
+  const heroLink = page.getByRole("link", { name: /^Download resume PDF/i });
+  await expect(heroLink).toHaveAttribute("target", "_blank");
+  await expect(heroLink).toHaveAttribute("rel", /noopener/);
 });

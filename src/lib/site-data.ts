@@ -50,17 +50,21 @@ export const speakingEvents: SpeakingEvent[] = [
 ];
 
 export const resumeSummary =
-  "Senior frontend engineer in Los Angeles with 10+ years building consumer products, with a focus on accessibility and UX. I treat accessibility as an architectural decision rather than an end-of-sprint feature, and I bring deep experience in real-time UIs, performance, and design systems. I work primarily in Vue today and am actively shipping React, Next.js, and TypeScript in current client engagements.";
+  "Design engineer with 10+ years building consumer products, specializing in accessibility since my first engineering role in 2013. I own work from problem diagnosis through shipped interface: finding where a product's premise breaks, designing what people need in order to trust it, and building it in production code. Most recently, I re-scoped an AI recommendation product around what its data could honestly support, and built a Claude-driven design workflow that critiques every component for accessibility and overconfident AI messaging before it ships. Interfaces designed for the hardest conditions end up better for everyone, and AI-assisted development finally makes that the path of least resistance. I ship in React, Next.js, and TypeScript, with deep production experience in Vue 3, real-time UIs, and design systems.";
 
 export const resumeItems: ResumeItem[] = [
   {
-    role: "Senior Frontend Engineer",
-    company: "Calley Co (independent)",
+    role: "Founder & Design Engineer",
+    company: "Calley Co",
     period: "Mar 2023 - Present",
-    summary: "AI-focused product engineering and accessibility engagements for startups, agencies, and e-commerce brands.",
+    summary:
+      "Independent design and engineering studio building AI-powered products, automation, and accessible interfaces for startups, agencies, and e-commerce brands.",
     highlights: [
-      "Product designer and lead frontend engineer on a React + Shopify storefront with an AI-powered sizing recommendation system for a national school-uniform supplier.",
-      "Led a WCAG 2.1 audit and remediation of a 200+ page agency site — ARIA, semantic HTML, contrast, keyboard navigation — without sacrificing SEO or design.",
+      "Re-scoped an AI size-recommendation product for a pre-launch school uniform brand whose local, in-person delivery made every return a costly pickup. Found the existing age-and-weight model had no measurement data behind it, and redesigned around what the data could honestly support: a measurement-first path, a faster estimate path labeled as less accurate, per-product size charts, and a branded measuring tape in every first delivery.",
+      "Built and directed a Claude design workflow (three variants per component, automated critique for accessibility, brand voice, and overconfident AI messaging, then refinement) that shipped 9 recommender components. Product-managed an AI size-chart manager that parses supplier PDFs for human review, and specced the returns, exchange, and trade-in flows across customer, driver, and warehouse.",
+      "Moving a marketing agency's senior living client sites off site-builder WordPress and an accessibility overlay plugin, onto accessible-by-default static sites built with Claude, versioned in GitHub, and deployed on Cloudflare, reducing clients' ADA lawsuit risk with projected savings of $2,500+/month in hosting and software.",
+      "Build Claude-driven automation workflows for agencies and e-commerce brands across product development, merchandising, and content operations.",
+      "Accessibility and performance audits and remediation for web products: WCAG 2.1/2.2 AA conformance, Core Web Vitals, and prioritized fixes teams can ship.",
     ],
   },
   {
@@ -126,9 +130,9 @@ export const resumeSkills: SkillGroup[] = [
       "TypeScript",
       "Node.js",
       "Vue 3 (Composition API)",
-      "Shopify (Liquid + Hydrogen)",
       "Tailwind CSS",
-      "AI-assisted development workflows",
+      "Cloudflare",
+      "Claude Code and AI-assisted design and development workflows",
     ],
   },
   {

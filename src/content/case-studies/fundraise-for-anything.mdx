@@ -1,0 +1,148 @@
+---
+title: "Fundraise for Anything: building the mobile flow that became a fifth of the business"
+slug: fundraise-for-anything
+description: >-
+  Crowdrise bet its next feature would live or die on mobile and hired its first
+  frontend engineer to make the bet pay off. The story of the responsive
+  fundraiser flow I built around legacy PHP and years of partner customization I
+  could not break — and footage of it working, on a phone, on the ground.
+client: Crowdrise
+role: UX Developer
+timeframe: 2013–2016
+tags:
+  - Responsive architecture
+  - Design systems
+  - Foundation
+  - Legacy PHP
+  - Consumer product
+stats:
+  - value: 1st
+    label: frontend hire
+  - value: 20%
+    label: of revenue, year one
+  - value: 100s
+    label: of legacy partner pages to preserve
+status: published
+---
+
+## The bet
+
+When Crowdrise's co-founder and CPO reached out to me directly on LinkedIn, the
+company had a clear thesis and a clear gap. The thesis: their next big feature —
+**Fundraise for Anything**, which let people raise money for any
+cause rather than only registered 501(c)(3) charities — would succeed or fail on
+mobile, because the giving it enabled was spontaneous, social, and happened on
+the phone in someone's hand. The gap: the entire site was non-responsive, and
+there was no one to fix it. I was hired as Crowdrise's first frontend engineer to
+close it.
+
+On my first day I joined a call with the CPO, the CTO, and the lead designer, who
+walked me through the FFA designs so far and asked for honest feedback. I gave it.
+The candor on day one surprised them — and it set the tenor for how I'd work there:
+with no product manager on staff, I ended up leading across design and engineering
+to ship the thing, translating the CPO's product vision into what actually got
+built.
+
+## What I walked into
+
+The starting landscape was bleak in the specific way that legacy consumer products
+are bleak. All the frontend had been written by backend developers, so there was no
+frontend tooling of any kind — no build step, no conventions. There was a single
+enormous CSS file and hundreds of PHP templates spread across several disparate
+backend systems, the residue of multiple abandoned attempts to reorganize the
+codebase. My first real task wasn't writing code; it was reading it — mapping what
+existed, and finding pages I could delete outright because nothing pointed at them
+anymore.
+
+I didn't want to add yet another system on top of that mess, but there was no clean
+way to retrofit responsiveness into the existing templates without destabilizing
+everything. So I introduced a parallel `responsive_index.php` entry point
+for the pages I converted, and started with the global furniture: header, footer, and
+modals. We redesigned those responsively first, then built a retrofit so the
+*old* non-responsive pages inherited the new navigation too — meaning a user
+moving between a converted page and a legacy one never felt the seam. I chose
+**Foundation** as the framework to move quickly, and worked closely with
+our designer to define a reusable component system, which let me convert many pages
+on my own without redesigning each from scratch.
+
+## The hard part: hundreds of pages I wasn't allowed to break
+
+The fundraiser page — the one page that mattered most for FFA — was also the one I
+couldn't simply make responsive in place. Here's why.
+
+Crowdrise's business ran on partnerships: major marathons like New York and Boston,
+charities like the Red Cross, celebrities like Seth Rogen and Kristen Bell. To win
+and keep those partners, the marketing team could deeply customize a partner's
+fundraiser page through a freeform HTML/CSS field in the admin tools — custom colors,
+imagery, sometimes bespoke functionality. Crucially, **that markup was written
+by marketing, never by engineering**, and over the years it had accumulated
+into hundreds of pages, some of them completely unrecognizable, some re-styling the
+very header and footer I was trying to standardize.
+
+That's a genuinely hard constraint, and not a technical one I could refactor away:
+any responsive change to the shared fundraiser template risked silently breaking
+hundreds of pages of arbitrary, hand-injected markup that no engineer owned or could
+fully audit. Rewriting in place would have been reckless. So the right call was to
+**fork a new, dedicated responsive fundraiser page just for FFA** —
+isolating the new flow so it could be modern and mobile-first without putting years of
+partner customization at risk. Forking wasn't the shortcut; it was the disciplined
+choice given a surface that non-engineers had been writing into for years.
+
+The FFA fundraiser flow itself needed real product care, not just responsive markup.
+Creating an FFA fundraiser was a different journey from the existing charity flow: it
+required more identity verification (KYC), and that extra friction had to be sequenced
+so it informed rather than overwhelmed someone in the middle of an emotional, urgent
+impulse to help. Getting that funnel to convert on a small screen was the work.
+
+## The proof, on the ground
+
+To launch FFA, Crowdrise ran a promotion called the **24-Hour Impact Project**:
+we sent activist Mallory Brown to places that needed help — Haiti, Detroit, Nepal,
+Ethiopia, and more — and ran a 24-hour FFA fundraiser for each. Mallory was on the
+ground the whole time, watching the donations come in on the fundraiser page and
+spending the money in real time so donors could see their impact almost immediately.
+
+These are the impact films Crowdrise produced afterward. I'm including them because
+they show something frontend engineers almost never get to see: the interface I built,
+in production, in the hands of the people it was built for.
+
+<CaseStudyVideo
+  id="o0Kx456el88"
+  title="86,402 Seconds in Haiti"
+  place="Haiti"
+  caption="Mallory Brown checks the live FFA fundraiser page on her phone, in the field in Haiti, during the 24-hour campaign — the responsive flow I built, in the hands of the person it was built for. The campaign asked for $5,000 and raised over $10,000 for a family displaced by the 2010 earthquake."
+/>
+
+<CaseStudyVideo
+  id="_Ts82qZPgKc"
+  title="86,402 Seconds in Detroit"
+  place="Detroit"
+  caption="The fundraiser page appears throughout the Detroit campaign — the running donation total updating between Mallory's purchases on the ground, and a shot of her watching it from the Crowdrise office. Over $25,000 raised in 24 hours to give Elevate Detroit's community BBQ a permanent home."
+/>
+
+<div className="article-credit" role="note">
+Films produced by Crowdrise for the 24-Hour Impact Project. My contribution is the responsive fundraiser flow shown throughout — not the films, and not the platform's donation-ticker functionality, which predated me and which my flow surfaced on mobile.
+</div>
+
+## What it added up to
+
+FFA worked. Within its first year the feature grew into roughly a fifth of Crowdrise's
+business, and it was central to the story that took the company through a Series A and,
+ultimately, to its acquisition by GoFundMe. I want to be precise about my part in that:
+I didn't invent the feature or close the round. I built the responsive fundraiser
+experience that FFA depended on, set the frontend standards the team built on afterward,
+and made the mobile bet executable. Leadership was right that mobile would decide it. My
+job was to make sure the product was actually there when the phone came out — and it was.
+
+> The medium was the message. A feature built for spontaneous, social, on-the-ground
+> giving had to work on the device people actually had in their hands — not the
+> idealized desktop user, but the real person, in the real moment.
+
+That instinct — build for the real conditions of real people, not the convenient
+average — is the same one that drives my accessibility work today. Responsive design
+and inclusive design are the same discipline wearing different clothes: both refuse the
+fiction of a single "normal" user, and both make the product better for everyone when
+you design for the person at the edge. The phone in Haiti and the screen reader in a
+code editor are the same problem. I've been solving it for a decade.
+
+> Crowdrise was acquired by GoFundMe in 2017. Role: UX Developer, 2013–2016. The 24-Hour Impact Project films are © Crowdrise and are embedded here as documentation of shipped product work.

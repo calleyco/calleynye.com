@@ -8,7 +8,7 @@
 ## 1. Who This Is For
 
 **Calley Nye** — Senior Software Engineer and accessibility specialist based in Los Angeles.
-She has 10+ years of frontend engineering experience, 6+ years specializing in accessibility,
+She has 10+ years of frontend engineering experience, specializing in accessibility since her first engineering role in 2013,
 and is actively transitioning her primary stack from Vue.js to React/Next.js/TypeScript.
 
 **Learning context**: Calley finds analogies very helpful when learning new things. When she
@@ -436,7 +436,7 @@ someone thinking out loud who is also very organized.
 
 ## The four pillars (map all content to at least one)
 
-1. **Accessibility Leadership** — 6+ years, WCAG contracts, McKinsey talk,
+1. **Accessibility Leadership** — career-long focus since 2013, WCAG contracts, McKinsey talk,
    five models of disability framework
 2. **Streaming and Real-Time UIs** — WebSocket multiplayer at McKinsey,
    directly maps to Claude.ai's hardest UI challenges
